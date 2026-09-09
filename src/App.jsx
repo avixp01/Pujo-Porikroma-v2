@@ -122,6 +122,7 @@ function App() {
               alt="Mahalaya & Puja Info Mobile" 
               className="third-page-mobile-img" 
             />
+            <div className="third-page-mobile-bottom-space"></div>
           </div>
           
           {/* Desktop Dedicated View Image (min-width: 769px) */}
