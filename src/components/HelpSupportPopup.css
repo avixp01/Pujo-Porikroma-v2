@@ -75,6 +75,16 @@
 .help-faq-item {
   background-color: #2c2522;
   border-radius: 12px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: background-color 0.2s ease;
+}
+
+.help-faq-item:hover {
+  background-color: #352c28;
+}
+
+.help-faq-header {
   padding: 12px 14px;
   display: flex;
   justify-content: space-between;
@@ -82,11 +92,44 @@
   color: #ffffff;
   font-size: 14px;
   font-weight: 600;
-  cursor: pointer;
+  user-select: none;
 }
 
 .help-faq-icon {
   color: rgba(245, 230, 211, 0.5);
+  transition: transform 0.28s ease, color 0.2s ease;
+  flex-shrink: 0;
+  margin-left: 8px;
+}
+
+.help-faq-icon.rotated {
+  transform: rotate(180deg);
+  color: #ffffff;
+}
+
+.help-faq-collapse {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.help-faq-collapse.expanded {
+  grid-template-rows: 1fr;
+}
+
+.help-faq-answer-inner {
+  min-height: 0;
+  overflow: hidden;
+  padding: 0 14px;
+  color: rgba(245, 230, 211, 0.78);
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 400;
+  transition: padding 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.help-faq-collapse.expanded .help-faq-answer-inner {
+  padding: 0 14px 14px 14px;
 }
 
 .help-contact {

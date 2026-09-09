@@ -1,8 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import './HelpSupportPopup.css';
 
 const HelpSupportPopup = ({ onClose }) => {
+  const [openFaqIndex, setOpenFaqIndex] = useState(null);
+
+  const faqs = [
+    {
+      question: "What is Pujo Porikroma?",
+      answer: "Pujo Porikroma is a full Pujo guide for 2026. Where u can find your favourite your favourite pandels with proper vibe."
+    },
+    {
+      question: "What is the Significance of the page?",
+      answer: "This is a all rounder for pandal hopper. Here u can find pandel with their details, and also connect with new peoples while vibing with Puja playlist."
+    },
+    {
+      question: "How do I mark a pandal as visited?",
+      answer: 'Tap the pandal location, use "Mark as visited". Your visited count shows on your profile so you can track your journey.'
+    }
+  ];
+
+  const toggleFaq = (index) => {
+    setOpenFaqIndex(prevIndex => prevIndex === index ? null : index);
+  };
+
   return (
     <div className="help-overlay" onClick={(e) => { e.stopPropagation(); onClose(); }}>
       <div className="help-content" onClick={(e) => e.stopPropagation()}>
@@ -14,18 +35,26 @@ const HelpSupportPopup = ({ onClose }) => {
         <div className="help-body">
           <div className="help-section-title">FAQS</div>
           <div className="help-faqs">
-            <div className="help-faq-item">
-              <span>What is Pujo Porikroma?</span>
-              <ChevronDown size={18} className="help-faq-icon" />
-            </div>
-            <div className="help-faq-item">
-              <span>What is the Significance of the page?</span>
-              <ChevronDown size={18} className="help-faq-icon" />
-            </div>
-            <div className="help-faq-item">
-              <span>How do I mark a pandal as visited?</span>
-              <ChevronDown size={18} className="help-faq-icon" />
-            </div>
+            {faqs.map((faq, index) => {
+              const isOpen = openFaqIndex === index;
+              return (
+                <div
+                  key={index}
+                  className={`help-faq-item ${isOpen ? 'open' : ''}`}
+                  onClick={() => toggleFaq(index)}
+                >
+                  <div className="help-faq-header">
+                    <span>{faq.question}</span>
+                    <ChevronDown size={18} className={`help-faq-icon ${isOpen ? 'rotated' : ''}`} />
+                  </div>
+                  <div className={`help-faq-collapse ${isOpen ? 'expanded' : ''}`}>
+                    <div className="help-faq-answer-inner">
+                      {faq.answer}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
 
           <div className="help-section-title">CONTACT US</div>
