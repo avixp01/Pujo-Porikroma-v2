@@ -111,26 +111,25 @@ function App() {
         </div>
 
         {/* Blur seam to blend the second and third pages */}
-        <div className="page-seam-blur lg:hidden"></div>
+        <div className="page-seam-blur md:hidden"></div>
 
         {/* Third Page */}
         <div className="third-page" id="third-page">
-          {/* Mobile View Image */}
-          <div className="w-full flex items-center justify-center bg-[#181210] lg:hidden">
+          {/* Mobile View Image (max-width: 768px) */}
+          <div className="third-page-mobile">
             <img 
               src="/third-page-image.jpg" 
               alt="Mahalaya & Puja Info Mobile" 
-              className="w-full h-auto block" 
+              className="third-page-mobile-img" 
             />
           </div>
           
-          {/* PC Dedicated View Image */}
-          <div className="hidden lg:flex w-full min-h-screen items-center justify-center p-8 bg-[#181210]">
+          {/* Desktop Dedicated View Image (min-width: 769px) */}
+          <div className="third-page-desktop">
             <img 
-              src="/third-page-image.jpg" 
+              src="/third-page-desktop.jpg" 
               alt="Mahalaya & Puja Info Desktop" 
-              className="max-w-full object-contain shadow-2xl rounded-2xl" 
-              style={{ width: 'auto', height: 'auto', maxHeight: '92vh' }}
+              className="third-page-desktop-img" 
             />
           </div>
         </div>
