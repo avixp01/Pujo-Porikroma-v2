@@ -6,6 +6,15 @@ import nodemailer from 'nodemailer';
 import fs from 'fs';
 import path from 'path';
 
+// Load .env if present
+if (fs.existsSync('.env') && process.loadEnvFile) {
+  try {
+    process.loadEnvFile('.env');
+  } catch (e) {
+    console.error("Error loading .env file:", e.message);
+  }
+}
+
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -385,19 +394,28 @@ async function forwardReportEmail(report) {
   const { topic, description, contact, timestamp } = report;
   const targetEmail = 'saikatsom234@gmail.com';
 
-  console.log(`[REPORT SUBMISSION] Forwarding to ${targetEmail}`);
+  console.log(`[REPORT SUBMISSION] Dispatching real email to ${targetEmail}`);
   console.log(`  Topic: ${topic}`);
   console.log(`  Contact: ${contact}`);
   console.log(`  Description: ${description}`);
   console.log(`  Time: ${timestamp}`);
 
-  if (mailTransporter) {
+  // 1. Direct Gmail / SMTP delivery if credentials provided in environment
+  const smtpUser = process.env.SMTP_USER || process.env.GMAIL_USER;
+  const smtpPass = process.env.SMTP_PASS || process.env.GMAIL_PASS;
+
+  if (smtpUser && smtpPass) {
     try {
-      await mailTransporter.sendMail({
-        from: process.env.SMTP_FROM || `"Pujo Porikroma Reports" <${process.env.SMTP_USER}>`,
+      const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: { user: smtpUser, pass: smtpPass }
+      });
+
+      await transporter.sendMail({
+        from: `"Pujo Porikroma Reports" <${smtpUser}>`,
         to: targetEmail,
         replyTo: contact.includes('@') ? contact : undefined,
-        subject: `[Pujo Porikroma Problem Report] - ${topic}`,
+        subject: `[Pujo Porikroma Problem Report] ${topic} - ${contact}`,
         text: `New Problem Report Received:\n\nTopic: ${topic}\nContact: ${contact}\nTime: ${timestamp}\n\nDescription:\n${description}`,
         html: `
           <div style="font-family: Arial, sans-serif; background: #181210; color: #f5e6d3; padding: 24px; border-radius: 12px; max-width: 600px;">
@@ -411,13 +429,44 @@ async function forwardReportEmail(report) {
           </div>
         `
       });
-      console.log(`[REPORT EMAIL] Successfully dispatched email via SMTP to ${targetEmail}`);
-    } catch (err) {
-      console.error("[REPORT EMAIL] SMTP send error:", err.message);
+      console.log(`[REPORT EMAIL] Successfully dispatched via Gmail SMTP to ${targetEmail}`);
+      return { success: true, service: 'smtp' };
+    } catch (smtpErr) {
+      console.error("[REPORT EMAIL] SMTP error, falling back to transactional email service:", smtpErr.message);
     }
-  } else {
-    console.log(`[REPORT EMAIL] Note: SMTP not configured in environment; report saved to reports.json and logged.`);
   }
+
+  // 2. Transactional email gateway connected directly to saikatsom234@gmail.com
+  const response = await fetch(`https://formsubmit.co/ajax/${targetEmail}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Origin': 'http://localhost:5173',
+      'Referer': 'http://localhost:5173/',
+      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'
+    },
+    body: JSON.stringify({
+      name: "Pujo Porikroma User",
+      topic: topic,
+      contact: contact,
+      description: description,
+      message: `[Topic: ${topic}]\nContact: ${contact}\nTime: ${timestamp}\n\nDescription:\n${description}`,
+      _subject: `[Pujo Porikroma Problem Report] ${topic} (${contact})`,
+      _replyto: contact.includes('@') ? contact : undefined,
+      _captcha: "false",
+      _template: "table"
+    })
+  });
+
+  const resData = await response.json();
+  console.log(`[REPORT EMAIL] Transactional email service response:`, resData);
+
+  if (!response.ok) {
+    throw new Error(resData.message || 'Email transactional service returned an error');
+  }
+
+  return { success: true, service: 'formsubmit', details: resData };
 }
 
 app.post('/api/report', async (req, res) => {
@@ -452,9 +501,6 @@ app.post('/api/report', async (req, res) => {
       });
     }
 
-    // Register timestamp for rate limiting
-    reportEmailTimestamps.push(now);
-
     const reportData = {
       id: Date.now() + Math.random().toString(36).substr(2, 7),
       topic: topic.trim(),
@@ -463,19 +509,25 @@ app.post('/api/report', async (req, res) => {
       timestamp: new Date().toISOString()
     };
 
+    // Forward email via transactional email service (throws if delivery fails)
+    await forwardReportEmail(reportData);
+
+    // Register timestamp for rate limiting ONLY after successful email trigger
+    reportEmailTimestamps.push(now);
+
     // Save to persistent storage
     saveReport(reportData);
 
-    // Forward email
-    await forwardReportEmail(reportData);
-
-    return res.json({
+    return res.status(200).json({
       success: true,
       message: 'Report sent successfully! We will review it shortly.'
     });
   } catch (err) {
     console.error('Error processing report:', err);
-    return res.status(500).json({ success: false, error: 'Internal server error while processing report.' });
+    return res.status(502).json({ 
+      success: false, 
+      error: err.message || 'Failed to deliver report email. Please check your internet connection and try again.' 
+    });
   }
 });
 
