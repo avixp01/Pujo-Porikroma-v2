@@ -15,7 +15,7 @@ const HelpSupportPopup = ({ onClose }) => {
           <div className="help-section-title">FAQS</div>
           <div className="help-faqs">
             <div className="help-faq-item">
-              <span>What is Sharodiya?</span>
+              <span>What is Pujo Porikroma?</span>
               <ChevronDown size={18} className="help-faq-icon" />
             </div>
             <div className="help-faq-item">
