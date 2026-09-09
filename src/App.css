@@ -56,6 +56,15 @@
   background-color: #550719; /* matches the burgundy background of the image roughly */
 }
 
+.third-page {
+  width: 100%;
+  position: relative;
+  z-index: 2;
+  background-color: #181210;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
 .page-seam-blur {
   position: relative;
   width: 100%;
@@ -87,7 +96,7 @@
 
 /* Target mobile/tablet devices in landscape rotation */
 @media screen and (orientation: landscape) and (max-height: 1024px) and (pointer: coarse) {
-  .main-content, .background-overlay {
+  .main-content, .background-overlay, .second-page, .third-page, .page-seam-blur {
     display: none !important;
   }
   

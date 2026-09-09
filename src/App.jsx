@@ -26,6 +26,19 @@ function App() {
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
+  useEffect(() => {
+    const handleHash = () => {
+      if (window.location.hash === '#third-page' || window.location.pathname.endsWith('/third-page')) {
+        setTimeout(() => {
+          document.getElementById('third-page')?.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    };
+    handleHash();
+    window.addEventListener('hashchange', handleHash);
+    return () => window.removeEventListener('hashchange', handleHash);
+  }, []);
+
   const openMap = () => {
     setIsMapLoading(true);
     setIsMapFadingOut(false);
@@ -82,7 +95,7 @@ function App() {
         <div className="page-seam-blur lg:hidden"></div>
 
         {/* Second Page */}
-        <div className="second-page">
+        <div className="second-page" id="second-page">
           {/* Mobile View Image */}
           <img src="/2nd page.jpg" alt="Puja Schedule Mobile" className="w-full h-auto block lg:hidden" />
           
@@ -97,7 +110,30 @@ function App() {
           </div>
         </div>
 
+        {/* Blur seam to blend the second and third pages */}
+        <div className="page-seam-blur lg:hidden"></div>
 
+        {/* Third Page */}
+        <div className="third-page" id="third-page">
+          {/* Mobile View Image */}
+          <div className="w-full flex items-center justify-center bg-[#181210] lg:hidden">
+            <img 
+              src="/third-page-image.jpg" 
+              alt="Mahalaya & Puja Info Mobile" 
+              className="w-full h-auto block" 
+            />
+          </div>
+          
+          {/* PC Dedicated View Image */}
+          <div className="hidden lg:flex w-full min-h-screen items-center justify-center p-8 bg-[#181210]">
+            <img 
+              src="/third-page-image.jpg" 
+              alt="Mahalaya & Puja Info Desktop" 
+              className="max-w-full object-contain shadow-2xl rounded-2xl" 
+              style={{ width: 'auto', height: 'auto', maxHeight: '92vh' }}
+            />
+          </div>
+        </div>
       </div>
 
       {/* Map Loader Overlay */}
