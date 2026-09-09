@@ -531,6 +531,175 @@ app.post('/api/report', async (req, res) => {
   }
 });
 
+// ==========================================
+// CONTACT US & RATE LIMITING BACKEND
+// ==========================================
+const CONTACT_MAX_PER_WINDOW = 10;
+const CONTACT_WINDOW_MS = 4 * 60 * 60 * 1000; // 4 hours
+let contactEmailTimestamps = [];
+const CONTACTS_FILE = path.resolve('contacts.json');
+
+function loadContacts() {
+  try {
+    if (fs.existsSync(CONTACTS_FILE)) {
+      return JSON.parse(fs.readFileSync(CONTACTS_FILE, 'utf-8'));
+    }
+  } catch (e) {
+    console.error("Error reading contacts file:", e);
+  }
+  return [];
+}
+
+function saveContact(contactItem) {
+  try {
+    const list = loadContacts();
+    list.push(contactItem);
+    fs.writeFileSync(CONTACTS_FILE, JSON.stringify(list, null, 2), 'utf-8');
+  } catch (e) {
+    console.error("Error saving contact message to file:", e);
+  }
+}
+
+async function forwardContactEmail(contactData) {
+  const { name, contact, message, timestamp } = contactData;
+  const targetEmail = 'saikatsom234@gmail.com';
+  const senderDisplayName = name || 'User';
+
+  console.log(`[CONTACT SUBMISSION] Dispatching real email to ${targetEmail}`);
+  console.log(`  Name: ${senderDisplayName}`);
+  console.log(`  Contact: ${contact}`);
+  console.log(`  Message: ${message}`);
+  console.log(`  Time: ${timestamp}`);
+
+  // 1. Direct Gmail / SMTP delivery if credentials provided in environment
+  const smtpUser = process.env.SMTP_USER || process.env.GMAIL_USER;
+  const smtpPass = process.env.SMTP_PASS || process.env.GMAIL_PASS;
+
+  if (smtpUser && smtpPass) {
+    try {
+      const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: { user: smtpUser, pass: smtpPass }
+      });
+
+      await transporter.sendMail({
+        from: `"Pujo Porikroma Help & Support" <${smtpUser}>`,
+        to: targetEmail,
+        replyTo: contact.includes('@') ? contact : undefined,
+        subject: `[Pujo Porikroma Help & Support] ${senderDisplayName} (${contact})`,
+        text: `New Help & Support Message Received:\n\nFrom: ${senderDisplayName}\nContact: ${contact}\nTime: ${timestamp}\n\nMessage:\n${message}`,
+        html: `
+          <div style="font-family: Arial, sans-serif; background: #181210; color: #f5e6d3; padding: 24px; border-radius: 12px; max-width: 600px;">
+            <h2 style="color: #ffaa44; margin-top: 0;">Pujo Porikroma - Help &amp; Support Contact</h2>
+            <p><strong>Name:</strong> ${senderDisplayName}</p>
+            <p><strong>Contact:</strong> ${contact}</p>
+            <p><strong>Submitted At:</strong> ${timestamp}</p>
+            <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.2); margin: 16px 0;" />
+            <h3 style="color: #ffffff;">Message:</h3>
+            <div style="background: #241c19; padding: 16px; border-radius: 8px; white-space: pre-wrap; color: #ffffff;">${message}</div>
+          </div>
+        `
+      });
+      console.log(`[CONTACT EMAIL] Successfully dispatched via Gmail SMTP to ${targetEmail}`);
+      return { success: true, service: 'smtp' };
+    } catch (smtpErr) {
+      console.error("[CONTACT EMAIL] SMTP error, falling back to transactional email service:", smtpErr.message);
+    }
+  }
+
+  // 2. Transactional email gateway connected directly to saikatsom234@gmail.com
+  const response = await fetch(`https://formsubmit.co/ajax/${targetEmail}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Origin': 'http://localhost:5173',
+      'Referer': 'http://localhost:5173/',
+      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'
+    },
+    body: JSON.stringify({
+      name: senderDisplayName,
+      contact: contact,
+      message: `[From: ${senderDisplayName}]\nContact: ${contact}\nTime: ${timestamp}\n\nMessage:\n${message}`,
+      _subject: `[Pujo Porikroma Help & Support] ${senderDisplayName} (${contact})`,
+      _replyto: contact.includes('@') ? contact : undefined,
+      _captcha: "false",
+      _template: "table"
+    })
+  });
+
+  const resData = await response.json();
+  console.log(`[CONTACT EMAIL] Transactional email service response:`, resData);
+
+  if (!response.ok) {
+    throw new Error(resData.message || 'Email transactional service returned an error');
+  }
+
+  return { success: true, service: 'formsubmit', details: resData };
+}
+
+app.post('/api/contact', async (req, res) => {
+  try {
+    const { name, contact, message } = req.body;
+
+    // Validate inputs (contact and message are required)
+    if (!contact || !contact.trim() || !message || !message.trim()) {
+      return res.status(400).json({ 
+        success: false, 
+        error: 'Email or phone contact info and a message description are required.' 
+      });
+    }
+
+    const now = Date.now();
+    const windowStart = now - CONTACT_WINDOW_MS;
+
+    // Purge timestamps older than 4 hours
+    contactEmailTimestamps = contactEmailTimestamps.filter(ts => ts > windowStart);
+
+    // Rate limit check: max 10 emails per 4-hour window
+    if (contactEmailTimestamps.length >= CONTACT_MAX_PER_WINDOW) {
+      const oldestInWindow = contactEmailTimestamps[0];
+      const remainingMs = (oldestInWindow + CONTACT_WINDOW_MS) - now;
+      const remainingMinutes = Math.max(1, Math.ceil(remainingMs / (60 * 1000)));
+      
+      console.warn(`[CONTACT RATE LIMIT] 10 messages reached in 4h window. Blocked until ${remainingMinutes}m.`);
+      return res.status(429).json({
+        success: false,
+        rateLimited: true,
+        error: `Rate limit reached. A maximum of 10 messages can be sent per 4-hour window. Please try again in ${remainingMinutes} minutes.`
+      });
+    }
+
+    const contactData = {
+      id: Date.now() + Math.random().toString(36).substr(2, 7),
+      name: (name || '').trim(),
+      contact: contact.trim(),
+      message: message.trim(),
+      timestamp: new Date().toISOString()
+    };
+
+    // Forward email via transactional email service (throws if delivery fails)
+    await forwardContactEmail(contactData);
+
+    // Register timestamp for rate limiting ONLY after successful email trigger
+    contactEmailTimestamps.push(now);
+
+    // Save to persistent storage
+    saveContact(contactData);
+
+    return res.status(200).json({
+      success: true,
+      message: 'Message sent successfully! We will get back to you soon.'
+    });
+  } catch (err) {
+    console.error('Error processing contact submission:', err);
+    return res.status(502).json({ 
+      success: false, 
+      error: err.message || 'Failed to deliver message. Please check your internet connection and try again.' 
+    });
+  }
+});
+
 const PORT = process.env.PORT || 3000;
 httpServer.listen(PORT, '0.0.0.0', () => {
   console.log(`Socket.IO backend server running on http://0.0.0.0:${PORT}`);
