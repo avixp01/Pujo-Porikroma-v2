@@ -19,7 +19,7 @@ const HelpSupportPopup = ({ onClose }) => {
               <ChevronDown size={18} className="help-faq-icon" />
             </div>
             <div className="help-faq-item">
-              <span>How do I plan a pandal-hopping route?</span>
+              <span>What is the Significance of the page?</span>
               <ChevronDown size={18} className="help-faq-icon" />
             </div>
             <div className="help-faq-item">
