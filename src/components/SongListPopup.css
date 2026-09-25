@@ -1,35 +1,30 @@
 .song-list-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  height: 100dvh;
+  inset: 0;
   background-color: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  z-index: 1000;
+  z-index: 9999;
   display: flex;
   justify-content: center;
   align-items: flex-end;
 }
 
 .song-list-popup {
-  width: calc(100% - 32px);
-  max-width: 600px;
+  width: calc(100% - 30px);
+  max-width: 440px;
+  max-height: 80vh;
   height: 80vh;
-  height: 80dvh;
   background: linear-gradient(to bottom, #2a2a2a, #111111);
-  border-radius: 32px; /* All 4 corners curved */
+  border-radius: 24px;
   padding: 32px 12px;
   display: flex;
   flex-direction: column;
   animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   box-shadow: 0 -20px 50px rgba(0,0,0,0.8);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.05); /* Added subtle border around whole card */
+  border: 1px solid rgba(255, 255, 255, 0.05);
   box-sizing: border-box;
-  margin-bottom: 24px; /* Float off the bottom edge */
+  margin-bottom: 15px;
 }
 
 @keyframes slideUp {
@@ -212,12 +207,11 @@
 
 @media (max-width: 768px) {
   .song-list-popup {
-    width: calc(100% - 32px); /* Maintain floating side margins */
-    border-radius: 32px; /* All 4 corners curved */
-    height: 85vh; /* Slightly reduced height to fit bottom margin */
-    height: 85dvh;
+    width: calc(100% - 30px);
+    border-radius: 24px;
+    height: 85vh;
     padding: 24px 8px;
-    margin-bottom: 16px; /* Float off the bottom edge */
+    margin-bottom: 15px;
   }
   
   .song-card-title-modern {

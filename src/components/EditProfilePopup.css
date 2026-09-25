@@ -67,9 +67,9 @@
 }
 
 .edit-profile-save-btn-top {
-  background-color: #a04030; /* Settings theme red-brown */
+  background-color: #3d2c26;
   color: #f5e6d3;
-  border: none;
+  border: 1px solid rgba(212, 163, 115, 0.3);
   padding: 8px 16px;
   border-radius: 8px;
   font-size: 14px;
@@ -79,7 +79,7 @@
 }
 
 .edit-profile-save-btn-top:hover {
-  background-color: #b05040;
+  background-color: #2a1f1b;
 }
 
 .edit-profile-scroll-area {
@@ -203,9 +203,9 @@
 
 .edit-profile-save-btn-bottom {
   width: 100%;
-  background-color: #a04030;
+  background-color: #3d2c26;
   color: #f5e6d3;
-  border: none;
+  border: 1px solid rgba(212, 163, 115, 0.3);
   border-radius: 12px;
   padding: 12px;
   font-size: 16px;
@@ -218,7 +218,7 @@
 }
 
 .edit-profile-save-btn-bottom:hover {
-  background-color: #b05040;
+  background-color: #2a1f1b;
 }
 
 .fade-in {

@@ -117,8 +117,9 @@
 }
 
 .creator-avatar {
-  width: 140px;
-  height: 140px;
+  margin-right: 16px; /* Added to increase right edge spacing */
+  width: 135px;
+  height: 135px;
   border-radius: 20px; /* Square with rounded edges */
   object-fit: cover; /* Ensures the image scales perfectly within the circle */
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2); /* Very faint black shadow */

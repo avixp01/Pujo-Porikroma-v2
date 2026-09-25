@@ -19,7 +19,11 @@ const SettingsPopup = ({ onClose, onLogout }) => {
   const [showReport, setShowReport] = useState(false);
   const [showHelp, setShowHelp] = useState(false);
   const [showInvite, setShowInvite] = useState(false);
-  const userGender = 'male'; // Can be changed to 'female' to test the female avatars
+  const storedUserStr = localStorage.getItem('pujoUser');
+  const storedUser = storedUserStr ? JSON.parse(storedUserStr) : null;
+  const userName = storedUser ? `${storedUser.firstname || ''} ${storedUser.lastname || ''}`.trim() : 'USER';
+  const userEmail = storedUser?.email || 'user@gmail.com';
+  const userGender = storedUser?.gender || 'male';
 
   useEffect(() => {
     const handlePopState = (e) => {
@@ -58,7 +62,7 @@ const SettingsPopup = ({ onClose, onLogout }) => {
     }
   };
 
-  const [avatarSrc] = useState(() => {
+  const [avatarSrc, setAvatarSrc] = useState(() => {
     const maleAvatars = [
       '/avatar-male-1.png',
       '/avatar-male-2.png',
@@ -75,6 +79,9 @@ const SettingsPopup = ({ onClose, onLogout }) => {
       '/user logo7.png'
     ];
     
+    if (storedUser?.picture) {
+      return storedUser.picture;
+    }
     const arrayToUse = userGender === 'female' ? femaleAvatars : maleAvatars;
     return arrayToUse[Math.floor(Math.random() * arrayToUse.length)];
   });
@@ -88,11 +95,25 @@ const SettingsPopup = ({ onClose, onLogout }) => {
         {/* User Profile Section */}
         <div className="settings-profile-section">
           <div className="settings-avatar-wrapper">
-            <img src={avatarSrc} alt="User Avatar" className="settings-avatar" />
+            <img src={avatarSrc} alt="User Avatar" className="settings-avatar" onError={(e) => {
+              const maleAvatars = ['/avatar-male-1.png','/avatar-male-2.png','/avatar-male-3.png','/user logo1.png','/user logo3.png','/user logo4.png','/user logo6.png'];
+              const femaleAvatars = ['/avatar-female-1.png','/user logo2.png','/user logo5.png','/user logo7.png'];
+              const arrayToUse = userGender === 'female' ? femaleAvatars : maleAvatars;
+              const fallback = arrayToUse[Math.floor(Math.random() * arrayToUse.length)];
+              setAvatarSrc(fallback);
+              
+              // Also clean up localstorage so it doesnt happen again
+              const storedUserStr = localStorage.getItem('pujoUser');
+              if (storedUserStr) {
+                const storedUser = JSON.parse(storedUserStr);
+                delete storedUser.picture;
+                localStorage.setItem('pujoUser', JSON.stringify(storedUser));
+              }
+            }} />
           </div>
           <div className="settings-profile-info">
-            <h2 className="settings-username">USER</h2>
-            <p className="settings-email">user@gmail.com</p>
+            <h2 className="settings-username">{userName || 'USER'}</h2>
+            <p className="settings-email">{userEmail}</p>
             <div className="settings-badge">
               <Flame size={12} className="settings-badge-icon" />
               <span>Pandal Explorer</span>
@@ -226,7 +247,7 @@ const SettingsPopup = ({ onClose, onLogout }) => {
           </div>
 
           {/* Sign Out Button */}
-          <button className="settings-signout-btn">
+          <button className="settings-signout-btn" onClick={() => { localStorage.removeItem('pujoUser'); window.location.reload(); }}>
             <LogOut size={18} />
             <span>Sign out</span>
           </button>
@@ -241,6 +262,9 @@ const SettingsPopup = ({ onClose, onLogout }) => {
         <EditProfilePopup 
           onClose={() => closePopup(setShowEditProfile)} 
           avatarSrc={avatarSrc}
+          setAvatarSrc={setAvatarSrc}
+          initialName={userName}
+          initialEmail={userEmail}
         />
       )}
 

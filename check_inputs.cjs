@@ -1,0 +1,4 @@
+const fs = require('fs');
+const code = fs.readFileSync('src/components/LoginModal.jsx', 'utf8');
+const start = code.indexOf('id={`reset-code-');
+console.log(code.slice(start, start + 800));

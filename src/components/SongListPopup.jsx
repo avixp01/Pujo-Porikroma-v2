@@ -181,11 +181,12 @@ export const mahalayaSongs = [
     { id: 1023, title: 'Aaha Ki Anando Akashe Batashy', artist: 'Hirak Rajar Deshe', duration: '7:08', cover: '/mahalaya-cover.jpg', src: '/songs/aaha-ki-anando.mp3' }
   ];
 
-const SongListPopup = ({ onClose, onSelectSong, currentSong, pandalList = pandalSongs, mahalayaList = mahalayaSongs, favoriteList = [], isFavoriteMode = false }) => {
-  const [activeTab, setActiveTab] = useState('pandal');
+const SongListPopup = ({ onClose, onSelectSong, currentSong, pandalList = pandalSongs, mahalayaList = mahalayaSongs, favoriteList = [], isFavoriteMode = false, customTitle, hideTabs = false, initialTab = 'pandal', className = '' }) => {
+  const [activeTab, setActiveTab] = useState(initialTab);
+  const [localIsFavoriteMode, setLocalIsFavoriteMode] = useState(isFavoriteMode);
   const activeSongRef = useRef(null);
   
-  const currentSongs = isFavoriteMode ? favoriteList : (activeTab === 'pandal' ? pandalList : mahalayaList);
+  const currentSongs = localIsFavoriteMode ? favoriteList : (activeTab === 'pandal' ? pandalList : mahalayaList);
 
   useEffect(() => {
     if (activeSongRef.current) {
@@ -202,13 +203,13 @@ const SongListPopup = ({ onClose, onSelectSong, currentSong, pandalList = pandal
         }
         
         if (shouldScroll) {
-          activeSongRef.current.scrollIntoView({ block: 'start' });
+          activeSongRef.current.scrollIntoView({ block: 'nearest' });
         } else {
           activeSongRef.current.scrollIntoView({ block: 'nearest' });
         }
       }, 50);
     }
-  }, [activeTab]);
+  }, [activeTab, localIsFavoriteMode]);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   
@@ -251,20 +252,31 @@ const SongListPopup = ({ onClose, onSelectSong, currentSong, pandalList = pandal
   });
 
   return (
-    <div className="song-list-overlay" onClick={onClose}>
+    <div className={`song-list-overlay ${className}`} onClick={onClose}>
       <div className="song-list-popup glass-panel" onClick={e => e.stopPropagation()}>
         
         {/* Header Section */}
         <div className="song-list-header">
           <div className="song-list-header-top">
-            <h2 className="song-list-title-text bengali-text">{isFavoriteMode ? 'প্রিয় গান' : 'পুজো স্পেশাল'}</h2>
+            <div className="song-list-title-wrapper" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', borderBottom: '1px solid rgba(255, 255, 255, 0.6)', padding: '0 24px 6px 24px' }}>
+              <h2 className="song-list-title-text bengali-text" style={{ borderBottom: 'none', padding: 0 }}>
+                {localIsFavoriteMode ? 'প্রিয় গান' : (customTitle || 'পুজো স্পেশাল')}
+              </h2>
+              <button 
+                onClick={() => setLocalIsFavoriteMode(!localIsFavoriteMode)}
+                style={{ background: 'transparent', border: 'none', color: localIsFavoriteMode ? '#ff4757' : 'rgba(255, 255, 255, 0.7)', cursor: 'pointer', padding: 0, display: 'flex', alignItems: 'center', transition: 'all 0.2s ease', transform: 'translateY(-1px)' }}
+                title="Toggle Favorite Playlist"
+              >
+                <Heart size={18} fill={localIsFavoriteMode ? '#ff4757' : 'none'} />
+              </button>
+            </div>
             <button className="close-btn" onClick={onClose}>
               <X size={24} />
             </button>
           </div>
           <div className="song-list-tabs-container">
             {!isSearchOpen ? (
-              !isFavoriteMode && (
+              (!localIsFavoriteMode && !hideTabs) && (
                 <div className="song-list-tabs bengali-text animation-pop-in">
                   <button 
                     className={`tab-btn-modern ${activeTab === 'pandal' ? 'active' : ''}`}

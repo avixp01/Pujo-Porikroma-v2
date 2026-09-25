@@ -155,6 +155,7 @@ const MusicPlayer = () => {
   useEffect(() => {
     if (audioRef.current) {
       if (isPlaying) {
+        window.dispatchEvent(new CustomEvent('player-play', { detail: 'first-page' }));
         audioRef.current.play().catch(e => {
           console.log("Playback interrupted or prevented:", e);
           setIsPlaying(false);
@@ -164,6 +165,16 @@ const MusicPlayer = () => {
       }
     }
   }, [isPlaying, currentSong.src]);
+
+  useEffect(() => {
+    const handleGlobalPlay = (e) => {
+      if (e.detail !== 'first-page') {
+        setIsPlaying(false);
+      }
+    };
+    window.addEventListener('player-play', handleGlobalPlay);
+    return () => window.removeEventListener('player-play', handleGlobalPlay);
+  }, []);
 
   useEffect(() => {
     if (dhakAudioRef.current) {

@@ -69,3 +69,14 @@ button:hover {
 button:active {
   transform: scale(0.95);
 }
+
+
+/* Global Tap Highlight and Outline Reset */
+button, a, input, select, textarea, [role='button'] {
+  -webkit-tap-highlight-color: transparent !important;
+  outline: none !important;
+}
+
+button:focus, a:focus, input:focus, select:focus, textarea:focus, [role='button']:focus {
+  outline: none !important;
+}

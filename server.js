@@ -1,4 +1,5 @@
 import express from 'express';
+import crypto from 'crypto';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 import cors from 'cors';
@@ -19,6 +20,370 @@ if (fs.existsSync('.env') && process.loadEnvFile) {
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+// --- EMAIL LIMITS DB ---
+const EMAIL_LIMITS_FILE = path.join(process.cwd(), 'email_limits.json');
+let emailLimits = {};
+
+function loadEmailLimits() {
+  try {
+    if (fs.existsSync(EMAIL_LIMITS_FILE)) {
+      emailLimits = JSON.parse(fs.readFileSync(EMAIL_LIMITS_FILE, 'utf8'));
+    }
+  } catch (e) {
+    console.error("Error loading email limits:", e);
+  }
+}
+function saveEmailLimits() {
+  fs.writeFileSync(EMAIL_LIMITS_FILE, JSON.stringify(emailLimits, null, 2));
+}
+loadEmailLimits();
+
+function canGenerateEmail(email, type) {
+  if (!emailLimits[email]) emailLimits[email] = { register: [], reset: [] };
+  const now = Date.now();
+  const twentyFourHours = 24 * 60 * 60 * 1000;
+  
+  // Clean up entries older than 24h
+  emailLimits[email][type] = emailLimits[email][type].filter(t => now - t < twentyFourHours);
+  
+  return emailLimits[email][type].length < 2;
+}
+
+function recordEmailGeneration(email, type) {
+  if (!emailLimits[email]) emailLimits[email] = { register: [], reset: [] };
+  emailLimits[email][type].push(Date.now());
+  saveEmailLimits();
+}
+
+// --- USER AUTHENTICATION DB ---
+const USERS_FILE = path.join(process.cwd(), 'users.json');
+let users = [];
+
+function loadUsers() {
+  try {
+    if (fs.existsSync(USERS_FILE)) {
+      const data = fs.readFileSync(USERS_FILE, 'utf8');
+      users = JSON.parse(data);
+    }
+  } catch (err) {
+    console.error("Error loading users:", err);
+  }
+}
+function saveUsers() {
+  try {
+    fs.writeFileSync(USERS_FILE, JSON.stringify(users, null, 2));
+  } catch (err) {
+    console.error("Error saving users:", err);
+  }
+}
+loadUsers();
+
+function hashPassword(password) {
+  return crypto.createHash('sha256').update(password).digest('hex');
+}
+
+
+async function sendVerificationEmail(email, code, name, type = 'register') {
+  const smtpUser = process.env.EMAIL_USER || process.env.SMTP_USER || process.env.GMAIL_USER;
+  const smtpPass = process.env.EMAIL_PASS || process.env.SMTP_PASS || process.env.GMAIL_PASS;
+
+  // Development Fallback Log Option
+  console.log(`\n=========================================`);
+  console.log(`[GENERATED VERIFICATION CODE] ${code}`);
+  console.log(`[TARGET EMAIL] ${email}`);
+  console.log(`=========================================\n`);
+
+  if (smtpUser && smtpPass) {
+    try {
+      const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: { user: smtpUser, pass: smtpPass }
+      });
+
+      console.log(`[VERIFICATION EMAIL] Attempting to send email via SMTP (${smtpUser})...`);
+
+      await transporter.sendMail({
+        from: '"Pujo Porikroma" <' + smtpUser + '>',
+        to: email,
+        subject: type === 'reset' ? `Your Pujo Porikroma Password Reset Code: ${code}` : `Your Pujo Porikroma Verification Code: ${code}`,
+          text: type === 'reset' ? `Hello ${name}, your Pujo Porikroma password reset code is: ${code}. Please do not share this code with anyone.` : `Hello ${name}, your Pujo Porikroma verification code is: ${code}. Please do not share this code with anyone.`,
+        html: `
+          <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #1a100c; color: #ffffff; padding: 40px 20px; text-align: center; border-radius: 12px; max-width: 600px; margin: 0 auto;">
+            <img src="cid:pujologo" alt="Pujo Porikroma" style="width: 200px; height: auto; margin-bottom: 20px; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.6));" />
+            
+            <h1 style="color: #ffb366; margin-bottom: 10px; font-size: 24px;">Welcome to Pujo Porikroma</h1>
+            <p style="font-size: 16px; color: #d9c3b8; margin-bottom: 30px;">
+              Hello ${name}, ${type === 'reset' ? 'Please verify your unique code to complete your password reset process.' : 'please verify your email address to complete your registration.'}
+            </p>
+            
+            <div style="background-color: #2a1a14; border: 1px solid #4a2f22; border-radius: 12px; padding: 20px; display: inline-block; margin-bottom: 30px;">
+              <p style="margin: 0; font-size: 14px; color: #ffb366; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;">Your Unique Code</p>
+              <h2 style="margin: 0; font-size: 48px; color: #ffffff; letter-spacing: 6px;">${code}</h2>
+            </div>
+            
+            <div style="background-color: rgba(255, 107, 0, 0.1); border-left: 4px solid #ff6b00; padding: 15px; margin-bottom: 20px; text-align: left; border-radius: 4px;">
+              <p style="margin: 0; font-size: 15px; color: #ffb366; font-weight: bold; margin-bottom: 8px;">⚠️ Security Precautions:</p>
+              <ul style="margin: 0; padding-left: 20px; font-size: 14px; color: #a68a7c; line-height: 1.6;">
+                <li>Do not share this unique code with anyone.</li>
+                <li>Pujo Porikroma support will never ask you for your password or code.</li>
+                <li>This code is valid for exactly 15 minutes.</li>
+              </ul>
+            </div>
+            
+            <p style="font-size: 12px; color: #735c52; margin-top: 30px;">
+              &copy; ${new Date().getFullYear()} Pujo Porikroma. All rights reserved.
+            </p>
+          </div>
+        `,
+        attachments: [
+          {
+            filename: 'log-in-logo1.png',
+            path: path.join(process.cwd(), 'public', 'log-in-logo1.png'),
+            cid: 'pujologo',
+              contentDisposition: 'inline'
+          }
+        ]
+      });
+      console.log(`[VERIFICATION EMAIL] Successfully sent to ${email}`);
+    } catch (err) {
+      console.error('\n[SMTP ERROR] Failed to send verification email. Details:');
+      console.error(err);
+      console.error('Please check your EMAIL_USER and EMAIL_PASS environment variables.\n');
+    }
+  } else {
+    console.log(`[VERIFICATION EMAIL] No SMTP credentials (EMAIL_USER / EMAIL_PASS) configured in .env. Email skipped.`);
+  }
+}
+
+
+
+app.get('/api/auth/reserved-names', (req, res) => {
+  try {
+    const reserved = new Set();
+    const emails = new Set();
+    users.forEach(u => {
+      if (u.isVerified) {
+        if (u.firstname) reserved.add(u.firstname.toLowerCase().trim());
+        if (u.lastname) reserved.add(u.lastname.toLowerCase().trim());
+        if (u.email) emails.add(u.email.toLowerCase().trim());
+      }
+    });
+    res.json({ success: true, reservedNames: Array.from(reserved), reservedEmails: Array.from(emails) });
+  } catch (err) {
+    res.status(500).json({ success: false, error: 'Server error' });
+  }
+});
+
+app.post('/api/auth/register', async (req, res) => {
+    try {
+      const { firstname, lastname, email, password, dob, gender } = req.body;
+    
+    // Check age restriction (must be 17+)
+    if (dob) {
+      const dobDate = new Date(dob);
+      const today = new Date();
+      let age = today.getFullYear() - dobDate.getFullYear();
+      const m = today.getMonth() - dobDate.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < dobDate.getDate())) {
+        age--;
+      }
+      if (age < 17) {
+        return res.status(400).json({ success: false, error: 'User must be at least 17 years old.' });
+      }
+    }
+
+    // Check global name uniqueness
+    const fnLower = firstname ? firstname.toLowerCase().trim() : '';
+    const lnLower = lastname ? lastname.toLowerCase().trim() : '';
+    
+    const isNameTaken = users.some(u => 
+      u.isVerified && (
+        (u.firstname && u.firstname.toLowerCase().trim() === fnLower) ||
+        (u.lastname && u.lastname.toLowerCase().trim() === fnLower) ||
+        (u.firstname && u.firstname.toLowerCase().trim() === lnLower) ||
+        (u.lastname && u.lastname.toLowerCase().trim() === lnLower)
+      )
+    );
+
+    if (isNameTaken) {
+      return res.status(409).json({ success: false, error: 'Firstname or Lastname is already taken by another user.' });
+    }
+
+      
+      if (!firstname || !lastname || !email || !password || !dob || !gender) {
+        return res.status(400).json({ success: false, error: 'All fields are strictly mandatory.' });
+      }
+  
+      if (!canGenerateEmail(email, 'register')) {
+      return res.status(429).json({ success: false, rateLimited: true, error: 'Registration email limit reached for this email.' });
+    }
+
+    const existingUserIndex = users.findIndex(u => u.email === email);
+      if (existingUserIndex !== -1) {
+        if (users[existingUserIndex].isVerified) {
+          return res.status(409).json({ success: false, error: 'Email is already registered and verified. Please log in.' });
+        } else {
+          // If unverified, remove the old pending record so they can try again with a fresh code
+          users.splice(existingUserIndex, 1);
+        }
+      }
+  
+      const verificationCode = Math.floor(10000 + Math.random() * 90000).toString();
+      const codeExpiresAt = new Date(Date.now() + 15 * 60000).toISOString();
+
+      const newUser = {
+        id: Date.now().toString(),
+        firstname,
+        lastname,
+        email,
+        password: hashPassword(password),
+        dob,
+        gender,
+        createdAt: new Date().toISOString(),
+        isVerified: false,
+        verificationCode,
+        codeExpiresAt
+      };
+  
+      users.push(newUser);
+      saveUsers();
+      
+      recordEmailGeneration(email, 'register');
+    sendVerificationEmail(email, verificationCode, firstname); // non-blocking
+  
+      return res.status(200).json({ success: true, message: 'User registered successfully. Verification email sent.', devCode: verificationCode });
+    } catch (err) {
+      console.error('Registration error:', err);
+      res.status(500).json({ success: false, error: 'Internal server error.' });
+    }
+  });
+
+
+app.post('/api/auth/verify', (req, res) => {
+  try {
+    const { email, code } = req.body;
+    
+    if (!email || !code) {
+      return res.status(400).json({ success: false, error: 'Email and code are required.' });
+    }
+
+    const user = users.find(u => u.email === email);
+    if (!user) {
+      return res.status(404).json({ success: false, error: 'User not found.' });
+    }
+
+    if (user.isVerified) {
+      return res.status(400).json({ success: false, error: 'User is already verified.' });
+    }
+
+    if (user.verificationCode !== code) {
+      return res.status(400).json({ success: false, error: 'Invalid verification code.' });
+    }
+
+    if (new Date() > new Date(user.codeExpiresAt)) {
+      return res.status(400).json({ success: false, error: 'Verification code has expired.' });
+    }
+
+    // Mark as verified
+    user.isVerified = true;
+    user.verificationCode = null;
+    user.codeExpiresAt = null;
+    saveUsers();
+
+    return res.status(200).json({ 
+      success: true, 
+      message: 'Email verified successfully.',
+      user: { firstname: user.firstname, lastname: user.lastname, email: user.email }
+    });
+  } catch (err) {
+    console.error('Verification error:', err);
+    res.status(500).json({ success: false, error: 'Internal server error.' });
+  }
+});
+
+
+
+app.post('/api/auth/reset-request', (req, res) => {
+  try {
+    const { email } = req.body;
+    const user = users.find(u => u.email === email && u.isVerified);
+    
+    if (user && !canGenerateEmail(email, 'reset')) {
+      return res.status(429).json({ success: false, rateLimited: true, error: 'Reset password email limit reached for this email.' });
+    }
+    if (!user) {
+      return res.status(404).json({ success: false, error: 'Email not found.' });
+    }
+
+    const code = Math.floor(10000 + Math.random() * 90000).toString();
+    user.resetCode = code;
+    saveUsers();
+
+    console.log('=========================================');
+    console.log('[GENERATED PASSWORD RESET CODE] ' + code);
+    console.log('[TARGET EMAIL] ' + email);
+    console.log('=========================================');
+
+    recordEmailGeneration(email, 'reset');
+    sendVerificationEmail(email, code, user.firstname, 'reset');
+    res.json({ success: true });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, error: 'Internal server error.' });
+  }
+});
+
+app.post('/api/auth/reset-password', (req, res) => {
+  try {
+    const { email, code, newPassword } = req.body;
+    const user = users.find(u => u.email === email && u.isVerified);
+    
+    if (!user || user.resetCode !== code) {
+      return res.status(400).json({ success: false, error: 'Incorrect code' });
+    }
+
+    user.password = hashPassword(newPassword);
+    delete user.resetCode;
+    saveUsers();
+    
+    res.json({ success: true });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, error: 'Internal server error.' });
+  }
+});
+
+app.post('/api/auth/login', (req, res) => {
+  try {
+    const { username, password } = req.body;
+    if (!username || !password) {
+      return res.status(400).json({ success: false, error: 'Username and password are required.' });
+    }
+    
+    // Check against email for now
+    const user = users.find(u => 
+        u.email === username || 
+        (u.firstname && u.firstname.toLowerCase() === username.toLowerCase().trim()) || 
+        (u.lastname && u.lastname.toLowerCase() === username.toLowerCase().trim())
+      );
+    if (!user) {
+      return res.status(401).json({ success: false, error: 'Invalid credentials.' });
+    }
+
+    if (user.password !== hashPassword(password)) {
+      return res.status(401).json({ success: false, error: 'Invalid credentials.' });
+    }
+
+    return res.status(200).json({ success: true, message: 'Login successful.', user: { firstname: user.firstname, lastname: user.lastname, email: user.email, gender: user.gender } });
+  } catch (err) {
+    console.error('Login error:', err);
+    res.status(500).json({ success: false, error: 'Internal server error.' });
+  }
+});
+// -----------------------------
+
+
 
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
