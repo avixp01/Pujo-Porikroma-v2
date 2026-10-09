@@ -1,0 +1,1173 @@
+{
+    "Barrackpore Railway Station": {
+        "up": [
+            {
+                "number": "31811",
+                "name": "Sealdah - Krishnanagar City Local",
+                "time": "03:53 AM"
+            },
+            {
+                "number": "53171",
+                "name": "Sealdah - Lalgola Passenger",
+                "time": "04:15 AM"
+            },
+            {
+                "number": "31311",
+                "name": "Sealdah - Kalyani Simanta Local",
+                "time": "04:45 AM"
+            },
+            {
+                "number": "31911",
+                "name": "Sealdah - Gede Local",
+                "time": "04:54 AM"
+            },
+            {
+                "number": "31411",
+                "name": "Sealdah - Naihati Galloping Local",
+                "time": "05:01 AM"
+            },
+            {
+                "number": "31511",
+                "name": "Sealdah - Shantipur Local",
+                "time": "05:13 AM"
+            },
+            {
+                "number": "31611",
+                "name": "Sealdah - Ranaghat Local",
+                "time": "05:38 AM"
+            },
+            {
+                "number": "31613",
+                "name": "Sealdah - Ranaghat Local",
+                "time": "05:53 AM"
+            },
+            {
+                "number": "31313",
+                "name": "Sealdah - Kalyani Simanta Local",
+                "time": "06:03 AM"
+            },
+            {
+                "number": "13177",
+                "name": "Jangipur Road Express",
+                "time": "05:57 AM"
+            },
+            {
+                "number": "31813",
+                "name": "Sealdah - Krishnanagar City Local",
+                "time": "06:13 AM"
+            },
+            {
+                "number": "31513",
+                "name": "Sealdah - Shantipur Local",
+                "time": "06:33 AM"
+            },
+            {
+                "number": "31815",
+                "name": "Sealdah - Krishnanagar City Local",
+                "time": "06:43 AM"
+            },
+            {
+                "number": "31615",
+                "name": "Sealdah - Ranaghat Local",
+                "time": "06:53 AM"
+            },
+            {
+                "number": "31315",
+                "name": "Sealdah - Kalyani Simanta Local",
+                "time": "07:03 AM"
+            },
+            {
+                "number": "31413",
+                "name": "Sealdah - Naihati Local",
+                "time": "07:11 AM"
+            },
+            {
+                "number": "31213",
+                "name": "Sealdah - Barrackpore Galloping Local",
+                "time": "07:24 AM"
+            },
+            {
+                "number": "31817",
+                "name": "Sealdah - Krishnanagar City Local",
+                "time": "07:28 AM"
+            },
+            {
+                "number": "31317",
+                "name": "Sealdah - Kalyani Simanta Local",
+                "time": "07:51 AM"
+            },
+            {
+                "number": "13187",
+                "name": "Maa Tara Express",
+                "time": "07:41 AM"
+            },
+            {
+                "number": "31515",
+                "name": "Sealdah - Shantipur Local",
+                "time": "08:00 AM"
+            },
+            {
+                "number": "31215",
+                "name": "Sealdah - Barrackpore Galloping Local",
+                "time": "08:08 AM"
+            },
+            {
+                "number": "31913",
+                "name": "Sealdah - Gede Local",
+                "time": "08:13 AM"
+            },
+            {
+                "number": "31217",
+                "name": "Sealdah - Barrackpore Local",
+                "time": "08:27 AM"
+            },
+            {
+                "number": "31819",
+                "name": "Sealdah - Krishnanagar City Galloping Local",
+                "time": "08:29 AM"
+            },
+            {
+                "number": "31415",
+                "name": "Sealdah - Naihati Local",
+                "time": "08:32 AM"
+            },
+            {
+                "number": "31219",
+                "name": "Sealdah - Barrackpore Local",
+                "time": "08:39 AM"
+            },
+            {
+                "number": "31111",
+                "name": "Sealdah - Katwa Galloping Local",
+                "time": "08:41 AM"
+            },
+            {
+                "number": "31617",
+                "name": "Sealdah - Ranaghat Local",
+                "time": "08:40 AM"
+            },
+            {
+                "number": "31221",
+                "name": "Sealdah - Barrackpore Local",
+                "time": "08:52 AM"
+            },
+            {
+                "number": "31319",
+                "name": "Sealdah - Kalyani Simanta Local",
+                "time": "09:05 AM"
+            },
+            {
+                "number": "31223",
+                "name": "Sealdah - Barrackpore Local",
+                "time": "09:18 AM"
+            },
+            {
+                "number": "31517",
+                "name": "Sealdah - Shantipur Local",
+                "time": "09:28 AM"
+            },
+            {
+                "number": "31225",
+                "name": "Sealdah - Barrackpore Local",
+                "time": "09:45 AM"
+            },
+            {
+                "number": "31321",
+                "name": "Sealdah - Kalyani Simanta Local",
+                "time": "09:53 AM"
+            },
+            {
+                "number": "31931",
+                "name": "Sealdah - Gede Special Local",
+                "time": "10:01 AM"
+            },
+            {
+                "number": "31821",
+                "name": "Sealdah - Krishnanagar City Galloping Local",
+                "time": "10:09 AM"
+            },
+            {
+                "number": "31417",
+                "name": "Sealdah - Naihati Local",
+                "time": "10:14 AM"
+            },
+            {
+                "number": "31229",
+                "name": "Sealdah - Barrackpore Local",
+                "time": "10:22 AM"
+            },
+            {
+                "number": "31845",
+                "name": "Sealdah - Krishnanagar City AC Local",
+                "time": "10:22 AM"
+            },
+            {
+                "number": "31915",
+                "name": "Sealdah - Gede Local",
+                "time": "10:31 AM"
+            },
+            {
+                "number": "31231",
+                "name": "Sealdah - Barrackpore Local",
+                "time": "10:45 AM"
+            },
+            {
+                "number": "31151",
+                "name": "Sealdah - Barddhaman Local",
+                "time": "10:48 AM"
+            },
+            {
+                "number": "63107",
+                "name": "Sealdah - Lalgola MEMU",
+                "time": "10:55 AM"
+            },
+            {
+                "number": "31519",
+                "name": "Sealdah - Shantipur Local",
+                "time": "11:13 AM"
+            },
+            {
+                "number": "31419",
+                "name": "Sealdah - Naihati Local",
+                "time": "11:18 AM"
+            },
+            {
+                "number": "31825",
+                "name": "Sealdah - Krishnanagar City Local",
+                "time": "11:28 AM"
+            },
+            {
+                "number": "31323",
+                "name": "Sealdah - Kalyani Simanta Local",
+                "time": "11:56 AM"
+            },
+            {
+                "number": "31521",
+                "name": "Sealdah - Shantipur Local",
+                "time": "12:08 PM"
+            },
+            {
+                "number": "31621",
+                "name": "Sealdah - Ranaghat Local",
+                "time": "12:18 PM"
+            },
+            {
+                "number": "31847",
+                "name": "Sealdah - Krishnanagar City AC Local",
+                "time": "12:31 PM"
+            },
+            {
+                "number": "63141",
+                "name": "Sealdah - Godda MEMU",
+                "time": "12:36 PM"
+            },
+            {
+                "number": "31827",
+                "name": "Sealdah - Krishnanagar City Local",
+                "time": "12:38 PM"
+            },
+            {
+                "number": "31423",
+                "name": "Sealdah - Naihati Local",
+                "time": "12:53 PM"
+            },
+            {
+                "number": "31325",
+                "name": "Sealdah - Kalyani Simanta Local",
+                "time": "01:03 PM"
+            },
+            {
+                "number": "53175",
+                "name": "Sealdah - Lalgola Passenger",
+                "time": "01:09 PM"
+            },
+            {
+                "number": "31917",
+                "name": "Sealdah - Gede Local",
+                "time": "01:18 PM"
+            },
+            {
+                "number": "31523",
+                "name": "Sealdah - Shantipur Local",
+                "time": "01:33 PM"
+            },
+            {
+                "number": "31425",
+                "name": "Sealdah - Naihati Local",
+                "time": "01:41 PM"
+            },
+            {
+                "number": "31829",
+                "name": "Sealdah - Krishnanagar City Local",
+                "time": "01:49 PM"
+            },
+            {
+                "number": "31233",
+                "name": "Sealdah - Barrackpore Local",
+                "time": "02:21 PM"
+            },
+            {
+                "number": "31427",
+                "name": "Sealdah - Naihati Local",
+                "time": "02:25 PM"
+            },
+            {
+                "number": "31919",
+                "name": "Sealdah - Gede Local",
+                "time": "02:38 PM"
+            },
+            {
+                "number": "31525",
+                "name": "Sealdah - Shantipur Local",
+                "time": "02:53 PM"
+            },
+            {
+                "number": "31329",
+                "name": "Sealdah - Kalyani Simanta Local",
+                "time": "03:13 PM"
+            },
+            {
+                "number": "31623",
+                "name": "Sealdah - Ranaghat Local",
+                "time": "03:33 PM"
+            },
+            {
+                "number": "31347",
+                "name": "Sealdah - Kalyani AC Local",
+                "time": "03:46 PM"
+            },
+            {
+                "number": "31831",
+                "name": "Sealdah - Krishnanagar City Local",
+                "time": "03:58 PM"
+            },
+            {
+                "number": "31331",
+                "name": "Sealdah - Kalyani Simanta Local",
+                "time": "04:13 PM"
+            },
+            {
+                "number": "31527",
+                "name": "Sealdah - Shantipur Local",
+                "time": "04:21 PM"
+            },
+            {
+                "number": "31429",
+                "name": "Sealdah - Naihati Local",
+                "time": "04:28 PM"
+            },
+            {
+                "number": "31833",
+                "name": "Sealdah - Krishnanagar City Galloping Local",
+                "time": "04:36 PM"
+            },
+            {
+                "number": "31625",
+                "name": "Sealdah - Ranaghat Galloping Local",
+                "time": "04:47 PM"
+            },
+            {
+                "number": "31237",
+                "name": "Sealdah - Barrackpore Local",
+                "time": "04:59 PM"
+            },
+            {
+                "number": "31333",
+                "name": "Sealdah - Kalyani Simanta Local",
+                "time": "05:06 PM"
+            },
+            {
+                "number": "31543",
+                "name": "Sealdah - Shantipur Local",
+                "time": "05:10 PM"
+            },
+            {
+                "number": "31933",
+                "name": "Sealdah - Gede Special Local",
+                "time": "05:26 PM"
+            },
+            {
+                "number": "31529",
+                "name": "Sealdah - Shantipur Local",
+                "time": "05:34 PM"
+            },
+            {
+                "number": "31801",
+                "name": "Sealdah - Krishnanagar City Matribhoomi Ladies Special Local",
+                "time": "05:44 PM"
+            },
+            {
+                "number": "12383",
+                "name": "Asansol SF InterCity Express",
+                "time": "05:28 PM"
+            },
+            {
+                "number": "31921",
+                "name": "Sealdah Gede Local",
+                "time": "05:51 PM"
+            },
+            {
+                "number": "31433",
+                "name": "Sealdah - Naihati Local",
+                "time": "05:58 PM"
+            },
+            {
+                "number": "31835",
+                "name": "Sealdah - Krishnanagar City Galloping Local",
+                "time": "06:03 PM"
+            },
+            {
+                "number": "31531",
+                "name": "Sealdah - Shantipur Galloping Local",
+                "time": "06:22 PM"
+            },
+            {
+                "number": "31601",
+                "name": "Sealdah - Ranaghat Matribhumi Ladies Special",
+                "time": "06:27 PM"
+            },
+            {
+                "number": "31435",
+                "name": "Sealdah - Naihati Local",
+                "time": "06:38 PM"
+            },
+            {
+                "number": "31335",
+                "name": "Sealdah - Kalyani Simanta Local",
+                "time": "06:48 PM"
+            },
+            {
+                "number": "31923",
+                "name": "Sealdah - Gede Local",
+                "time": "06:57 PM"
+            },
+            {
+                "number": "31239",
+                "name": "Sealdah - Barrackpore Local",
+                "time": "07:10 PM"
+            },
+            {
+                "number": "31437",
+                "name": "Sealdah - Naihati Local",
+                "time": "07:13 PM"
+            },
+            {
+                "number": "31837",
+                "name": "Sealdah - Krishnanagar City Galloping Local",
+                "time": "07:10 PM"
+            },
+            {
+                "number": "31637",
+                "name": "Sealdah - Ranaghat Galloping AC Local",
+                "time": "07:26 PM"
+            },
+            {
+                "number": "31533",
+                "name": "Sealdah - Shantipur Local",
+                "time": "07:33 PM"
+            },
+            {
+                "number": "31337",
+                "name": "Sealdah - Kalyani Simanta SUPER Local",
+                "time": "07:39 PM"
+            },
+            {
+                "number": "63103",
+                "name": "Sealdah - Lalgola MEMU",
+                "time": "07:46 PM"
+            },
+            {
+                "number": "31925",
+                "name": "Sealdah - Gede Local",
+                "time": "08:01 PM"
+            },
+            {
+                "number": "31841",
+                "name": "Sealdah - Krishnanagar City Local",
+                "time": "08:08 PM"
+            },
+            {
+                "number": "31439",
+                "name": "Sealdah - Naihati Local",
+                "time": "08:15 PM"
+            },
+            {
+                "number": "31535",
+                "name": "Sealdah - Shantipur Local",
+                "time": "08:23 PM"
+            },
+            {
+                "number": "31339",
+                "name": "Sealdah - Kalyani Simanta Local",
+                "time": "08:38 PM"
+            },
+            {
+                "number": "63105",
+                "name": "Sealdah - Lalgola MEMU",
+                "time": "08:50 PM"
+            },
+            {
+                "number": "31627",
+                "name": "Sealdah - Ranaghat Local",
+                "time": "08:58 PM"
+            },
+            {
+                "number": "31537",
+                "name": "Sealdah - Shantipur Local",
+                "time": "09:07 PM"
+            },
+            {
+                "number": "31927",
+                "name": "Sealdah Gede Local",
+                "time": "09:18 PM"
+            },
+            {
+                "number": "31843",
+                "name": "Sealdah - Krishnanagar City Local",
+                "time": "09:33 PM"
+            },
+            {
+                "number": "31443",
+                "name": "Sealdah - Naihati Local",
+                "time": "09:53 PM"
+            },
+            {
+                "number": "31929",
+                "name": "Sealdah - Gede Local",
+                "time": "10:08 PM"
+            },
+            {
+                "number": "31539",
+                "name": "Sealdah - Shantipur Local",
+                "time": "10:23 PM"
+            },
+            {
+                "number": "31341",
+                "name": "Sealdah - Kalyani Simanta Local",
+                "time": "10:33 PM"
+            },
+            {
+                "number": "31629",
+                "name": "Sealdah - Ranaghat Local",
+                "time": "10:41 PM"
+            },
+            {
+                "number": "31445",
+                "name": "Sealdah - Naihati Local",
+                "time": "10:54 PM"
+            },
+            {
+                "number": "31541",
+                "name": "Sealdah - Shantipur Local",
+                "time": "11:13 PM"
+            },
+            {
+                "number": "31631",
+                "name": "Sealdah - Ranaghat Local",
+                "time": "11:23 PM"
+            },
+            {
+                "number": "31447",
+                "name": "Sealdah - Naihati Local",
+                "time": "11:48 PM"
+            },
+            {
+                "number": "53181",
+                "name": "Sealdah - Lalgola Passenger",
+                "time": "11:59 PM"
+            },
+            {
+                "number": "63111",
+                "name": "Sealdah - Ranaghat MEMU",
+                "time": "12:31 AM"
+            }
+        ],
+        "down": [
+            {
+                "number": "31542",
+                "name": "Shantipur - Sealdah Local",
+                "time": "12:13 AM"
+            },
+            {
+                "number": "53172",
+                "name": "Lalgola - Sealdah Passenger",
+                "time": "03:41 AM"
+            },
+            {
+                "number": "31412",
+                "name": "Naihati - Sealdah Local",
+                "time": "04:27 AM"
+            },
+            {
+                "number": "31512",
+                "name": "Shantipur - Sealdah Local",
+                "time": "04:56 AM"
+            },
+            {
+                "number": "31414",
+                "name": "Naihati - Sealdah Local",
+                "time": "05:12 AM"
+            },
+            {
+                "number": "31612",
+                "name": "Ranaghat - Sealdah Local",
+                "time": "05:22 AM"
+            },
+            {
+                "number": "31912",
+                "name": "Gede - Sealdah Local",
+                "time": "05:41 AM"
+            },
+            {
+                "number": "31312",
+                "name": "Kalyani Simanta - Sealdah Local",
+                "time": "05:49 AM"
+            },
+            {
+                "number": "31812",
+                "name": "Krishnanagar City - Sealdah Local",
+                "time": "06:04 AM"
+            },
+            {
+                "number": "31514",
+                "name": "Shantipur - Sealdah Local",
+                "time": "06:24 AM"
+            },
+            {
+                "number": "31814",
+                "name": "Krishnanagar City - Sealdah Galloping Local",
+                "time": "06:34 AM"
+            },
+            {
+                "number": "31314",
+                "name": "Kalyani Simanta - Sealdah Local",
+                "time": "06:48 AM"
+            },
+            {
+                "number": "31614",
+                "name": "Ranaghat - Sealdah Local",
+                "time": "06:57 AM"
+            },
+            {
+                "number": "31914",
+                "name": "Gede - Sealdah Local",
+                "time": "07:08 AM"
+            },
+            {
+                "number": "31516",
+                "name": "Shantipur - Sealdah Local",
+                "time": "07:26 AM"
+            },
+            {
+                "number": "31214",
+                "name": "Barrackpore - Sealdah Galloping Local",
+                "time": "07:40 AM"
+            },
+            {
+                "number": "31816",
+                "name": "Krishnanagar City - Sealdah Local",
+                "time": "07:45 AM"
+            },
+            {
+                "number": "31316",
+                "name": "Kalyani Simanta - Sealdah Local",
+                "time": "07:57 AM"
+            },
+            {
+                "number": "31416",
+                "name": "Naihati - Sealdah Local",
+                "time": "08:14 AM"
+            },
+            {
+                "number": "31616",
+                "name": "Ranaghat - Sealdah Local",
+                "time": "08:19 AM"
+            },
+            {
+                "number": "31216",
+                "name": "Barrackpore - Sealdah Local",
+                "time": "08:22 AM"
+            },
+            {
+                "number": "63112",
+                "name": "Ranaghat - Sealdah MEMU",
+                "time": "08:31 AM"
+            },
+            {
+                "number": "31218",
+                "name": "Barrackpore - Sealdah Galloping Local",
+                "time": "08:35 AM"
+            },
+            {
+                "number": "31818",
+                "name": "Krishnanagar City - Sealdah Galloping Local",
+                "time": "08:43 AM"
+            },
+            {
+                "number": "31602",
+                "name": "Ranaghat - Sealdah Matribhoomi Ladies Local",
+                "time": "08:48 AM"
+            },
+            {
+                "number": "31418",
+                "name": "Naihati - Sealdah Local",
+                "time": "08:49 AM"
+            },
+            {
+                "number": "31220",
+                "name": "Barrackpore - Sealdah Local",
+                "time": "08:53 AM"
+            },
+            {
+                "number": "31518",
+                "name": "Shantipur - Sealdah Galloping Local",
+                "time": "08:57 AM"
+            },
+            {
+                "number": "31222",
+                "name": "Barrackpore - Sealdah Local",
+                "time": "09:02 AM"
+            },
+            {
+                "number": "31916",
+                "name": "Gede - Sealdah Galloping Local",
+                "time": "09:12 AM"
+            },
+            {
+                "number": "31638",
+                "name": "Ranaghat - Sealdah Galloping AC Local",
+                "time": "09:28 AM"
+            },
+            {
+                "number": "31420",
+                "name": "Naihati - Sealdah Local",
+                "time": "09:32 AM"
+            },
+            {
+                "number": "31620",
+                "name": "Ranaghat - Sealdah Galloping Local",
+                "time": "09:40 AM"
+            },
+            {
+                "number": "31422",
+                "name": "Naihati - Sealdah Local",
+                "time": "09:49 AM"
+            },
+            {
+                "number": "12384",
+                "name": "Sealdah SF InterCity Express",
+                "time": "09:52 AM"
+            },
+            {
+                "number": "31224",
+                "name": "Barrackpore - Sealdah Local",
+                "time": "09:57 AM"
+            },
+            {
+                "number": "31318",
+                "name": "Kalyani Simanta - Sealdah Local",
+                "time": "10:04 AM"
+            },
+            {
+                "number": "31520",
+                "name": "Shantipur - Sealdah Local",
+                "time": "10:10 AM"
+            },
+            {
+                "number": "31930",
+                "name": "Gede - Sealdah Special Local",
+                "time": "10:16 AM"
+            },
+            {
+                "number": "31802",
+                "name": "Krishnanagar City - Sealdah Matribhoomi Ladies Special Local",
+                "time": "10:19 AM"
+            },
+            {
+                "number": "31228",
+                "name": "Barrackpore - Sealdah Local",
+                "time": "10:32 AM"
+            },
+            {
+                "number": "31820",
+                "name": "Krishnanagar City - Sealdah Local",
+                "time": "10:36 AM"
+            },
+            {
+                "number": "31918",
+                "name": "Gede - Sealdah Local",
+                "time": "10:41 AM"
+            },
+            {
+                "number": "31320",
+                "name": "Kalyani Simanta - Sealdah Local",
+                "time": "10:53 AM"
+            },
+            {
+                "number": "31230",
+                "name": "Barrackpore - Sealdah Local",
+                "time": "11:04 AM"
+            },
+            {
+                "number": "31424",
+                "name": "Naihati - Sealdah Local",
+                "time": "11:12 AM"
+            },
+            {
+                "number": "31622",
+                "name": "Ranaghat - Sealdah Local",
+                "time": "11:18 AM"
+            },
+            {
+                "number": "31822",
+                "name": "Krishnanagar City - Sealdah Local",
+                "time": "11:24 AM"
+            },
+            {
+                "number": "31522",
+                "name": "Shantipur - Sealdah Local",
+                "time": "11:36 AM"
+            },
+            {
+                "number": "63176",
+                "name": "Lalgola - Sealdah MEMU",
+                "time": "12:04 PM"
+            },
+            {
+                "number": "31426",
+                "name": "Naihati - Sealdah Local",
+                "time": "12:22 PM"
+            },
+            {
+                "number": "31920",
+                "name": "Gede - Sealdah Local",
+                "time": "12:35 PM"
+            },
+            {
+                "number": "31524",
+                "name": "Shantipur - Sealdah Local",
+                "time": "12:59 PM"
+            },
+            {
+                "number": "31342",
+                "name": "Kalyani - Sealdah Local",
+                "time": "01:22 PM"
+            },
+            {
+                "number": "31824",
+                "name": "Krishnanagar City - Sealdah Local",
+                "time": "01:42 PM"
+            },
+            {
+                "number": "31430",
+                "name": "Naihati - Sealdah Local",
+                "time": "01:42 PM"
+            },
+            {
+                "number": "31624",
+                "name": "Ranaghat - Sealdah Local",
+                "time": "01:57 PM"
+            },
+            {
+                "number": "31432",
+                "name": "Naihati - Sealdah Local",
+                "time": "02:07 PM"
+            },
+            {
+                "number": "31322",
+                "name": "Kalyani Simanta - Sealdah Local",
+                "time": "02:13 PM"
+            },
+            {
+                "number": "53178",
+                "name": "Lalgola - Sealdah Passenger",
+                "time": "02:29 PM"
+            },
+            {
+                "number": "31232",
+                "name": "Barrackpore - Sealdah Local",
+                "time": "02:42 PM"
+            },
+            {
+                "number": "31526",
+                "name": "Shantipur - Sealdah Local",
+                "time": "02:49 PM"
+            },
+            {
+                "number": "31846",
+                "name": "Krishnanagar City - Sealdah AC Local",
+                "time": "02:55 PM"
+            },
+            {
+                "number": "31324",
+                "name": "Kalyani Simanta - Sealdah Local",
+                "time": "03:02 PM"
+            },
+            {
+                "number": "31434",
+                "name": "Naihati - Sealdah Local",
+                "time": "03:12 PM"
+            },
+            {
+                "number": "31544",
+                "name": "Shantipur - Sealdah Galloping Krishak Local",
+                "time": "03:21 PM"
+            },
+            {
+                "number": "63104",
+                "name": "Lalgola - Sealdah MEMU",
+                "time": "03:24 PM"
+            },
+            {
+                "number": "31828",
+                "name": "Krishnanagar City - Sealdah Galloping Local",
+                "time": "03:40 PM"
+            },
+            {
+                "number": "31528",
+                "name": "Shantipur - Sealdah Local",
+                "time": "03:56 PM"
+            },
+            {
+                "number": "31922",
+                "name": "Gede - Sealdah Local",
+                "time": "04:08 PM"
+            },
+            {
+                "number": "31830",
+                "name": "Krishnanagar City - Sealdah Local",
+                "time": "04:51 PM"
+            },
+            {
+                "number": "31152",
+                "name": "Barddhaman - Sealdah Local",
+                "time": "04:58 PM"
+            },
+            {
+                "number": "31328",
+                "name": "Kalyani Simanta - Sealdah Local",
+                "time": "05:18 PM"
+            },
+            {
+                "number": "31530",
+                "name": "Shantipur - Sealdah Local",
+                "time": "05:25 PM"
+            },
+            {
+                "number": "31924",
+                "name": "Gede Sealdah Local",
+                "time": "05:31 PM"
+            },
+            {
+                "number": "31848",
+                "name": "Krishnanagar City - Sealdah AC Local",
+                "time": "05:39 PM"
+            },
+            {
+                "number": "31344",
+                "name": "Kalyani - Sealdah AC Local",
+                "time": "05:39 PM"
+            },
+            {
+                "number": "31436",
+                "name": "Naihati - Sealdah Local",
+                "time": "05:44 PM"
+            },
+            {
+                "number": "63142",
+                "name": "Godda - Sealdah MEMU",
+                "time": "05:50 PM"
+            },
+            {
+                "number": "13188",
+                "name": "Maa Tara Express",
+                "time": "05:54 PM"
+            },
+            {
+                "number": "31832",
+                "name": "Krishnanagar City - Sealdah Galloping Local",
+                "time": "06:00 PM"
+            },
+            {
+                "number": "31330",
+                "name": "Kalyani Simanta - Sealdah Local",
+                "time": "06:24 PM"
+            },
+            {
+                "number": "31236",
+                "name": "Barrackpore - Sealdah Local",
+                "time": "06:30 PM"
+            },
+            {
+                "number": "31628",
+                "name": "Ranaghat - Sealdah Galloping Local",
+                "time": "06:31 PM"
+            },
+            {
+                "number": "31532",
+                "name": "Shantipur - Sealdah Local",
+                "time": "06:40 PM"
+            },
+            {
+                "number": "31112",
+                "name": "Katwa - Sealdah Galloping Local",
+                "time": "06:51 PM"
+            },
+            {
+                "number": "31238",
+                "name": "Barrackpore - Sealdah Local",
+                "time": "07:25 PM"
+            },
+            {
+                "number": "13178",
+                "name": "Sealdah Express",
+                "time": "07:27 PM"
+            },
+            {
+                "number": "53180",
+                "name": "Lalgola - Sealdah Passenger",
+                "time": "07:31 PM"
+            },
+            {
+                "number": "31438",
+                "name": "Naihati - Sealdah Local",
+                "time": "07:42 PM"
+            },
+            {
+                "number": "31630",
+                "name": "Ranaghat - Sealdah Local",
+                "time": "07:44 PM"
+            },
+            {
+                "number": "31332",
+                "name": "Kalyani Simanta - Sealdah Local",
+                "time": "07:53 PM"
+            },
+            {
+                "number": "31534",
+                "name": "Shantipur - Sealdah Galloping Local",
+                "time": "08:03 PM"
+            },
+            {
+                "number": "31440",
+                "name": "Naihati - Sealdah Local",
+                "time": "08:09 PM"
+            },
+            {
+                "number": "31834",
+                "name": "Krishnanagar City - Sealdah Local",
+                "time": "08:17 PM"
+            },
+            {
+                "number": "31240",
+                "name": "Barrackpore - Sealdah Local",
+                "time": "08:27 PM"
+            },
+            {
+                "number": "31632",
+                "name": "Ranaghat - Sealdah Local",
+                "time": "08:33 PM"
+            },
+            {
+                "number": "31442",
+                "name": "Naihati - Sealdah Local",
+                "time": "08:40 PM"
+            },
+            {
+                "number": "31334",
+                "name": "Kalyani Simanta-Sealdah Local",
+                "time": "08:51 PM"
+            },
+            {
+                "number": "31836",
+                "name": "Krishnanagar City - Sealdah Galloping Local",
+                "time": "09:02 PM"
+            },
+            {
+                "number": "31634",
+                "name": "Ranaghat - Sealdah Local",
+                "time": "09:11 PM"
+            },
+            {
+                "number": "31536",
+                "name": "Shantipur - Sealdah Local",
+                "time": "09:22 PM"
+            },
+            {
+                "number": "31444",
+                "name": "Naihati - Sealdah Local",
+                "time": "09:30 PM"
+            },
+            {
+                "number": "31340",
+                "name": "Kalyani - Sealdah Local",
+                "time": "09:35 PM"
+            },
+            {
+                "number": "31838",
+                "name": "Krishnanagar City - Sealdah Local",
+                "time": "09:40 PM"
+            },
+            {
+                "number": "31926",
+                "name": "Gede - Sealdah Local",
+                "time": "09:50 PM"
+            },
+            {
+                "number": "31446",
+                "name": "Naihati - Sealdah Local",
+                "time": "10:00 PM"
+            },
+            {
+                "number": "31336",
+                "name": "Kalyani Simanta - Sealdah Local",
+                "time": "10:01 PM"
+            },
+            {
+                "number": "31840",
+                "name": "Krishnanagar City - Sealdah Galloping Local",
+                "time": "10:15 PM"
+            },
+            {
+                "number": "31538",
+                "name": "Shantipur - Sealdah Local",
+                "time": "10:28 PM"
+            },
+            {
+                "number": "31636",
+                "name": "Ranaghat - Sealdah Local",
+                "time": "10:38 PM"
+            },
+            {
+                "number": "63106",
+                "name": "Lalgola - Sealdah MEMU",
+                "time": "10:46 PM"
+            },
+            {
+                "number": "31338",
+                "name": "Kalyani Simanta - Sealdah Local",
+                "time": "10:58 PM"
+            },
+            {
+                "number": "31540",
+                "name": "Shantipur - Sealdah Local",
+                "time": "11:06 PM"
+            },
+            {
+                "number": "31928",
+                "name": "Gede - Sealdah Galloping Local",
+                "time": "11:19 PM"
+            },
+            {
+                "number": "31450",
+                "name": "Naihati - Sealdah Local",
+                "time": "11:37 PM"
+            },
+            {
+                "number": "31844",
+                "name": "Krishnanagar City - Sealdah Local",
+                "time": "11:54 PM"
+            }
+        ]
+    }
+}

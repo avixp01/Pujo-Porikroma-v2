@@ -130,7 +130,11 @@ function App() {
   };
 
   const closeModal = () => {
-    window.history.back();
+    setShowMapPage(false);
+    setIsMapLoading(false);
+    setIsMapFadingOut(false);
+    // Push home state so that hardware back won't reopen map
+    window.history.pushState({ id: 'home' }, '');
   };
 
   return (
@@ -281,8 +285,9 @@ function App() {
           {/* Reusable Theme Card System */}
           <PujoThemeCards />
           <div style={{ position: 'absolute', bottom: '3px', width: '100%', textAlign: 'center', color: '#a69a8b', fontSize: '14px', zIndex: 20, fontFamily: 'sans-serif', letterSpacing: '1px' }}>
-            <div style={{ marginBottom: '5px', opacity: 0.8 }}>&copy; 2026 Pujo Porikroma. All rights reserved.</div>
+            <div style={{ marginBottom: '0px', opacity: 0.8 }}>&copy; 2026 Pujo Porikroma. All rights reserved.</div>
             <div style={{ opacity: 0.8 }}>contact us : saikatsom234@gmail.com</div>
+            <div style={{ opacity: 0.8, marginTop: '0px' }}>keep supporting · Happy Durga Puja😊</div>
           </div>
         </div>
       </div>

@@ -1,0 +1,148 @@
+{
+    "Kalyani Ghoshpara Railway Station": {
+        "up": [
+            {
+                "number": "31311",
+                "name": "Sealdah - Kalyani Simanta Local",
+                "time": "05:33 AM"
+            },
+            {
+                "number": "31313",
+                "name": "Sealdah - Kalyani Simanta Local",
+                "time": "06:49 AM"
+            },
+            {
+                "number": "31315",
+                "name": "Sealdah - Kalyani Simanta Local",
+                "time": "07:49 AM"
+            },
+            {
+                "number": "31317",
+                "name": "Sealdah - Kalyani Simanta Local",
+                "time": "08:38 AM"
+            },
+            {
+                "number": "31319",
+                "name": "Sealdah - Kalyani Simanta Local",
+                "time": "09:51 AM"
+            },
+            {
+                "number": "31321",
+                "name": "Sealdah - Kalyani Simanta Local",
+                "time": "10:38 AM"
+            },
+            {
+                "number": "31323",
+                "name": "Sealdah - Kalyani Simanta Local",
+                "time": "12:39 PM"
+            },
+            {
+                "number": "31325",
+                "name": "Sealdah - Kalyani Simanta Local",
+                "time": "01:48 PM"
+            },
+            {
+                "number": "31329",
+                "name": "Sealdah - Kalyani Simanta Local",
+                "time": "03:59 PM"
+            },
+            {
+                "number": "31331",
+                "name": "Sealdah - Kalyani Simanta Local",
+                "time": "05:01 PM"
+            },
+            {
+                "number": "31333",
+                "name": "Sealdah - Kalyani Simanta Local",
+                "time": "05:52 PM"
+            },
+            {
+                "number": "31335",
+                "name": "Sealdah - Kalyani Simanta Local",
+                "time": "07:36 PM"
+            },
+            {
+                "number": "31337",
+                "name": "Sealdah - Kalyani Simanta SUPER Local",
+                "time": "08:20 PM"
+            },
+            {
+                "number": "31339",
+                "name": "Sealdah - Kalyani Simanta Local",
+                "time": "09:33 PM"
+            },
+            {
+                "number": "31341",
+                "name": "Sealdah - Kalyani Simanta Local",
+                "time": "11:18 PM"
+            }
+        ],
+        "down": [
+            {
+                "number": "31312",
+                "name": "Kalyani Simanta - Sealdah Local",
+                "time": "05:05 AM"
+            },
+            {
+                "number": "31314",
+                "name": "Kalyani Simanta - Sealdah Local",
+                "time": "06:05 AM"
+            },
+            {
+                "number": "31316",
+                "name": "Kalyani Simanta - Sealdah Local",
+                "time": "07:13 AM"
+            },
+            {
+                "number": "31318",
+                "name": "Kalyani Simanta - Sealdah Local",
+                "time": "09:18 AM"
+            },
+            {
+                "number": "31320",
+                "name": "Kalyani Simanta - Sealdah Local",
+                "time": "10:13 AM"
+            },
+            {
+                "number": "31322",
+                "name": "Kalyani Simanta - Sealdah Local",
+                "time": "01:23 PM"
+            },
+            {
+                "number": "31324",
+                "name": "Kalyani Simanta - Sealdah Local",
+                "time": "02:19 PM"
+            },
+            {
+                "number": "31328",
+                "name": "Kalyani Simanta - Sealdah Local",
+                "time": "04:35 PM"
+            },
+            {
+                "number": "31330",
+                "name": "Kalyani Simanta - Sealdah Local",
+                "time": "05:35 PM"
+            },
+            {
+                "number": "31332",
+                "name": "Kalyani Simanta - Sealdah Local",
+                "time": "07:10 PM"
+            },
+            {
+                "number": "31334",
+                "name": "Kalyani Simanta - Sealdah Local",
+                "time": "08:05 PM"
+            },
+            {
+                "number": "31336",
+                "name": "Kalyani Simanta - Sealdah Local",
+                "time": "09:17 PM"
+            },
+            {
+                "number": "31338",
+                "name": "Kalyani Simanta - Sealdah Local",
+                "time": "10:15 PM"
+            }
+        ]
+    }
+}

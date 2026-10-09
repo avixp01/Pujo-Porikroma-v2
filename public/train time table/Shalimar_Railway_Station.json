@@ -1,0 +1,358 @@
+{
+    "Shalimar Railway Station": {
+        "up": [
+            {
+                "number": "08045",
+                "name": "Charlapalli Special Fare SF Special",
+                "time": "12:30 AM"
+            },
+            {
+                "number": "08507",
+                "name": "Visakhapatnam Special Fare Special",
+                "time": "5:00 AM"
+            },
+            {
+                "number": "12885",
+                "name": "Aranyak Express",
+                "time": "7:45 AM"
+            },
+            {
+                "number": "38305",
+                "name": "Shalimar - Mecheda Local",
+                "time": "10:35 AM"
+            },
+            {
+                "number": "18045",
+                "name": "East Coast Express",
+                "time": "11:15 AM"
+            },
+            {
+                "number": "22825",
+                "name": "MGR Chennai Central Weekly SF Express",
+                "time": "12:10 PM"
+            },
+            {
+                "number": "22849",
+                "name": "Secunderabad Weekly SF Express",
+                "time": "12:10 PM"
+            },
+            {
+                "number": "17066",
+                "name": "Charlapalli Amrit Bharat Express",
+                "time": "12:50 PM"
+            },
+            {
+                "number": "18041",
+                "name": "M.G.R. Chennai Central Express",
+                "time": "2:45 PM"
+            },
+            {
+                "number": "18030",
+                "name": "Mumbai LTT Express",
+                "time": "3:00 PM"
+            },
+            {
+                "number": "12773",
+                "name": "Secunderabad AC SF Express",
+                "time": "3:55 PM"
+            },
+            {
+                "number": "18007",
+                "name": "Simlipal Intercity Express",
+                "time": "4:15 PM"
+            },
+            {
+                "number": "18015",
+                "name": "Bhanjpur Express",
+                "time": "4:25 PM"
+            },
+            {
+                "number": "38033",
+                "name": "Shalimar - Santragachi Local",
+                "time": "5:25 PM"
+            },
+            {
+                "number": "08043",
+                "name": "Khurda Road Special Fare Puja Special",
+                "time": "5:55 PM"
+            },
+            {
+                "number": "22853",
+                "name": "Visakhapatnam SF Express",
+                "time": "6:15 PM"
+            },
+            {
+                "number": "18409",
+                "name": "Sri Jagannath Express",
+                "time": "6:55 PM"
+            },
+            {
+                "number": "12152",
+                "name": "Samarsata SF Express",
+                "time": "7:25 PM"
+            },
+            {
+                "number": "20972",
+                "name": "Udaipur City SF Express",
+                "time": "7:50 PM"
+            },
+            {
+                "number": "22830",
+                "name": "Bhuj SF Express",
+                "time": "7:50 PM"
+            },
+            {
+                "number": "12102",
+                "name": "Jnaneswari Express",
+                "time": "8:15 PM"
+            },
+            {
+                "number": "22906",
+                "name": "Okha Weekly SF Express",
+                "time": "8:15 PM"
+            },
+            {
+                "number": "12906",
+                "name": "Porbandar SF Express",
+                "time": "8:15 PM"
+            },
+            {
+                "number": "22835",
+                "name": "Puri Weekly SF Express",
+                "time": "8:35 PM"
+            },
+            {
+                "number": "12895",
+                "name": "Puri Weekly SF Express",
+                "time": "8:35 PM"
+            },
+            {
+                "number": "12887",
+                "name": "Puri Weekly SF Express",
+                "time": "8:35 PM"
+            },
+            {
+                "number": "12881",
+                "name": "Puri Garib Rath Express",
+                "time": "8:35 PM"
+            },
+            {
+                "number": "22803",
+                "name": "Sambalpur SF Express",
+                "time": "8:35 PM"
+            },
+            {
+                "number": "20831",
+                "name": "Mahima Gosain Express",
+                "time": "9:20 PM"
+            },
+            {
+                "number": "18039",
+                "name": "Shalimar - Puri Express",
+                "time": "9:25 PM"
+            },
+            {
+                "number": "08615",
+                "name": "Ranchi Special Fare Festival Special",
+                "time": "10:15 PM"
+            },
+            {
+                "number": "18049",
+                "name": "Badampahar Weekly Express",
+                "time": "10:45 PM"
+            },
+            {
+                "number": "18047",
+                "name": "Vasco-da-Gama Amaravati Express",
+                "time": "11:10 PM"
+            },
+            {
+                "number": "22642",
+                "name": "Thiruvananthapuram Central SF Express",
+                "time": "11:45 PM"
+            },
+            {
+                "number": "12660",
+                "name": "Gurudev SF Express",
+                "time": "11:45 PM"
+            }
+        ],
+        "down": [
+            {
+                "number": "08508",
+                "name": "Shalimar Special Fare Special",
+                "time": "3:00 AM"
+            },
+            {
+                "number": "18042",
+                "name": "Shalimar Express",
+                "time": "4:00 AM"
+            },
+            {
+                "number": "12905",
+                "name": "Shalimar SF Express",
+                "time": "4:35 AM"
+            },
+            {
+                "number": "12101",
+                "name": "Jnaneswari Express",
+                "time": "4:35 AM"
+            },
+            {
+                "number": "22905",
+                "name": "Shalimar Weekly SF Express",
+                "time": "4:35 AM"
+            },
+            {
+                "number": "18050",
+                "name": "Shalimar Weekly Express",
+                "time": "6:15 AM"
+            },
+            {
+                "number": "22850",
+                "name": "Shalimar Weekly SF Express",
+                "time": "6:50 AM"
+            },
+            {
+                "number": "12774",
+                "name": "Shalimar AC SF Express",
+                "time": "6:50 AM"
+            },
+            {
+                "number": "22854",
+                "name": "Shalimar SF Express",
+                "time": "6:50 AM"
+            },
+            {
+                "number": "22836",
+                "name": "Shalimar Weekly SF Express",
+                "time": "7:10 AM"
+            },
+            {
+                "number": "12896",
+                "name": "Shalimar Weekly SF Express",
+                "time": "7:10 AM"
+            },
+            {
+                "number": "12888",
+                "name": "Shalimar Weekly SF Express",
+                "time": "7:15 AM"
+            },
+            {
+                "number": "12882",
+                "name": "Shalimar Garib Rath Express",
+                "time": "7:10 AM"
+            },
+            {
+                "number": "22804",
+                "name": "Shalimar SF Express",
+                "time": "7:10 AM"
+            },
+            {
+                "number": "20832",
+                "name": "Mahima Gosain Express",
+                "time": "7:20 AM"
+            },
+            {
+                "number": "12151",
+                "name": "Samarsata SF Express",
+                "time": "7:45 AM"
+            },
+            {
+                "number": "18410",
+                "name": "Sri Jagannath Express",
+                "time": "8:30 AM"
+            },
+            {
+                "number": "08616",
+                "name": "Shalimar Special Fare Festival Special",
+                "time": "8:30 AM"
+            },
+            {
+                "number": "18040",
+                "name": "Puri - Shalimar Express",
+                "time": "8:50 AM"
+            },
+            {
+                "number": "22829",
+                "name": "Shalimar SF Express",
+                "time": "10:05 AM"
+            },
+            {
+                "number": "20971",
+                "name": "Shalimar SF Express",
+                "time": "10:05 AM"
+            },
+            {
+                "number": "38032",
+                "name": "Santragachi - Shalimar Local",
+                "time": "10:25 AM"
+            },
+            {
+                "number": "08046",
+                "name": "Shalimar Special Fare Special",
+                "time": "11:15 AM"
+            },
+            {
+                "number": "12659",
+                "name": "Gurudev SF Express",
+                "time": "12:30 PM"
+            },
+            {
+                "number": "22641",
+                "name": "Shalimar SF Express",
+                "time": "12:30 PM"
+            },
+            {
+                "number": "17065",
+                "name": "Shalimar Amrit Bharat Express",
+                "time": "11:20 AM"
+            },
+            {
+                "number": "18029",
+                "name": "Shalimar Express",
+                "time": "1:00 PM"
+            },
+            {
+                "number": "18008",
+                "name": "Simlipal Intercity Express",
+                "time": "1:15 PM"
+            },
+            {
+                "number": "18046",
+                "name": "East Coast Express",
+                "time": "3:35 PM"
+            },
+            {
+                "number": "08044",
+                "name": "Shalimar Special Fare Puja Special",
+                "time": "3:00 PM"
+            },
+            {
+                "number": "18016",
+                "name": "Shalimar Express",
+                "time": "3:30 PM"
+            },
+            {
+                "number": "38034",
+                "name": "Santragachi - Shalimar Local",
+                "time": "5:10 PM"
+            },
+            {
+                "number": "12886",
+                "name": "Aranyak Express",
+                "time": "7:40 PM"
+            },
+            {
+                "number": "18048",
+                "name": "Vasco-da-Gama - Shalimar Amaravati Express",
+                "time": "11:45 PM"
+            },
+            {
+                "number": "22826",
+                "name": "Shalimar Weekly SF Express",
+                "time": "12:05 AM"
+            }
+        ]
+    }
+}

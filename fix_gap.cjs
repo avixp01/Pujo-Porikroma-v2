@@ -1,13 +1,9 @@
 const fs = require('fs');
-let code = fs.readFileSync('src/components/MapPage.jsx', 'utf8');
+const file = 'src/components/MapPage.jsx';
+let content = fs.readFileSync(file, 'utf8');
 
-const regex = /flexDirection: 'column',[\s\n]*gap: '8px',/;
-const replacement = `flexDirection: 'column',`;
+// Replace paddingBottom: '24px' with '16px' in the timeline list item
+content = content.replace(/paddingBottom:\s*'24px'/g, "paddingBottom: '16px'");
 
-if (regex.test(code)) {
-    code = code.replace(regex, replacement);
-    fs.writeFileSync('src/components/MapPage.jsx', code, 'utf8');
-    console.log("Successfully removed double gap");
-} else {
-    console.log("Regex failed");
-}
+fs.writeFileSync(file, content, 'utf8');
+console.log("Reduced gap to 16px.");

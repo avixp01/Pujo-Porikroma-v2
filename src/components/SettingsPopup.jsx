@@ -6,6 +6,7 @@ import {
 import EditProfilePopup from './EditProfilePopup';
 import HomeLocationPopup from './HomeLocationPopup';
 import RequestPandalPopup from './RequestPandalPopup';
+import VisitedPandalPopup from './VisitedPandalPopup';
 import ReportPopup from './ReportPopup';
 import HelpSupportPopup from './HelpSupportPopup';
 import InviteFriendsPopup from './InviteFriendsPopup';
@@ -16,6 +17,8 @@ const SettingsPopup = ({ onClose, onLogout }) => {
   const [showEditProfile, setShowEditProfile] = useState(false);
   const [showHomeLocation, setShowHomeLocation] = useState(false);
   const [showRequestPandal, setShowRequestPandal] = useState(false);
+  const [showVisited, setShowVisited] = useState(false);
+  const [visitedCount, setVisitedCount] = useState(0);
   const [showReport, setShowReport] = useState(false);
   const [showHelp, setShowHelp] = useState(false);
   const [showInvite, setShowInvite] = useState(false);
@@ -24,6 +27,21 @@ const SettingsPopup = ({ onClose, onLogout }) => {
   const userName = storedUser ? `${storedUser.firstname || ''} ${storedUser.lastname || ''}`.trim() : 'USER';
   const userEmail = storedUser?.email || 'user@gmail.com';
   const userGender = storedUser?.gender || 'male';
+
+  
+  useEffect(() => {
+    const updateCount = () => {
+      try {
+        const stored = localStorage.getItem('visitedPandals');
+        if (stored) {
+          setVisitedCount(JSON.parse(stored).length);
+        }
+      } catch(e) {}
+    };
+    updateCount();
+    window.addEventListener('visitedPandalsUpdated', updateCount);
+    return () => window.removeEventListener('visitedPandalsUpdated', updateCount);
+  }, []);
 
   useEffect(() => {
     const handlePopState = (e) => {
@@ -128,27 +146,21 @@ const SettingsPopup = ({ onClose, onLogout }) => {
           {/* Journey Section */}
           <div className="settings-section">
             <h3 className="settings-section-title">Your Pujo journey</h3>
-            <div className="settings-journey-cards">
-              <div className="settings-journey-card">
-                <div className="settings-journey-icon-wrap">
-                  <Home size={20} />
+            <div className="settings-journey-cards" style={{ padding: '20px 24px', justifyContent: 'space-between' }}>
+                <div className="settings-journey-card" style={{ flex: 'none', justifyContent: 'flex-start', marginLeft: '8px' }}>
+                  <div className="settings-journey-icon-wrap">
+                    <Home size={20} />
+                  </div>
+                  <div className="settings-journey-stats">
+                    <span className="settings-stat-number">{visitedCount}</span>
+                    <span className="settings-stat-label">Visited</span>
+                  </div>
                 </div>
-                <div className="settings-journey-stats">
-                  <span className="settings-stat-number">0</span>
-                  <span className="settings-stat-label">Visited</span>
-                </div>
-              </div>
-              <div className="settings-journey-divider"></div>
-              <div className="settings-journey-card">
-                <div className="settings-journey-icon-wrap alt-icon">
-                  <Navigation size={20} />
-                </div>
-                <div className="settings-journey-stats">
-                  <span className="settings-stat-number">0</span>
-                  <span className="settings-stat-label">In route</span>
+                
+                <div className="settings-journey-card" onClick={() => openPopup(setShowVisited)} style={{ flex: 'none', justifyContent: 'flex-end', cursor: 'pointer', marginRight: '8px' }}>
+                  <span style={{ color: '#ffffff', fontWeight: '500', fontSize: '16px', letterSpacing: '0.5px' }}>view</span>
                 </div>
               </div>
-            </div>
           </div>
 
           {/* Preferences Section */}
@@ -197,7 +209,7 @@ const SettingsPopup = ({ onClose, onLogout }) => {
                   <MapPin size={20} />
                 </div>
                 <div className="settings-list-text">
-                  <h4>Request a pandal</h4>
+                  <h4>Add a pandal</h4>
                   <p>Missing a pandal? Tell us about it</p>
                 </div>
                 <div className="settings-list-action">
@@ -236,7 +248,7 @@ const SettingsPopup = ({ onClose, onLogout }) => {
                   <Share2 size={20} />
                 </div>
                 <div className="settings-list-text">
-                  <h4>Invite friends</h4>
+                  <h4>Invite others</h4>
                   <p>Share Pujo Porikroma with friends</p>
                 </div>
                 <div className="settings-list-action">
@@ -274,7 +286,13 @@ const SettingsPopup = ({ onClose, onLogout }) => {
         />
       )}
 
-      {showRequestPandal && (
+      {showVisited && (
+          <VisitedPandalPopup 
+            onClose={() => closePopup(setShowVisited)} 
+          />
+        )}
+        
+        {showRequestPandal && (
         <RequestPandalPopup 
           onClose={() => closePopup(setShowRequestPandal)} 
         />

@@ -1,0 +1,228 @@
+{
+    "Baranagar Road Railway Station": {
+        "up": [
+            {
+                "number": "32211",
+                "name": "Sealdah - Dankuni Local",
+                "time": "04:23 AM"
+            },
+            {
+                "number": "32213",
+                "name": "Sealdah - Dankuni Local",
+                "time": "05:17 AM"
+            },
+            {
+                "number": "32215",
+                "name": "Sealdah - Dankuni Local",
+                "time": "05:58 AM"
+            },
+            {
+                "number": "32217",
+                "name": "Sealdah - Dankuni Local",
+                "time": "06:21 AM"
+            },
+            {
+                "number": "32219",
+                "name": "Sealdah - Dankuni Local",
+                "time": "07:01 AM"
+            },
+            {
+                "number": "32221",
+                "name": "Sealdah - Dankuni Local",
+                "time": "08:04 AM"
+            },
+            {
+                "number": "32223",
+                "name": "Sealdah - Dankuni Local",
+                "time": "08:43 AM"
+            },
+            {
+                "number": "32225",
+                "name": "Sealdah - Dankuni Local",
+                "time": "09:05 AM"
+            },
+            {
+                "number": "32227",
+                "name": "Sealdah - Dankuni Local",
+                "time": "10:10 AM"
+            },
+            {
+                "number": "32229",
+                "name": "Sealdah - Dankuni Local",
+                "time": "10:33 AM"
+            },
+            {
+                "number": "32231",
+                "name": "Sealdah - Dankuni Local",
+                "time": "11:12 AM"
+            },
+            {
+                "number": "32233",
+                "name": "Sealdah - Dankuni Local",
+                "time": "12:31 PM"
+            },
+            {
+                "number": "32235",
+                "name": "Sealdah - Dankuni Local",
+                "time": "01:41 PM"
+            },
+            {
+                "number": "32411",
+                "name": "Sealdah - Baruipara Local",
+                "time": "02:30 PM"
+            },
+            {
+                "number": "32237",
+                "name": "Sealdah - Dankuni Local",
+                "time": "03:44 PM"
+            },
+            {
+                "number": "32239",
+                "name": "Sealdah - Dankuni Local",
+                "time": "04:23 PM"
+            },
+            {
+                "number": "32241",
+                "name": "Sealdah - Dankuni Local",
+                "time": "05:38 PM"
+            },
+            {
+                "number": "32243",
+                "name": "Sealdah - Dankuni Local",
+                "time": "06:24 PM"
+            },
+            {
+                "number": "32245",
+                "name": "Sealdah - Dankuni Local",
+                "time": "07:23 PM"
+            },
+            {
+                "number": "32413",
+                "name": "Sealdah - Baruipara Local",
+                "time": "09:07 PM"
+            },
+            {
+                "number": "32247",
+                "name": "Sealdah - Dankuni Local",
+                "time": "09:50 PM"
+            },
+            {
+                "number": "32249",
+                "name": "Sealdah - Dankuni Local",
+                "time": "10:42 PM"
+            }
+        ],
+        "down": [
+            {
+                "number": "32252",
+                "name": "Dankuni - Sealdah Local",
+                "time": "12:03 AM"
+            },
+            {
+                "number": "32212",
+                "name": "Dankuni - Sealdah Local",
+                "time": "05:23 AM"
+            },
+            {
+                "number": "32214",
+                "name": "Dankuni - Sealdah Local",
+                "time": "06:13 AM"
+            },
+            {
+                "number": "32216",
+                "name": "Dankuni - Sealdah Local",
+                "time": "06:54 AM"
+            },
+            {
+                "number": "32218",
+                "name": "Dankuni - Sealdah Local",
+                "time": "07:22 AM"
+            },
+            {
+                "number": "32220",
+                "name": "Dankuni - Sealdah Local",
+                "time": "08:05 AM"
+            },
+            {
+                "number": "32222",
+                "name": "Dankuni - Sealdah Local",
+                "time": "09:03 AM"
+            },
+            {
+                "number": "32224",
+                "name": "Dankuni - Sealdah Local",
+                "time": "09:35 AM"
+            },
+            {
+                "number": "32226",
+                "name": "Dankuni - Sealdah Local",
+                "time": "10:10 AM"
+            },
+            {
+                "number": "32228",
+                "name": "Dankuni - Sealdah Local",
+                "time": "11:23 AM"
+            },
+            {
+                "number": "32230",
+                "name": "Dankuni - Sealdah Local",
+                "time": "11:41 AM"
+            },
+            {
+                "number": "32232",
+                "name": "Dankuni - Sealdah Local",
+                "time": "12:14 PM"
+            },
+            {
+                "number": "32234",
+                "name": "Dankuni - Sealdah Local",
+                "time": "01:29 PM"
+            },
+            {
+                "number": "32236",
+                "name": "Dankuni - Sealdah Local",
+                "time": "02:40 PM"
+            },
+            {
+                "number": "32412",
+                "name": "Baruipara - Sealdah Local",
+                "time": "04:01 PM"
+            },
+            {
+                "number": "32238",
+                "name": "Dankuni - Sealdah Local",
+                "time": "04:43 PM"
+            },
+            {
+                "number": "32240",
+                "name": "Dankuni - Sealdah Local",
+                "time": "05:29 PM"
+            },
+            {
+                "number": "32242",
+                "name": "Dankuni - Sealdah Local",
+                "time": "06:30 PM"
+            },
+            {
+                "number": "32246",
+                "name": "Dankuni - Sealdah Local",
+                "time": "07:33 PM"
+            },
+            {
+                "number": "32248",
+                "name": "Dankuni - Sealdah Local",
+                "time": "08:52 PM"
+            },
+            {
+                "number": "32250",
+                "name": "Dankuni - Sealdah Local",
+                "time": "10:52 PM"
+            },
+            {
+                "number": "32414",
+                "name": "Baruipara - Sealdah Local",
+                "time": "11:11 PM"
+            }
+        ]
+    }
+}

@@ -1,0 +1,2018 @@
+{
+    "Howrah Junction Railway Station": {
+        "up": [
+            {
+                "number": "38801",
+                "name": "Howrah - Midnapore Galloping Local",
+                "time": "3:00 AM"
+            },
+            {
+                "number": "38703",
+                "name": "Howrah - Kharagpur Local",
+                "time": "3:30 AM"
+            },
+            {
+                "number": "38803",
+                "name": "Howrah - Midnapore Local",
+                "time": "4:10 AM"
+            },
+            {
+                "number": "38705",
+                "name": "Howrah - Kharagpur Local",
+                "time": "4:45 AM"
+            },
+            {
+                "number": "38903",
+                "name": "Howrah - Amta Local",
+                "time": "4:55 AM"
+            },
+            {
+                "number": "38805",
+                "name": "Howrah - Midnapore Local",
+                "time": "5:15 AM"
+            },
+            {
+                "number": "38051",
+                "name": "Howrah - Haldia Local",
+                "time": "5:40 AM"
+            },
+            {
+                "number": "38905",
+                "name": "Howrah - Amta Local",
+                "time": "5:55 AM"
+            },
+            {
+                "number": "38403",
+                "name": "Howrah - Panskura Local",
+                "time": "6:20 AM"
+            },
+            {
+                "number": "38807",
+                "name": "Howrah - Midnapore Local",
+                "time": "6:30 AM"
+            },
+            {
+                "number": "38405",
+                "name": "Howrah - Panskura Local",
+                "time": "6:40 AM"
+            },
+            {
+                "number": "12857",
+                "name": "Tamralipta Express",
+                "time": "6:45 AM"
+            },
+            {
+                "number": "38103",
+                "name": "Howrah - Uluberia Local",
+                "time": "6:55 AM"
+            },
+            {
+                "number": "38707",
+                "name": "Howrah - Kharagpur Local",
+                "time": "7:20 AM"
+            },
+            {
+                "number": "38303",
+                "name": "Howrah - Mecheda Local",
+                "time": "7:40 AM"
+            },
+            {
+                "number": "15722",
+                "name": "Paharia Express",
+                "time": "7:50 AM"
+            },
+            {
+                "number": "38409",
+                "name": "Howrah - Panskura Local",
+                "time": "7:50 AM"
+            },
+            {
+                "number": "38809",
+                "name": "Howrah - Midnapore Local",
+                "time": "8:00 AM"
+            },
+            {
+                "number": "38105",
+                "name": "Howrah - Uluberia Local",
+                "time": "8:20 AM"
+            },
+            {
+                "number": "38413",
+                "name": "Howrah - Panskura Local",
+                "time": "8:30 AM"
+            },
+            {
+                "number": "38907",
+                "name": "Howrah - Amta Local",
+                "time": "8:40 AM"
+            },
+            {
+                "number": "38811",
+                "name": "Howrah - Midnapore Local",
+                "time": "8:50 AM"
+            },
+            {
+                "number": "38415",
+                "name": "Howrah - Panskura Local",
+                "time": "9:05 AM"
+            },
+            {
+                "number": "12821",
+                "name": "Dhauli Express",
+                "time": "9:10 AM"
+            },
+            {
+                "number": "38053",
+                "name": "Howrah - Haldia Galloping Local",
+                "time": "9:20 AM"
+            },
+            {
+                "number": "38813",
+                "name": "Howrah - Midnapore Local",
+                "time": "9:40 AM"
+            },
+            {
+                "number": "38417",
+                "name": "Howrah - Panskura Local",
+                "time": "9:55 AM"
+            },
+            {
+                "number": "38419",
+                "name": "Howrah - Panskura Local",
+                "time": "10:00 AM"
+            },
+            {
+                "number": "18033",
+                "name": "Ghatsila MEMU Express",
+                "time": "10:10 AM"
+            },
+            {
+                "number": "38815",
+                "name": "Howrah - Midnapore Local",
+                "time": "10:30 AM"
+            },
+            {
+                "number": "38711",
+                "name": "Howrah - Kharagpur Local",
+                "time": "11:00 AM"
+            },
+            {
+                "number": "38909",
+                "name": "Howrah - Amta Local",
+                "time": "11:10 AM"
+            },
+            {
+                "number": "38501",
+                "name": "Howrah - Balichak Local",
+                "time": "11:30 AM"
+            },
+            {
+                "number": "38421",
+                "name": "Howrah - Panskura Local",
+                "time": "11:40 AM"
+            },
+            {
+                "number": "38713",
+                "name": "Howrah - Kharagpur Local",
+                "time": "12:05 PM"
+            },
+            {
+                "number": "38817",
+                "name": "Howrah - Midnapore Local",
+                "time": "12:25 PM"
+            },
+            {
+                "number": "38717",
+                "name": "Howrah - Kharagpur Local",
+                "time": "12:55 PM"
+            },
+            {
+                "number": "38423",
+                "name": "Howrah - Panskura Local",
+                "time": "1:15 PM"
+            },
+            {
+                "number": "38819",
+                "name": "Howrah - Midnapore Local",
+                "time": "1:30 PM"
+            },
+            {
+                "number": "38425",
+                "name": "Howrah - Panskura Local",
+                "time": "2:00 PM"
+            },
+            {
+                "number": "38719",
+                "name": "Howrah - Kharagpur Local",
+                "time": "2:15 PM"
+            },
+            {
+                "number": "38429",
+                "name": "Howrah - Panskura Local",
+                "time": "2:35 PM"
+            },
+            {
+                "number": "22897",
+                "name": "Kandari Express",
+                "time": "3:00 PM"
+            },
+            {
+                "number": "38431",
+                "name": "Howrah - Panskura Local",
+                "time": "3:00 PM"
+            },
+            {
+                "number": "38913",
+                "name": "Howrah - Amta Local",
+                "time": "3:10 PM"
+            },
+            {
+                "number": "12841",
+                "name": "Coromandel Express",
+                "time": "3:10 PM"
+            },
+            {
+                "number": "18043",
+                "name": "Bagha Jatin Express",
+                "time": "3:25 PM"
+            },
+            {
+                "number": "38433",
+                "name": "Howrah - Panskura Local",
+                "time": "3:40 PM"
+            },
+            {
+                "number": "38821",
+                "name": "Howrah - Midnapore Galloping Local",
+                "time": "3:50 PM"
+            },
+            {
+                "number": "38721",
+                "name": "Howrah - Kharagpur Local",
+                "time": "4:00 PM"
+            },
+            {
+                "number": "38915",
+                "name": "Howrah - Amta Local",
+                "time": "4:40 PM"
+            },
+            {
+                "number": "68007",
+                "name": "Howrah - Jaleswar MEMU",
+                "time": "4:50 PM"
+            },
+            {
+                "number": "38435",
+                "name": "Howrah - Panskura Local",
+                "time": "5:00 PM"
+            },
+            {
+                "number": "38823",
+                "name": "Howrah - Midnapore Galloping Local",
+                "time": "5:10 PM"
+            },
+            {
+                "number": "38437",
+                "name": "Howrah - Panskura Local",
+                "time": "5:25 PM"
+            },
+            {
+                "number": "18003",
+                "name": "Rani Shiromoni Express",
+                "time": "5:45 PM"
+            },
+            {
+                "number": "38311",
+                "name": "Howrah - Mecheda Local",
+                "time": "5:45 PM"
+            },
+            {
+                "number": "38057",
+                "name": "Howrah - Haldia Local",
+                "time": "5:55 PM"
+            },
+            {
+                "number": "38825",
+                "name": "Howrah - Midnapore Galloping Local",
+                "time": "6:10 PM"
+            },
+            {
+                "number": "38917",
+                "name": "Howrah - Amta Local",
+                "time": "6:20 PM"
+            },
+            {
+                "number": "38441",
+                "name": "Howrah - Panskura Local",
+                "time": "6:30 PM"
+            },
+            {
+                "number": "38827",
+                "name": "Howrah - Midnapore Galloping Local",
+                "time": "6:40 PM"
+            },
+            {
+                "number": "38313",
+                "name": "Howrah - Mecheda Local",
+                "time": "7:00 PM"
+            },
+            {
+                "number": "38443",
+                "name": "Howrah - Panskura Local",
+                "time": "7:10 PM"
+            },
+            {
+                "number": "38919",
+                "name": "Howrah - Amta Local",
+                "time": "7:20 PM"
+            },
+            {
+                "number": "38315",
+                "name": "Howrah - Mecheda Local",
+                "time": "7:30 PM"
+            },
+            {
+                "number": "38829",
+                "name": "Howrah - Midnapore Galloping Local",
+                "time": "7:40 PM"
+            },
+            {
+                "number": "38445",
+                "name": "Howrah - Panskura Local",
+                "time": "7:55 PM"
+            },
+            {
+                "number": "38317",
+                "name": "Howrah - Mecheda Local",
+                "time": "8:05 PM"
+            },
+            {
+                "number": "38831",
+                "name": "Howrah - Midnapore Local",
+                "time": "8:20 PM"
+            },
+            {
+                "number": "38921",
+                "name": "Howrah - Amta Local",
+                "time": "8:40 PM"
+            },
+            {
+                "number": "38449",
+                "name": "Howrah - Panskura Local",
+                "time": "8:50 PM"
+            },
+            {
+                "number": "38725",
+                "name": "Howrah - Kharagpur Local",
+                "time": "9:15 PM"
+            },
+            {
+                "number": "38451",
+                "name": "Howrah - Panskura Local",
+                "time": "9:30 PM"
+            },
+            {
+                "number": "38727",
+                "name": "Howrah - Kharagpur Local",
+                "time": "9:40 PM"
+            },
+            {
+                "number": "38319",
+                "name": "Howrah - Mecheda Local",
+                "time": "10:05 PM"
+            },
+            {
+                "number": "38923",
+                "name": "Howrah - Amta Local",
+                "time": "10:15 PM"
+            },
+            {
+                "number": "38453",
+                "name": "Howrah - Panskura Local",
+                "time": "10:20 PM"
+            },
+            {
+                "number": "38321",
+                "name": "Howrah - Mecheda Local",
+                "time": "11:10 PM"
+            },
+            {
+                "number": "38455",
+                "name": "Howrah - Panskura Local",
+                "time": "11:30 PM"
+            },
+            {
+                "number": "63501",
+                "name": "Howrah - Barddhaman Fast MEMU",
+                "time": "1:30 AM"
+            },
+            {
+                "number": "04051",
+                "name": "New Delhi Special Fare Special",
+                "time": "1:40 AM"
+            },
+            {
+                "number": "37811",
+                "name": "Howrah - Barddhaman Local via-Main Line",
+                "time": "4:15 AM"
+            },
+            {
+                "number": "37211",
+                "name": "Howrah - Bandel Local",
+                "time": "4:47 AM"
+            },
+            {
+                "number": "37813",
+                "name": "Howrah - Barddhaman Local via-Main Line",
+                "time": "5:00 AM"
+            },
+            {
+                "number": "37213",
+                "name": "Howrah - Bandel Local",
+                "time": "5:05 AM"
+            },
+            {
+                "number": "37815",
+                "name": "Howrah - Barddhaman Galloping Local",
+                "time": "5:15 AM"
+            },
+            {
+                "number": "37911",
+                "name": "Howrah - Katwa Local",
+                "time": "5:22 AM"
+            },
+            {
+                "number": "13017",
+                "name": "Ganadevta Express",
+                "time": "6:05 AM"
+            },
+            {
+                "number": "22387",
+                "name": "Black Diamond Express",
+                "time": "6:15 AM"
+            },
+            {
+                "number": "37817",
+                "name": "Howrah - Barddhaman Local via-Main Line",
+                "time": "6:20 AM"
+            },
+            {
+                "number": "37215",
+                "name": "Howrah - Bandel Local",
+                "time": "6:26 AM"
+            },
+            {
+                "number": "22321",
+                "name": "Hool Express",
+                "time": "6:55 AM"
+            },
+            {
+                "number": "37819",
+                "name": "Howrah - Barddhaman Local",
+                "time": "7:00 AM"
+            },
+            {
+                "number": "37217",
+                "name": "Howrah - Bandel Local",
+                "time": "7:10 AM"
+            },
+            {
+                "number": "03005",
+                "name": "Lumding Special Fare Special",
+                "time": "7:15 AM"
+            },
+            {
+                "number": "15643",
+                "name": "Puri - Kamakhya Express",
+                "time": "7:30 AM"
+            },
+            {
+                "number": "37219",
+                "name": "Howrah - Bandel Local",
+                "time": "7:35 AM"
+            },
+            {
+                "number": "13063",
+                "name": "Balurghat Express",
+                "time": "7:50 AM"
+            },
+            {
+                "number": "37913",
+                "name": "Howrah - Katwa Local",
+                "time": "8:00 AM"
+            },
+            {
+                "number": "37821",
+                "name": "Howrah - Barddhaman Local",
+                "time": "8:05 AM"
+            },
+            {
+                "number": "37221",
+                "name": "Howrah - Bandel Local",
+                "time": "8:20 AM"
+            },
+            {
+                "number": "37651",
+                "name": "Howrah - Memari Galloping Local",
+                "time": "8:35 AM"
+            },
+            {
+                "number": "37223",
+                "name": "Howrah - Bandel Local",
+                "time": "8:40 AM"
+            },
+            {
+                "number": "13053",
+                "name": "Kulik Express",
+                "time": "8:55 AM"
+            },
+            {
+                "number": "37823",
+                "name": "Howrah - Barddhaman Local",
+                "time": "9:00 AM"
+            },
+            {
+                "number": "37225",
+                "name": "Howrah - Bandel Local",
+                "time": "9:10 AM"
+            },
+            {
+                "number": "37227",
+                "name": "Howrah - Bandel Local",
+                "time": "9:25 AM"
+            },
+            {
+                "number": "37229",
+                "name": "Howrah - Bandel Local",
+                "time": "9:50 AM"
+            },
+            {
+                "number": "37915",
+                "name": "Howrah - Katwa Local",
+                "time": "10:00 AM"
+            },
+            {
+                "number": "37825",
+                "name": "Howrah - Barddhaman Local",
+                "time": "10:05 AM"
+            },
+            {
+                "number": "37231",
+                "name": "Howrah - Bandel Local",
+                "time": "10:15 AM"
+            },
+            {
+                "number": "37233",
+                "name": "Howrah - Bandel Local",
+                "time": "10:30 AM"
+            },
+            {
+                "number": "37235",
+                "name": "Howrah - Bandel Local",
+                "time": "10:40 AM"
+            },
+            {
+                "number": "13015",
+                "name": "Jamalpur Kavi Guru Express",
+                "time": "10:55 AM"
+            },
+            {
+                "number": "37237",
+                "name": "Howrah - Bandel Local",
+                "time": "11:05 AM"
+            },
+            {
+                "number": "37239",
+                "name": "Howrah - Bandel Local",
+                "time": "11:15 AM"
+            },
+            {
+                "number": "13031",
+                "name": "Howrah - Jaynagar Express",
+                "time": "11:25 AM"
+            },
+            {
+                "number": "37827",
+                "name": "Howrah - Barddhaman Local via-Main Line",
+                "time": "11:30 AM"
+            },
+            {
+                "number": "37611",
+                "name": "Howrah - Pundooah Local",
+                "time": "11:42 AM"
+            },
+            {
+                "number": "37241",
+                "name": "Howrah - Bandel Local",
+                "time": "12:00 PM"
+            },
+            {
+                "number": "37917",
+                "name": "Howrah - Katwa Local",
+                "time": "12:10 PM"
+            },
+            {
+                "number": "37243",
+                "name": "Howrah - Bandel Local",
+                "time": "12:20 PM"
+            },
+            {
+                "number": "37829",
+                "name": "Howrah - Barddhaman Local",
+                "time": "12:30 PM"
+            },
+            {
+                "number": "37655",
+                "name": "Howrah - Memari Local",
+                "time": "12:45 PM"
+            },
+            {
+                "number": "37245",
+                "name": "Howrah - Bandel Local",
+                "time": "12:55 PM"
+            },
+            {
+                "number": "37247",
+                "name": "Howrah - Bandel Local",
+                "time": "1:15 PM"
+            },
+            {
+                "number": "37249",
+                "name": "Howrah - Bandel Local",
+                "time": "1:25 PM"
+            },
+            {
+                "number": "37251",
+                "name": "Howrah - Bandel Local",
+                "time": "1:33 PM"
+            },
+            {
+                "number": "13427",
+                "name": "Sahibganj Intercity Express",
+                "time": "1:45 PM"
+            },
+            {
+                "number": "37657",
+                "name": "Howrah - Memari Local",
+                "time": "1:50 PM"
+            },
+            {
+                "number": "13465",
+                "name": "Malda Town Intercity Express",
+                "time": "2:00 PM"
+            },
+            {
+                "number": "37831",
+                "name": "Howrah - Barddhaman Galloping Local",
+                "time": "2:20 PM"
+            },
+            {
+                "number": "37919",
+                "name": "Howrah - Katwa Galloping Local",
+                "time": "2:30 PM"
+            },
+            {
+                "number": "37253",
+                "name": "Howrah - Bandel Local",
+                "time": "2:40 PM"
+            },
+            {
+                "number": "37833",
+                "name": "Howrah - Barddhaman Local",
+                "time": "2:52 PM"
+            },
+            {
+                "number": "37885",
+                "name": "Howrah - Barddhaman Galloping local",
+                "time": "2:55 PM"
+            },
+            {
+                "number": "37255",
+                "name": "Howrah - Bandel Local",
+                "time": "3:00 PM"
+            },
+            {
+                "number": "13011",
+                "name": "Malda Town Intercity Express",
+                "time": "3:25 PM"
+            },
+            {
+                "number": "37257",
+                "name": "Howrah - Bandel Local",
+                "time": "3:30 PM"
+            },
+            {
+                "number": "37837",
+                "name": "Howrah - Barddhaman Galloping local",
+                "time": "3:40 PM"
+            },
+            {
+                "number": "13021",
+                "name": "Mithila Express",
+                "time": "3:50 PM"
+            },
+            {
+                "number": "53001",
+                "name": "Howrah - Azimganj Passenger",
+                "time": "4:05 PM"
+            },
+            {
+                "number": "37259",
+                "name": "Howrah - Bandel Local",
+                "time": "4:16 PM"
+            },
+            {
+                "number": "13045",
+                "name": "Mayurakshi Express",
+                "time": "4:25 PM"
+            },
+            {
+                "number": "53047",
+                "name": "Viswabharati Fast Passenger",
+                "time": "4:40 PM"
+            },
+            {
+                "number": "37839",
+                "name": "Howrah - Barddhaman Galloping Local",
+                "time": "4:45 PM"
+            },
+            {
+                "number": "37261",
+                "name": "Howrah - Bandel Local",
+                "time": "4:55 PM"
+            },
+            {
+                "number": "37921",
+                "name": "Howrah - Katwa Galloping Local",
+                "time": "5:05 PM"
+            },
+            {
+                "number": "37841",
+                "name": "Howrah - Barddhaman Galloping Local",
+                "time": "5:35 PM"
+            },
+            {
+                "number": "37263",
+                "name": "Howrah - Bandel Local",
+                "time": "5:47 PM"
+            },
+            {
+                "number": "37843",
+                "name": "Howrah - Barddhaman Main Line Super Local",
+                "time": "5:55 PM"
+            },
+            {
+                "number": "37923",
+                "name": "Howrah - Katwa Galloping Local",
+                "time": "6:00 PM"
+            },
+            {
+                "number": "37845",
+                "name": "Howrah - Barddhaman Galloping Local",
+                "time": "6:05 PM"
+            },
+            {
+                "number": "37265",
+                "name": "Howrah - Bandel Local",
+                "time": "6:15 PM"
+            },
+            {
+                "number": "27575",
+                "name": "Kamakhya Vande Bharat Sleeper Express",
+                "time": "6:20 PM"
+            },
+            {
+                "number": "37267",
+                "name": "Howrah - Bandel Local",
+                "time": "6:20 PM"
+            },
+            {
+                "number": "15961",
+                "name": "Kamrup Express",
+                "time": "6:35 PM"
+            },
+            {
+                "number": "15959",
+                "name": "Kamrup Express",
+                "time": "6:35 PM"
+            },
+            {
+                "number": "37847",
+                "name": "Howrah - Barddhaman Galloping Local",
+                "time": "6:35 PM"
+            },
+            {
+                "number": "37269",
+                "name": "Howrah - Bandel Local",
+                "time": "6:45 PM"
+            },
+            {
+                "number": "37201",
+                "name": "Howrah - Bandel Matribhoomi Ladies Special Local",
+                "time": "6:55 PM"
+            },
+            {
+                "number": "37849",
+                "name": "Howrah - Barddhaman Galloping Local",
+                "time": "7:00 PM"
+            },
+            {
+                "number": "37851",
+                "name": "Howrah - Barddhaman Local",
+                "time": "7:10 PM"
+            },
+            {
+                "number": "37925",
+                "name": "Howrah - Katwa Galloping Local",
+                "time": "7:25 PM"
+            },
+            {
+                "number": "37271",
+                "name": "Howrah - Bandel local",
+                "time": "7:35 PM"
+            },
+            {
+                "number": "37273",
+                "name": "Howrah - Bandel Local",
+                "time": "7:55 PM"
+            },
+            {
+                "number": "13023",
+                "name": "Howrah - Gaya Express",
+                "time": "8:00 PM"
+            },
+            {
+                "number": "37275",
+                "name": "Howrah - Bandel Local",
+                "time": "8:10 PM"
+            },
+            {
+                "number": "37853",
+                "name": "Howrah - Barddhaman Local",
+                "time": "8:20 PM"
+            },
+            {
+                "number": "13009",
+                "name": "Doon Express",
+                "time": "8:25 PM"
+            },
+            {
+                "number": "37927",
+                "name": "Howrah - Katwa Local",
+                "time": "8:30 PM"
+            },
+            {
+                "number": "37855",
+                "name": "Howrah - Barddhaman Local",
+                "time": "8:52 PM"
+            },
+            {
+                "number": "37277",
+                "name": "Howrah - Bandel Local",
+                "time": "9:00 PM"
+            },
+            {
+                "number": "37279",
+                "name": "Howrah - Bandel Local",
+                "time": "9:10 PM"
+            },
+            {
+                "number": "37281",
+                "name": "Howrah - Bandel Local",
+                "time": "9:30 PM"
+            },
+            {
+                "number": "13019",
+                "name": "Bagh Express",
+                "time": "9:40 PM"
+            },
+            {
+                "number": "37283",
+                "name": "Howrah - Bandel Local",
+                "time": "9:50 PM"
+            },
+            {
+                "number": "03029",
+                "name": "Natesar Special Fare Special",
+                "time": "10:00 PM"
+            },
+            {
+                "number": "15721",
+                "name": "Paharia Express",
+                "time": "10:00 PM"
+            },
+            {
+                "number": "15711",
+                "name": "Paharia Express",
+                "time": "10:00 PM"
+            },
+            {
+                "number": "37857",
+                "name": "Howrah - Barddhaman Local",
+                "time": "10:10 PM"
+            },
+            {
+                "number": "37285",
+                "name": "Howrah - Bandel Local",
+                "time": "10:30 PM"
+            },
+            {
+                "number": "13027",
+                "name": "Azimganj Kaviguru Express",
+                "time": "10:40 PM"
+            },
+            {
+                "number": "37287",
+                "name": "Howrah - Bandel Local",
+                "time": "10:50 PM"
+            },
+            {
+                "number": "03043",
+                "name": "Raxaul Special Fare Special",
+                "time": "11:00 PM"
+            },
+            {
+                "number": "03041",
+                "name": "Raxaul Special Fare Special",
+                "time": "11:00 PM"
+            },
+            {
+                "number": "13043",
+                "name": "Howrah - Raxaul Express",
+                "time": "11:00 PM"
+            },
+            {
+                "number": "13065",
+                "name": "Anand Vihar Terminal Amrit Bharat Express",
+                "time": "11:10 PM"
+            },
+            {
+                "number": "37289",
+                "name": "Howrah - Bandel Local",
+                "time": "11:15 PM"
+            },
+            {
+                "number": "13029",
+                "name": "Howrah - Mokama Express",
+                "time": "11:20 PM"
+            },
+            {
+                "number": "13033",
+                "name": "Howrah - Katihar Express",
+                "time": "11:35 PM"
+            },
+            {
+                "number": "37291",
+                "name": "Howrah - Bandel Local",
+                "time": "11:45 PM"
+            }
+        ],
+        "down": [
+            {
+                "number": "38302",
+                "name": "Mecheda - Howrah Local",
+                "time": "4:35 AM"
+            },
+            {
+                "number": "38402",
+                "name": "Panskura - Howrah Local",
+                "time": "4:45 AM"
+            },
+            {
+                "number": "38404",
+                "name": "Panskura - Howrah Local",
+                "time": "5:00 AM"
+            },
+            {
+                "number": "38702",
+                "name": "Kharagpur - Howrah Local",
+                "time": "5:10 AM"
+            },
+            {
+                "number": "18006",
+                "name": "Samaleswari Express",
+                "time": "6:30 AM"
+            },
+            {
+                "number": "38304",
+                "name": "Mecheda - Howrah Local",
+                "time": "5:30 AM"
+            },
+            {
+                "number": "38306",
+                "name": "Mecheda - Howrah Local",
+                "time": "6:10 AM"
+            },
+            {
+                "number": "12809",
+                "name": "Mumbai CSMT - Howrah Mail",
+                "time": "6:45 AM"
+            },
+            {
+                "number": "38406",
+                "name": "Panskura - Howrah Local",
+                "time": "6:20 AM"
+            },
+            {
+                "number": "38408",
+                "name": "Panskura - Howrah Local",
+                "time": "6:30 AM"
+            },
+            {
+                "number": "38704",
+                "name": "Kharagpur - Howrah Local",
+                "time": "6:40 AM"
+            },
+            {
+                "number": "18616",
+                "name": "Kriya Yoga Express",
+                "time": "7:20 AM"
+            },
+            {
+                "number": "38904",
+                "name": "Amta - Howrah Local",
+                "time": "7:10 AM"
+            },
+            {
+                "number": "38802",
+                "name": "Midnapore - Howrah Local",
+                "time": "7:30 AM"
+            },
+            {
+                "number": "38412",
+                "name": "Panskura - Howrah Local",
+                "time": "7:40 AM"
+            },
+            {
+                "number": "38308",
+                "name": "Mecheda - Howrah Local",
+                "time": "7:50 AM"
+            },
+            {
+                "number": "38706",
+                "name": "Kharagpur - Howrah Local",
+                "time": "8:10 AM"
+            },
+            {
+                "number": "38414",
+                "name": "Panskura - Howrah Local",
+                "time": "8:20 AM"
+            },
+            {
+                "number": "38906",
+                "name": "Amta - Howrah Local",
+                "time": "8:30 AM"
+            },
+            {
+                "number": "38806",
+                "name": "Midnapore - Howrah Galloping Local",
+                "time": "9:10 AM"
+            },
+            {
+                "number": "38804",
+                "name": "Midnapore - Howrah Local",
+                "time": "9:05 AM"
+            },
+            {
+                "number": "38202",
+                "name": "Bagnan - Howrah Local",
+                "time": "8:40 AM"
+            },
+            {
+                "number": "38104",
+                "name": "Uluberia - Howrah Local",
+                "time": "9:20 AM"
+            },
+            {
+                "number": "38052",
+                "name": "Haldia - Howrah Galloping Local",
+                "time": "9:30 AM"
+            },
+            {
+                "number": "38708",
+                "name": "Kharagpur - Howrah Local",
+                "time": "9:40 AM"
+            },
+            {
+                "number": "38808",
+                "name": "Midnapore - Howrah Galloping Local",
+                "time": "9:45 AM"
+            },
+            {
+                "number": "38908",
+                "name": "Amta - Howrah Local",
+                "time": "10:00 AM"
+            },
+            {
+                "number": "68002",
+                "name": "Jaleswar - Howrah MEMU",
+                "time": "10:00 AM"
+            },
+            {
+                "number": "38204",
+                "name": "Bagnan - Howrah Local",
+                "time": "10:10 AM"
+            },
+            {
+                "number": "18004",
+                "name": "Rani Shiromoni Express",
+                "time": "10:25 AM"
+            },
+            {
+                "number": "38714",
+                "name": "Kharagpur - Howrah Galloping Local",
+                "time": "10:20 AM"
+            },
+            {
+                "number": "12814",
+                "name": "Steel Express",
+                "time": "10:35 AM"
+            },
+            {
+                "number": "12842",
+                "name": "Coromandel Express",
+                "time": "11:00 AM"
+            },
+            {
+                "number": "38420",
+                "name": "Panskura - Howrah Local",
+                "time": "10:40 AM"
+            },
+            {
+                "number": "38810",
+                "name": "Midnapore - Howrah Local",
+                "time": "11:00 AM"
+            },
+            {
+                "number": "38910",
+                "name": "Amta - Howrah Local",
+                "time": "10:50 AM"
+            },
+            {
+                "number": "22818",
+                "name": "Howrah Weekly SF Express",
+                "time": "11:10 AM"
+            },
+            {
+                "number": "38422",
+                "name": "Panskura - Howrah Local",
+                "time": "11:10 AM"
+            },
+            {
+                "number": "38106",
+                "name": "Uluberia - Howrah Local",
+                "time": "11:20 AM"
+            },
+            {
+                "number": "12828",
+                "name": "Howrah SF Express",
+                "time": "11:22 AM"
+            },
+            {
+                "number": "38312",
+                "name": "Mecheda - Howrah Local",
+                "time": "11:30 AM"
+            },
+            {
+                "number": "38426",
+                "name": "Panskura - Howrah Local",
+                "time": "11:55 AM"
+            },
+            {
+                "number": "18044",
+                "name": "Bagha Jatin Express",
+                "time": "12:30 PM"
+            },
+            {
+                "number": "38812",
+                "name": "Midnapore - Howrah Local",
+                "time": "12:15 PM"
+            },
+            {
+                "number": "12859",
+                "name": "Gitanjali Express",
+                "time": "1:50 PM"
+            },
+            {
+                "number": "38912",
+                "name": "Amta - Howrah Local",
+                "time": "1:00 PM"
+            },
+            {
+                "number": "38428",
+                "name": "Panskura - Howrah Local",
+                "time": "12:45 PM"
+            },
+            {
+                "number": "38430",
+                "name": "Panskura - Howrah Local",
+                "time": "1:20 PM"
+            },
+            {
+                "number": "38716",
+                "name": "Kharagpur - Howrah Local",
+                "time": "1:45 PM"
+            },
+            {
+                "number": "12833",
+                "name": "Howrah SF Express",
+                "time": "2:20 PM"
+            },
+            {
+                "number": "12858",
+                "name": "Tamralipta Express",
+                "time": "1:55 PM"
+            },
+            {
+                "number": "38432",
+                "name": "Panskura - Howrah Local",
+                "time": "2:00 PM"
+            },
+            {
+                "number": "38814",
+                "name": "Midnapore - Howrah Local",
+                "time": "2:25 PM"
+            },
+            {
+                "number": "38816",
+                "name": "Midnapore - Howrah Local",
+                "time": "2:50 PM"
+            },
+            {
+                "number": "38914",
+                "name": "Amta - Howrah Local",
+                "time": "3:00 PM"
+            },
+            {
+                "number": "38314",
+                "name": "Mecheda - Howrah Local",
+                "time": "3:40 PM"
+            },
+            {
+                "number": "38436",
+                "name": "Panskura - Howrah Local",
+                "time": "3:50 PM"
+            },
+            {
+                "number": "38818",
+                "name": "Midnapore - Howrah Local",
+                "time": "4:30 PM"
+            },
+            {
+                "number": "38502",
+                "name": "Balichak - Howrah Local",
+                "time": "4:50 PM"
+            },
+            {
+                "number": "38720",
+                "name": "Kharagpur - Howrah Local",
+                "time": "5:15 PM"
+            },
+            {
+                "number": "12704",
+                "name": "Falaknuma Express",
+                "time": "6:10 PM"
+            },
+            {
+                "number": "38916",
+                "name": "Amta - Howrah Local",
+                "time": "5:45 PM"
+            },
+            {
+                "number": "38438",
+                "name": "Panskura - Howrah Local",
+                "time": "5:35 PM"
+            },
+            {
+                "number": "38820",
+                "name": "Midnapore - Howrah Local",
+                "time": "5:55 PM"
+            },
+            {
+                "number": "38722",
+                "name": "Kharagpur - Howrah Local",
+                "time": "6:15 PM"
+            },
+            {
+                "number": "38056",
+                "name": "Haldia - Howrah Galloping Local",
+                "time": "6:05 PM"
+            },
+            {
+                "number": "12872",
+                "name": "Howrah Ispat Express",
+                "time": "6:30 PM"
+            },
+            {
+                "number": "22862",
+                "name": "Howrah Ispat Express",
+                "time": "6:30 PM"
+            },
+            {
+                "number": "38822",
+                "name": "Midnapore - Howrah Galloping Local",
+                "time": "6:50 PM"
+            },
+            {
+                "number": "38440",
+                "name": "Panskura - Howrah Local",
+                "time": "6:30 PM"
+            },
+            {
+                "number": "38442",
+                "name": "Panskura - Howrah Local",
+                "time": "7:00 PM"
+            },
+            {
+                "number": "12822",
+                "name": "Dhauli Express",
+                "time": "7:30 PM"
+            },
+            {
+                "number": "18034",
+                "name": "Howrah MEMU Express",
+                "time": "7:20 PM"
+            },
+            {
+                "number": "38918",
+                "name": "Amta - Howrah Local",
+                "time": "7:20 PM"
+            },
+            {
+                "number": "38444",
+                "name": "Panskura - Howrah Local",
+                "time": "7:30 PM"
+            },
+            {
+                "number": "38824",
+                "name": "Midnapore - Howrah Galloping Local",
+                "time": "7:40 PM"
+            },
+            {
+                "number": "12864",
+                "name": "Howrah SF Express",
+                "time": "8:10 PM"
+            },
+            {
+                "number": "12869",
+                "name": "Howrah Weekly SF Express",
+                "time": "8:50 PM"
+            },
+            {
+                "number": "38448",
+                "name": "Panskura - Howrah Local",
+                "time": "8:10 PM"
+            },
+            {
+                "number": "38724",
+                "name": "Kharagpur - Howrah Local",
+                "time": "8:25 PM"
+            },
+            {
+                "number": "38920",
+                "name": "Amta - Howrah Local",
+                "time": "8:35 PM"
+            },
+            {
+                "number": "38058",
+                "name": "Haldia - Howrah Galloping Local",
+                "time": "9:05 PM"
+            },
+            {
+                "number": "15721",
+                "name": "Paharia Express",
+                "time": "9:30 PM"
+            },
+            {
+                "number": "38826",
+                "name": "Midnapore - Howrah Local",
+                "time": "9:30 PM"
+            },
+            {
+                "number": "12022",
+                "name": "Howrah Jan Shatabdi Express",
+                "time": "9:00 PM"
+            },
+            {
+                "number": "12884",
+                "name": "Rupasi Bangla Express",
+                "time": "9:15 PM"
+            },
+            {
+                "number": "38450",
+                "name": "Panskura - Howrah Local",
+                "time": "9:20 PM"
+            },
+            {
+                "number": "38728",
+                "name": "Kharagpur - Howrah Local",
+                "time": "10:05 PM"
+            },
+            {
+                "number": "38922",
+                "name": "Amta - Howrah Local",
+                "time": "9:55 PM"
+            },
+            {
+                "number": "38454",
+                "name": "Panskura - Howrah Local",
+                "time": "10:15 PM"
+            },
+            {
+                "number": "12840",
+                "name": "Howrah Mail",
+                "time": "11:20 PM"
+            },
+            {
+                "number": "22898",
+                "name": "Kandari Express",
+                "time": "10:40 PM"
+            },
+            {
+                "number": "38828",
+                "name": "Midnapore - Howrah Local",
+                "time": "11:00 PM"
+            },
+            {
+                "number": "38924",
+                "name": "Amta - Howrah Local",
+                "time": "11:30 PM"
+            },
+            {
+                "number": "38730",
+                "name": "Kharagpur - Howrah Local",
+                "time": "11:45 PM"
+            },
+            {
+                "number": "38456",
+                "name": "Panskura - Howrah Local",
+                "time": "11:20 PM"
+            },
+            {
+                "number": "38830",
+                "name": "Midnapore - Howrah Local",
+                "time": "12:50 AM"
+            },
+            {
+                "number": "13034",
+                "name": "Katihar - Howrah Express",
+                "time": "2:40 AM"
+            },
+            {
+                "number": "53002",
+                "name": "Azimganj - Howrah Passenger",
+                "time": "3:10 AM"
+            },
+            {
+                "number": "13030",
+                "name": "Mokama - Howrah Express",
+                "time": "3:25 AM"
+            },
+            {
+                "number": "13024",
+                "name": "Gaya - Howrah Express",
+                "time": "3:15 AM"
+            },
+            {
+                "number": "13022",
+                "name": "Mithila Express",
+                "time": "4:00 AM"
+            },
+            {
+                "number": "37212",
+                "name": "Bandel - Howrah Local",
+                "time": "4:10 AM"
+            },
+            {
+                "number": "15962",
+                "name": "Kamrup Express",
+                "time": "4:40 AM"
+            },
+            {
+                "number": "15960",
+                "name": "Kamrup Express",
+                "time": "4:40 AM"
+            },
+            {
+                "number": "37214",
+                "name": "Bandel - Howrah Local",
+                "time": "4:35 AM"
+            },
+            {
+                "number": "13064",
+                "name": "Howrah Express",
+                "time": "5:25 AM"
+            },
+            {
+                "number": "37812",
+                "name": "Barddhaman - Howrah Local",
+                "time": "5:27 AM"
+            },
+            {
+                "number": "37216",
+                "name": "Bandel - Howrah Local",
+                "time": "5:50 AM"
+            },
+            {
+                "number": "37218",
+                "name": "Bandel - Howrah Local",
+                "time": "6:12 AM"
+            },
+            {
+                "number": "37814",
+                "name": "Barddhaman - Howrah Local",
+                "time": "6:35 AM"
+            },
+            {
+                "number": "13010",
+                "name": "Doon Express",
+                "time": "7:00 AM"
+            },
+            {
+                "number": "37220",
+                "name": "Bandel - Howrah Local",
+                "time": "6:45 AM"
+            },
+            {
+                "number": "03030",
+                "name": "Howrah Special Fare Special",
+                "time": "7:00 AM"
+            },
+            {
+                "number": "37912",
+                "name": "Katwa - Howrah Local",
+                "time": "6:57 AM"
+            },
+            {
+                "number": "15722",
+                "name": "Paharia Express",
+                "time": "7:30 AM"
+            },
+            {
+                "number": "15712",
+                "name": "Howrah Weekly Express",
+                "time": "7:30 AM"
+            },
+            {
+                "number": "37816",
+                "name": "Barddhaman - Howrah Local",
+                "time": "7:28 AM"
+            },
+            {
+                "number": "37222",
+                "name": "Bandel - Howrah Local",
+                "time": "7:35 AM"
+            },
+            {
+                "number": "37224",
+                "name": "Bandel - Howrah Local",
+                "time": "7:54 AM"
+            },
+            {
+                "number": "37818",
+                "name": "Barddhaman - Howrah Local",
+                "time": "8:12 AM"
+            },
+            {
+                "number": "27576",
+                "name": "Howrah Vande Bharat Sleeper Express",
+                "time": "8:15 AM"
+            },
+            {
+                "number": "37226",
+                "name": "Bandel - Howrah Local",
+                "time": "8:18 AM"
+            },
+            {
+                "number": "37820",
+                "name": "Barddhaman - Howrah Local",
+                "time": "8:31 AM"
+            },
+            {
+                "number": "37822",
+                "name": "Barddhaman - Howrah Main Line Super Local",
+                "time": "8:30 AM"
+            },
+            {
+                "number": "37914",
+                "name": "Katwa - Howrah Galloping Local",
+                "time": "8:55 AM"
+            },
+            {
+                "number": "37228",
+                "name": "Bandel - Howrah Local",
+                "time": "9:06 AM"
+            },
+            {
+                "number": "37230",
+                "name": "Bandel - Howrah Local",
+                "time": "9:34 AM"
+            },
+            {
+                "number": "37916",
+                "name": "Katwa - Howrah Galloping Local",
+                "time": "9:30 AM"
+            },
+            {
+                "number": "37824",
+                "name": "Barddhaman - Howrah Galloping Local",
+                "time": "9:40 AM"
+            },
+            {
+                "number": "37202",
+                "name": "Bandel - Howrah Matribhoomi Ladies Special Local",
+                "time": "9:43 AM"
+            },
+            {
+                "number": "37232",
+                "name": "Bandel - Howrah Local",
+                "time": "9:57 AM"
+            },
+            {
+                "number": "37826",
+                "name": "Barddhaman - Howrah Galloping Local",
+                "time": "9:52 AM"
+            },
+            {
+                "number": "53048",
+                "name": "Viswabharati Fast Passenger",
+                "time": "10:10 AM"
+            },
+            {
+                "number": "13066",
+                "name": "Howrah Amrit Bharat Express",
+                "time": "10:50 AM"
+            },
+            {
+                "number": "37234",
+                "name": "Bandel - Howrah Local",
+                "time": "10:12 AM"
+            },
+            {
+                "number": "37918",
+                "name": "Katwa - Howrah Local",
+                "time": "10:18 AM"
+            },
+            {
+                "number": "37612",
+                "name": "Pundooah - Howrah Galloping Local",
+                "time": "10:22 AM"
+            },
+            {
+                "number": "37828",
+                "name": "Barddhaman - Howrah Galloping Local",
+                "time": "10:40 AM"
+            },
+            {
+                "number": "37236",
+                "name": "Bandel - Howrah Local",
+                "time": "10:48 AM"
+            },
+            {
+                "number": "37920",
+                "name": "Katwa - Howrah Galloping Local",
+                "time": "10:55 AM"
+            },
+            {
+                "number": "13020",
+                "name": "Bagh Express",
+                "time": "11:15 AM"
+            },
+            {
+                "number": "03006",
+                "name": "Howrah Special Fare Special",
+                "time": "12:30 PM"
+            },
+            {
+                "number": "37830",
+                "name": "Barddhaman - Howrah Galloping Local",
+                "time": "11:10 AM"
+            },
+            {
+                "number": "13012",
+                "name": "Howrah Intercity Express",
+                "time": "11:25 AM"
+            },
+            {
+                "number": "13046",
+                "name": "Mayurakshi Express",
+                "time": "11:35 AM"
+            },
+            {
+                "number": "37238",
+                "name": "Bandel - Howrah Local",
+                "time": "11:32 AM"
+            },
+            {
+                "number": "03044",
+                "name": "Howrah Special Fare Special",
+                "time": "12:15 PM"
+            },
+            {
+                "number": "03042",
+                "name": "Howrah Special Fare Special",
+                "time": "12:15 PM"
+            },
+            {
+                "number": "13428",
+                "name": "Howrah Intercity Express",
+                "time": "12:10 PM"
+            },
+            {
+                "number": "37240",
+                "name": "Bandel - Howrah Local",
+                "time": "11:50 AM"
+            },
+            {
+                "number": "13044",
+                "name": "Raxaul - Howrah Express",
+                "time": "12:15 PM"
+            },
+            {
+                "number": "13466",
+                "name": "Howrah Intercity Express",
+                "time": "12:40 PM"
+            },
+            {
+                "number": "37242",
+                "name": "Bandel - Howrah Local",
+                "time": "12:25 PM"
+            },
+            {
+                "number": "37832",
+                "name": "Barddhaman - Howrah Local",
+                "time": "12:40 PM"
+            },
+            {
+                "number": "37652",
+                "name": "Memari - Howrah Galloping Local",
+                "time": "1:10 PM"
+            },
+            {
+                "number": "37244",
+                "name": "Bandel - Howrah Local",
+                "time": "1:20 PM"
+            },
+            {
+                "number": "37246",
+                "name": "Bandel - Howrah Local",
+                "time": "1:47 PM"
+            },
+            {
+                "number": "13028",
+                "name": "Howrah Kaviguru Express",
+                "time": "1:55 PM"
+            },
+            {
+                "number": "37834",
+                "name": "Barddhaman - Howrah Local",
+                "time": "1:50 PM"
+            },
+            {
+                "number": "37922",
+                "name": "Katwa - Howrah Local",
+                "time": "2:22 PM"
+            },
+            {
+                "number": "37248",
+                "name": "Bandel - Howrah Local",
+                "time": "2:20 PM"
+            },
+            {
+                "number": "37250",
+                "name": "Bandel - Howrah Local",
+                "time": "2:36 PM"
+            },
+            {
+                "number": "37836",
+                "name": "Barddhaman - Howrah Local",
+                "time": "2:46 PM"
+            },
+            {
+                "number": "13054",
+                "name": "Kulik Express",
+                "time": "3:20 PM"
+            },
+            {
+                "number": "37614",
+                "name": "Pundooah - Howrah Local",
+                "time": "3:08 PM"
+            },
+            {
+                "number": "37252",
+                "name": "Bandel - Howrah Local",
+                "time": "3:25 PM"
+            },
+            {
+                "number": "37254",
+                "name": "Bandel - Howrah Local",
+                "time": "4:02 PM"
+            },
+            {
+                "number": "37838",
+                "name": "Barddhaman - Howrah Local",
+                "time": "4:12 PM"
+            },
+            {
+                "number": "37256",
+                "name": "Bandel - Howrah Local",
+                "time": "4:20 PM"
+            },
+            {
+                "number": "13016",
+                "name": "Howrah Kavi Guru Express",
+                "time": "4:30 PM"
+            },
+            {
+                "number": "37258",
+                "name": "Bandel - Howrah Local",
+                "time": "4:38 PM"
+            },
+            {
+                "number": "37656",
+                "name": "Memari - Howrah Local",
+                "time": "4:52 PM"
+            },
+            {
+                "number": "37260",
+                "name": "Bandel - Howrah Local",
+                "time": "5:08 PM"
+            },
+            {
+                "number": "37840",
+                "name": "Barddhaman - Howrah Local",
+                "time": "5:37 PM"
+            },
+            {
+                "number": "37262",
+                "name": "Bandel - Howrah Local",
+                "time": "5:42 PM"
+            },
+            {
+                "number": "37658",
+                "name": "Memari - Howrah Local",
+                "time": "5:47 PM"
+            },
+            {
+                "number": "22322",
+                "name": "Hool Express",
+                "time": "6:00 PM"
+            },
+            {
+                "number": "37264",
+                "name": "Bandel - Howrah Local",
+                "time": "5:52 PM"
+            },
+            {
+                "number": "37924",
+                "name": "Katwa - Howrah Galloping Local",
+                "time": "6:00 PM"
+            },
+            {
+                "number": "37266",
+                "name": "Bandel - Howrah Local",
+                "time": "6:18 PM"
+            },
+            {
+                "number": "37268",
+                "name": "Bandel - Howrah Local",
+                "time": "6:32 PM"
+            },
+            {
+                "number": "37926",
+                "name": "Katwa - Howrah Local",
+                "time": "6:45 PM"
+            },
+            {
+                "number": "37842",
+                "name": "Barddhaman - Howrah Local",
+                "time": "7:00 PM"
+            },
+            {
+                "number": "37270",
+                "name": "Bandel - Howrah Local",
+                "time": "7:10 PM"
+            },
+            {
+                "number": "37272",
+                "name": "Bandel - Howrah Local",
+                "time": "7:30 PM"
+            },
+            {
+                "number": "37846",
+                "name": "Barddhaman - Howrah Local",
+                "time": "7:49 PM"
+            },
+            {
+                "number": "37844",
+                "name": "Barddhaman - Howrah Galloping Local",
+                "time": "7:49 PM"
+            },
+            {
+                "number": "37274",
+                "name": "Bandel - Howrah Local",
+                "time": "7:55 PM"
+            },
+            {
+                "number": "37848",
+                "name": "Barddhaman - Howrah Local",
+                "time": "8:22 PM"
+            },
+            {
+                "number": "37276",
+                "name": "Bandel - Howrah Local",
+                "time": "8:36 PM"
+            },
+            {
+                "number": "37278",
+                "name": "Bandel - Howrah Local",
+                "time": "8:48 PM"
+            },
+            {
+                "number": "37850",
+                "name": "Barddhaman - Howrah Local via-Main Line",
+                "time": "8:59 PM"
+            },
+            {
+                "number": "13032",
+                "name": "Jaynagar - Howrah Express",
+                "time": "9:15 PM"
+            },
+            {
+                "number": "22388",
+                "name": "Black Diamond Express",
+                "time": "9:30 PM"
+            },
+            {
+                "number": "37280",
+                "name": "Bandel - Howrah Local",
+                "time": "9:35 PM"
+            },
+            {
+                "number": "13018",
+                "name": "Ganadevta Express",
+                "time": "9:50 PM"
+            },
+            {
+                "number": "37282",
+                "name": "Bandel - Howrah Local",
+                "time": "10:01 PM"
+            },
+            {
+                "number": "37852",
+                "name": "Barddhaman - Howrah Local",
+                "time": "10:18 PM"
+            },
+            {
+                "number": "15644",
+                "name": "Paharia Express",
+                "time": "11:00 PM"
+            },
+            {
+                "number": "37928",
+                "name": "Katwa - Howrah Local",
+                "time": "10:44 PM"
+            },
+            {
+                "number": "37284",
+                "name": "Bandel - Howrah Local",
+                "time": "10:50 PM"
+            },
+            {
+                "number": "37854",
+                "name": "Barddhaman - Howrah Local",
+                "time": "11:17 PM"
+            },
+            {
+                "number": "03096",
+                "name": "Howrah Kaushiki Amavasya Mela Special",
+                "time": "11:45 PM"
+            },
+            {
+                "number": "37286",
+                "name": "Bandel - Howrah Local",
+                "time": "11:20 PM"
+            },
+            {
+                "number": "04052",
+                "name": "Howrah Special Fare Special",
+                "time": "11:40 PM"
+            },
+            {
+                "number": "37288",
+                "name": "Bandel - Howrah Local",
+                "time": "11:33 PM"
+            },
+            {
+                "number": "37290",
+                "name": "Bandel - Howrah Local",
+                "time": "11:46 PM"
+            },
+            {
+                "number": "63502",
+                "name": "Barddhaman - Howrah MEMU",
+                "time": "12:15 AM"
+            }
+        ]
+    }
+}

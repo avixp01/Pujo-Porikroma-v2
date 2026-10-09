@@ -1,0 +1,268 @@
+{
+    "Bagbazar Railway Station": {
+        "up": [
+            {
+                "number": "30145",
+                "name": "B.B.D Bag - Krishnanagar City Local",
+                "time": "8:22 AM"
+            },
+            {
+                "number": "30321",
+                "name": "Majerhat - Hasanabad Galloping Local",
+                "time": "9:55 AM"
+            },
+            {
+                "number": "30113",
+                "name": "B.B.D Bag - Kalyani Local",
+                "time": "10:50 AM"
+            },
+            {
+                "number": "30351",
+                "name": "Majerhat - Barasat Local",
+                "time": "11:02 AM"
+            },
+            {
+                "number": "30121",
+                "name": "Majerhat - Naihati Local",
+                "time": "11:36 AM"
+            },
+            {
+                "number": "30333",
+                "name": "Majerhat - Habra Local",
+                "time": "12:27 PM"
+            },
+            {
+                "number": "30311",
+                "name": "Majerhat - Barasat Local",
+                "time": "1:31 PM"
+            },
+            {
+                "number": "30353",
+                "name": "Majerhat - Dattapukur Local",
+                "time": "4:47 PM"
+            },
+            {
+                "number": "30317",
+                "name": "Majerhat - Dattapukur Local",
+                "time": "5:14 PM"
+            },
+            {
+                "number": "30331",
+                "name": "Majerhat - Habra Local",
+                "time": "6:07 PM"
+            },
+            {
+                "number": "30135",
+                "name": "Majerhat - Ranaghat Local",
+                "time": "6:54 PM"
+            },
+            {
+                "number": "30111",
+                "name": "Ballygunge - Barrackpore Local",
+                "time": "7:30 PM"
+            },
+            {
+                "number": "30123",
+                "name": "Majerhat - Naihati Local",
+                "time": "8:15 PM"
+            },
+            {
+                "number": "30313",
+                "name": "Majerhat - Barasat Local",
+                "time": "8:42 PM"
+            },
+            {
+                "number": "30145",
+                "name": "B.B.D Bag - Krishnanagar City Local",
+                "time": "8:21 AM"
+            },
+            {
+                "number": "30321",
+                "name": "Majerhat - Hasanabad Galloping Local",
+                "time": "9:53 AM"
+            },
+            {
+                "number": "30113",
+                "name": "B.B.D Bag - Kalyani Local",
+                "time": "10:49 AM"
+            },
+            {
+                "number": "30351",
+                "name": "Majerhat - Barasat Local",
+                "time": "11:01 AM"
+            },
+            {
+                "number": "30121",
+                "name": "Majerhat - Naihati Local",
+                "time": "11:35 AM"
+            },
+            {
+                "number": "30333",
+                "name": "Majerhat - Habra Local",
+                "time": "12:26 PM"
+            },
+            {
+                "number": "30311",
+                "name": "Majerhat - Barasat Local",
+                "time": "1:30 PM"
+            },
+            {
+                "number": "30353",
+                "name": "Majerhat - Dattapukur Local",
+                "time": "4:46 PM"
+            },
+            {
+                "number": "30317",
+                "name": "Majerhat - Dattapukur Local",
+                "time": "5:13 PM"
+            },
+            {
+                "number": "30331",
+                "name": "Majerhat - Habra Local",
+                "time": "6:06 PM"
+            },
+            {
+                "number": "30135",
+                "name": "Majerhat - Ranaghat Local",
+                "time": "6:53 PM"
+            },
+            {
+                "number": "30111",
+                "name": "Ballygunge - Barrackpore Local",
+                "time": "7:29 PM"
+            },
+            {
+                "number": "30123",
+                "name": "Majerhat - Naihati Local",
+                "time": "8:14 PM"
+            },
+            {
+                "number": "30313",
+                "name": "Majerhat - Barasat Local",
+                "time": "8:41 PM"
+            }
+        ],
+        "down": [
+            {
+                "number": "30322",
+                "name": "Hasanabad - B.B.D Bag Local",
+                "time": "7:45 AM"
+            },
+            {
+                "number": "30142",
+                "name": "Gede - Majerhat Galloping Local",
+                "time": "8:17 AM"
+            },
+            {
+                "number": "30342",
+                "name": "Bangaon - Majerhat Galloping Local",
+                "time": "8:32 AM"
+            },
+            {
+                "number": "30344",
+                "name": "Bangaon - Majerhat Local",
+                "time": "9:25 AM"
+            },
+            {
+                "number": "30128",
+                "name": "Kalyani Simanta - Majerhat Local",
+                "time": "9:54 AM"
+            },
+            {
+                "number": "30116",
+                "name": "Barrackpore - B.B.D Bag Local",
+                "time": "10:15 AM"
+            },
+            {
+                "number": "30324",
+                "name": "Hasanabad - Majerhat Local",
+                "time": "10:58 AM"
+            },
+            {
+                "number": "30346",
+                "name": "Bangaon - Majerhat Local",
+                "time": "11:55 AM"
+            },
+            {
+                "number": "30332",
+                "name": "Habra - Majerhat Local",
+                "time": "3:23 PM"
+            },
+            {
+                "number": "30122",
+                "name": "Naihati - Ballygunge Local",
+                "time": "4:18 PM"
+            },
+            {
+                "number": "30312",
+                "name": "Barasat - Majerhat Local",
+                "time": "4:38 PM"
+            },
+            {
+                "number": "30314",
+                "name": "Dattapukur - Majerhat Local",
+                "time": "7:04 PM"
+            },
+            {
+                "number": "30322",
+                "name": "Hasanabad - B.B.D Bag Local",
+                "time": "7:46 AM"
+            },
+            {
+                "number": "30142",
+                "name": "Gede - Majerhat Galloping Local",
+                "time": "8:22 AM"
+            },
+            {
+                "number": "30342",
+                "name": "Bangaon - Majerhat Galloping Local",
+                "time": "8:33 AM"
+            },
+            {
+                "number": "30344",
+                "name": "Bangaon - Majerhat Local",
+                "time": "9:26 AM"
+            },
+            {
+                "number": "30128",
+                "name": "Kalyani Simanta - Majerhat Local",
+                "time": "9:56 AM"
+            },
+            {
+                "number": "30116",
+                "name": "Barrackpore - B.B.D Bag Local",
+                "time": "10:16 AM"
+            },
+            {
+                "number": "30324",
+                "name": "Hasanabad - Majerhat Local",
+                "time": "11:02 AM"
+            },
+            {
+                "number": "30346",
+                "name": "Bangaon - Majerhat Local",
+                "time": "11:56 AM"
+            },
+            {
+                "number": "30332",
+                "name": "Habra - Majerhat Local",
+                "time": "3:24 PM"
+            },
+            {
+                "number": "30122",
+                "name": "Naihati - Ballygunge Local",
+                "time": "4:19 PM"
+            },
+            {
+                "number": "30312",
+                "name": "Barasat - Majerhat Local",
+                "time": "4:49 PM"
+            },
+            {
+                "number": "30314",
+                "name": "Dattapukur - Majerhat Local",
+                "time": "7:05 PM"
+            }
+        ]
+    }
+}

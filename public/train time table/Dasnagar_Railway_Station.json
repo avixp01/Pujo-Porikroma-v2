@@ -1,0 +1,673 @@
+{
+    "Dasnagar Railway Station": {
+        "up": [
+            {
+                "number": "38703",
+                "name": "Howrah - Kharagpur Local",
+                "time": "3:42 AM"
+            },
+            {
+                "number": "38803",
+                "name": "Howrah - Midnapore Local",
+                "time": "4:22 AM"
+            },
+            {
+                "number": "38705",
+                "name": "Howrah - Kharagpur Local",
+                "time": "4:57 AM"
+            },
+            {
+                "number": "38903",
+                "name": "Howrah - Amta Local",
+                "time": "5:07 AM"
+            },
+            {
+                "number": "38805",
+                "name": "Howrah - Midnapore Local",
+                "time": "5:27 AM"
+            },
+            {
+                "number": "38051",
+                "name": "Howrah - Haldia Local",
+                "time": "5:53 AM"
+            },
+            {
+                "number": "38905",
+                "name": "Howrah - Amta Local",
+                "time": "6:13 AM"
+            },
+            {
+                "number": "38403",
+                "name": "Howrah - Panskura Local",
+                "time": "6:38 AM"
+            },
+            {
+                "number": "38807",
+                "name": "Howrah - Midnapore Local",
+                "time": "6:48 AM"
+            },
+            {
+                "number": "38405",
+                "name": "Howrah - Panskura Local",
+                "time": "6:53 AM"
+            },
+            {
+                "number": "38103",
+                "name": "Howrah - Uluberia Local",
+                "time": "7:07 AM"
+            },
+            {
+                "number": "38707",
+                "name": "Howrah - Kharagpur Local",
+                "time": "7:32 AM"
+            },
+            {
+                "number": "38303",
+                "name": "Howrah - Mecheda Local",
+                "time": "7:52 AM"
+            },
+            {
+                "number": "38409",
+                "name": "Howrah - Panskura Local",
+                "time": "8:02 AM"
+            },
+            {
+                "number": "38809",
+                "name": "Howrah - Midnapore Local",
+                "time": "8:12 AM"
+            },
+            {
+                "number": "38105",
+                "name": "Howrah - Uluberia Local",
+                "time": "8:32 AM"
+            },
+            {
+                "number": "38413",
+                "name": "Howrah - Panskura Local",
+                "time": "8:44 AM"
+            },
+            {
+                "number": "38907",
+                "name": "Howrah - Amta Local",
+                "time": "8:52 AM"
+            },
+            {
+                "number": "38811",
+                "name": "Howrah - Midnapore Local",
+                "time": "9:02 AM"
+            },
+            {
+                "number": "38415",
+                "name": "Howrah - Panskura Local",
+                "time": "9:18 AM"
+            },
+            {
+                "number": "38813",
+                "name": "Howrah - Midnapore Local",
+                "time": "9:52 AM"
+            },
+            {
+                "number": "38417",
+                "name": "Howrah - Panskura Local",
+                "time": "10:07 AM"
+            },
+            {
+                "number": "38419",
+                "name": "Howrah - Panskura Local",
+                "time": "10:12 AM"
+            },
+            {
+                "number": "38815",
+                "name": "Howrah - Midnapore Local",
+                "time": "10:43 AM"
+            },
+            {
+                "number": "38711",
+                "name": "Howrah - Kharagpur Local",
+                "time": "11:12 AM"
+            },
+            {
+                "number": "38909",
+                "name": "Howrah - Amta Local",
+                "time": "11:22 AM"
+            },
+            {
+                "number": "38501",
+                "name": "Howrah - Balichak Local",
+                "time": "11:42 AM"
+            },
+            {
+                "number": "38421",
+                "name": "Howrah - Panskura Local",
+                "time": "11:52 AM"
+            },
+            {
+                "number": "38713",
+                "name": "Howrah - Kharagpur Local",
+                "time": "12:17 PM"
+            },
+            {
+                "number": "38817",
+                "name": "Howrah - Midnapore Local",
+                "time": "12:37 PM"
+            },
+            {
+                "number": "38717",
+                "name": "Howrah - Kharagpur Local",
+                "time": "1:07 PM"
+            },
+            {
+                "number": "38423",
+                "name": "Howrah - Panskura Local",
+                "time": "1:27 PM"
+            },
+            {
+                "number": "38819",
+                "name": "Howrah - Midnapore Local",
+                "time": "1:42 PM"
+            },
+            {
+                "number": "38425",
+                "name": "Howrah - Panskura Local",
+                "time": "2:14 PM"
+            },
+            {
+                "number": "38719",
+                "name": "Howrah - Kharagpur Local",
+                "time": "2:34 PM"
+            },
+            {
+                "number": "38429",
+                "name": "Howrah - Panskura Local",
+                "time": "2:52 PM"
+            },
+            {
+                "number": "38431",
+                "name": "Howrah - Panskura Local",
+                "time": "3:17 PM"
+            },
+            {
+                "number": "38913",
+                "name": "Howrah - Amta Local",
+                "time": "3:27 PM"
+            },
+            {
+                "number": "38433",
+                "name": "Howrah - Panskura Local",
+                "time": "3:52 PM"
+            },
+            {
+                "number": "38721",
+                "name": "Howrah - Kharagpur Local",
+                "time": "4:12 PM"
+            },
+            {
+                "number": "38915",
+                "name": "Howrah - Amta Local",
+                "time": "4:52 PM"
+            },
+            {
+                "number": "38435",
+                "name": "Howrah - Panskura Local",
+                "time": "5:12 PM"
+            },
+            {
+                "number": "38823",
+                "name": "Howrah - Midnapore Galloping Local",
+                "time": "5:28 PM"
+            },
+            {
+                "number": "38437",
+                "name": "Howrah - Panskura Local",
+                "time": "5:37 PM"
+            },
+            {
+                "number": "38311",
+                "name": "Howrah - Mecheda Local",
+                "time": "6:01 PM"
+            },
+            {
+                "number": "38057",
+                "name": "Howrah - Haldia Local",
+                "time": "6:07 PM"
+            },
+            {
+                "number": "38917",
+                "name": "Howrah - Amta Local",
+                "time": "6:32 PM"
+            },
+            {
+                "number": "38441",
+                "name": "Howrah - Panskura Local",
+                "time": "6:42 PM"
+            },
+            {
+                "number": "38827",
+                "name": "Howrah - Midnapore Galloping Local",
+                "time": "6:52 PM"
+            },
+            {
+                "number": "38313",
+                "name": "Howrah - Mecheda Local",
+                "time": "7:12 PM"
+            },
+            {
+                "number": "38443",
+                "name": "Howrah - Panskura Local",
+                "time": "7:22 PM"
+            },
+            {
+                "number": "38919",
+                "name": "Howrah - Amta Local",
+                "time": "7:32 PM"
+            },
+            {
+                "number": "38315",
+                "name": "Howrah - Mecheda Local",
+                "time": "7:42 PM"
+            },
+            {
+                "number": "38829",
+                "name": "Howrah - Midnapore Galloping Local",
+                "time": "7:54 PM"
+            },
+            {
+                "number": "38445",
+                "name": "Howrah - Panskura Local",
+                "time": "8:08 PM"
+            },
+            {
+                "number": "38317",
+                "name": "Howrah - Mecheda Local",
+                "time": "8:17 PM"
+            },
+            {
+                "number": "38831",
+                "name": "Howrah - Midnapore Local",
+                "time": "8:32 PM"
+            },
+            {
+                "number": "38921",
+                "name": "Howrah - Amta Local",
+                "time": "8:52 PM"
+            },
+            {
+                "number": "38449",
+                "name": "Howrah - Panskura Local",
+                "time": "9:02 PM"
+            },
+            {
+                "number": "38725",
+                "name": "Howrah - Kharagpur Local",
+                "time": "9:27 PM"
+            },
+            {
+                "number": "38451",
+                "name": "Howrah - Panskura Local",
+                "time": "9:42 PM"
+            },
+            {
+                "number": "38727",
+                "name": "Howrah - Kharagpur Local",
+                "time": "9:53 PM"
+            },
+            {
+                "number": "38319",
+                "name": "Howrah - Mecheda Local",
+                "time": "10:20 PM"
+            },
+            {
+                "number": "38923",
+                "name": "Howrah - Amta Local",
+                "time": "10:27 PM"
+            },
+            {
+                "number": "38453",
+                "name": "Howrah - Panskura Local",
+                "time": "10:34 PM"
+            },
+            {
+                "number": "38321",
+                "name": "Howrah - Mecheda Local",
+                "time": "11:22 PM"
+            },
+            {
+                "number": "38455",
+                "name": "Howrah - Panskura Local",
+                "time": "11:49 PM"
+            }
+        ],
+        "down": [
+            {
+                "number": "38830",
+                "name": "Midnapore - Howrah Local",
+                "time": "12:06 AM"
+            },
+            {
+                "number": "38302",
+                "name": "Mecheda - Howrah Local",
+                "time": "3:55 AM"
+            },
+            {
+                "number": "38402",
+                "name": "Panskura - Howrah Local",
+                "time": "4:25 AM"
+            },
+            {
+                "number": "38404",
+                "name": "Panskura - Howrah Local",
+                "time": "4:35 AM"
+            },
+            {
+                "number": "38702",
+                "name": "Kharagpur - Howrah Local",
+                "time": "4:41 AM"
+            },
+            {
+                "number": "38304",
+                "name": "Mecheda - Howrah Local",
+                "time": "5:05 AM"
+            },
+            {
+                "number": "38306",
+                "name": "Mecheda - Howrah Local",
+                "time": "5:25 AM"
+            },
+            {
+                "number": "38406",
+                "name": "Panskura - Howrah Local",
+                "time": "5:30 AM"
+            },
+            {
+                "number": "38408",
+                "name": "Panskura - Howrah Local",
+                "time": "5:50 AM"
+            },
+            {
+                "number": "38704",
+                "name": "Kharagpur - Howrah Local",
+                "time": "6:01 AM"
+            },
+            {
+                "number": "38904",
+                "name": "Amta - Howrah Local",
+                "time": "6:34 AM"
+            },
+            {
+                "number": "38802",
+                "name": "Midnapore - Howrah Local",
+                "time": "6:56 AM"
+            },
+            {
+                "number": "38412",
+                "name": "Panskura - Howrah Local",
+                "time": "7:15 AM"
+            },
+            {
+                "number": "38308",
+                "name": "Mecheda - Howrah Local",
+                "time": "7:20 AM"
+            },
+            {
+                "number": "38706",
+                "name": "Kharagpur - Howrah Local",
+                "time": "7:21 AM"
+            },
+            {
+                "number": "38414",
+                "name": "Panskura - Howrah Local",
+                "time": "8:00 AM"
+            },
+            {
+                "number": "38906",
+                "name": "Amta - Howrah Local",
+                "time": "8:03 AM"
+            },
+            {
+                "number": "38804",
+                "name": "Midnapore - Howrah Local",
+                "time": "8:15 AM"
+            },
+            {
+                "number": "38202",
+                "name": "Bagnan - Howrah Local",
+                "time": "8:17 AM"
+            },
+            {
+                "number": "38104",
+                "name": "Uluberia - Howrah Local",
+                "time": "8:55 AM"
+            },
+            {
+                "number": "38052",
+                "name": "Haldia - Howrah Galloping Local",
+                "time": "8:48 AM"
+            },
+            {
+                "number": "38708",
+                "name": "Kharagpur - Howrah Local",
+                "time": "9:05 AM"
+            },
+            {
+                "number": "38908",
+                "name": "Amta - Howrah Local",
+                "time": "9:19 AM"
+            },
+            {
+                "number": "38204",
+                "name": "Bagnan - Howrah Local",
+                "time": "9:32 AM"
+            },
+            {
+                "number": "38420",
+                "name": "Panskura - Howrah Local",
+                "time": "10:00 AM"
+            },
+            {
+                "number": "38810",
+                "name": "Midnapore - Howrah Local",
+                "time": "10:15 AM"
+            },
+            {
+                "number": "38910",
+                "name": "Amta - Howrah Local",
+                "time": "10:20 AM"
+            },
+            {
+                "number": "38422",
+                "name": "Panskura - Howrah Local",
+                "time": "10:30 AM"
+            },
+            {
+                "number": "38106",
+                "name": "Uluberia - Howrah Local",
+                "time": "10:45 AM"
+            },
+            {
+                "number": "38312",
+                "name": "Mecheda - Howrah Local",
+                "time": "10:55 AM"
+            },
+            {
+                "number": "38426",
+                "name": "Panskura - Howrah Local",
+                "time": "11:25 AM"
+            },
+            {
+                "number": "38812",
+                "name": "Midnapore - Howrah Local",
+                "time": "11:41 AM"
+            },
+            {
+                "number": "38912",
+                "name": "Amta - Howrah Local",
+                "time": "12:04 PM"
+            },
+            {
+                "number": "38428",
+                "name": "Panskura - Howrah Local",
+                "time": "12:15 PM"
+            },
+            {
+                "number": "38430",
+                "name": "Panskura - Howrah Local",
+                "time": "12:55 PM"
+            },
+            {
+                "number": "38716",
+                "name": "Kharagpur - Howrah Local",
+                "time": "1:05 PM"
+            },
+            {
+                "number": "38432",
+                "name": "Panskura - Howrah Local",
+                "time": "1:30 PM"
+            },
+            {
+                "number": "38814",
+                "name": "Midnapore - Howrah Local",
+                "time": "1:44 PM"
+            },
+            {
+                "number": "38816",
+                "name": "Midnapore - Howrah Local",
+                "time": "2:19 PM"
+            },
+            {
+                "number": "38914",
+                "name": "Amta - Howrah Local",
+                "time": "2:24 PM"
+            },
+            {
+                "number": "38314",
+                "name": "Mecheda - Howrah Local",
+                "time": "2:55 PM"
+            },
+            {
+                "number": "38436",
+                "name": "Panskura - Howrah Local",
+                "time": "3:15 PM"
+            },
+            {
+                "number": "38818",
+                "name": "Midnapore - Howrah Local",
+                "time": "3:46 PM"
+            },
+            {
+                "number": "38720",
+                "name": "Kharagpur - Howrah Local",
+                "time": "4:19 PM"
+            },
+            {
+                "number": "38502",
+                "name": "Balichak - Howrah Local",
+                "time": "4:20 PM"
+            },
+            {
+                "number": "38438",
+                "name": "Panskura - Howrah Local",
+                "time": "5:15 PM"
+            },
+            {
+                "number": "38916",
+                "name": "Amta - Howrah Local",
+                "time": "5:16 PM"
+            },
+            {
+                "number": "38820",
+                "name": "Midnapore - Howrah Local",
+                "time": "5:21 PM"
+            },
+            {
+                "number": "38722",
+                "name": "Kharagpur - Howrah Local",
+                "time": "5:31 PM"
+            },
+            {
+                "number": "38822",
+                "name": "Midnapore - Howrah Galloping Local",
+                "time": "6:00 PM"
+            },
+            {
+                "number": "38440",
+                "name": "Panskura - Howrah Local",
+                "time": "6:00 PM"
+            },
+            {
+                "number": "38442",
+                "name": "Panskura - Howrah Local",
+                "time": "6:15 PM"
+            },
+            {
+                "number": "38918",
+                "name": "Amta - Howrah Local",
+                "time": "6:44 PM"
+            },
+            {
+                "number": "38444",
+                "name": "Panskura - Howrah Local",
+                "time": "6:50 PM"
+            },
+            {
+                "number": "38448",
+                "name": "Panskura - Howrah Local",
+                "time": "7:40 PM"
+            },
+            {
+                "number": "38724",
+                "name": "Kharagpur - Howrah Local",
+                "time": "7:44 PM"
+            },
+            {
+                "number": "38920",
+                "name": "Amta - Howrah Local",
+                "time": "7:59 PM"
+            },
+            {
+                "number": "38826",
+                "name": "Midnapore - Howrah Local",
+                "time": "8:26 PM"
+            },
+            {
+                "number": "38450",
+                "name": "Panskura - Howrah Local",
+                "time": "8:40 PM"
+            },
+            {
+                "number": "38728",
+                "name": "Kharagpur - Howrah Local",
+                "time": "9:19 PM"
+            },
+            {
+                "number": "38922",
+                "name": "Amta - Howrah Local",
+                "time": "9:32 PM"
+            },
+            {
+                "number": "38454",
+                "name": "Panskura - Howrah Local",
+                "time": "9:40 PM"
+            },
+            {
+                "number": "38828",
+                "name": "Midnapore - Howrah Local",
+                "time": "10:11 PM"
+            },
+            {
+                "number": "38924",
+                "name": "Amta - Howrah Local",
+                "time": "10:47 PM"
+            },
+            {
+                "number": "38730",
+                "name": "Kharagpur - Howrah Local",
+                "time": "10:48 PM"
+            },
+            {
+                "number": "38456",
+                "name": "Panskura - Howrah Local",
+                "time": "10:50 PM"
+            }
+        ]
+    }
+}

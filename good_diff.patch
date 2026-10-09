@@ -1,0 +1,535 @@
+﻿diff --git a/src/components/MapPage.jsx b/src/components/MapPage.jsx
+index f4c6b90..a99a53e 100644
+--- a/src/components/MapPage.jsx
++++ b/src/components/MapPage.jsx
+@@ -27,13 +27,14 @@ import { allTrains } from '../data/trainManager.js';
+ console.log(`Successfully loaded ${allPujos.length} unique pandals!`);
+ 
+ const formattedPujos = allPujos.map((p, index) => ({
+-  id: `pujo-${index}`,
+-  type: 'pandal',
+-  name: p.name,
+-  category: p.category,
+-  lat: p.lat,
+-  lng: p.lng
+-}));
++    id: `pujo-${index}`,
++    type: 'pandal',
++    name: p.name,
++    address: p.address,
++    category: p.category,
++    lat: p.lat,
++    lng: p.lng
++  }));
+ 
+ const formattedToilets = allToilets.map((t, index) => ({
+   id: `toilet-${index}`,
+@@ -769,17 +182,18 @@ const MapPage = ({ onClose }) => {
+           {isSearchFocused && (
+             <div 
+               className="absolute top-full z-[10001] pointer-events-auto flex flex-col overflow-y-auto"
+-              style={{
+-                  left: '4px',
+-                  right: '4px',
+-                  width: 'auto',
++                style={{
++                    left: '4px',
++                    right: '4px',
++                    width: 'calc(100% - 8px)',
++                    overflowX: 'hidden',
+                   marginTop: '12px',
+                   backgroundColor: '#ffffff',
+                 opacity: 1,
+                 boxShadow: '0 8px 24px rgba(0,0,0,0.12)',
+                 borderRadius: '24px',
+                 padding: '16px 13px',
+-                maxHeight: '65vh'
++                  maxHeight: '65vh'
+               }}
+             >
+                 {/* UNCONDITIONAL NEARBY HEADING */}
+@@ -793,21 +207,7 @@ const MapPage = ({ onClose }) => {
+                     ) : (
+                       // LOCATION ON: NEARBY LIST
+                       <>
+-                        {poorAccuracy && (
+-                          <div className="px-5 pb-3 pt-1">
+-                            <button 
+-                              onClick={(e) => { e.preventDefault(); startTracking(); }}
+-                              style={{ width: '100%', backgroundColor: '#f59e0b', color: 'white', fontSize: '12px', fontWeight: 'bold', padding: '8px 12px', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', border: 'none', cursor: 'pointer' }}
+-                            >
+-                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{marginRight: '6px'}}>
+-                                <circle cx="12" cy="12" r="10"/>
+-                                <line x1="12" y1="8" x2="12" y2="12"/>
+-                                <line x1="12" y1="16" x2="12.01" y2="16"/>
+-                              </svg>
+-                              Poor GPS signal. Tap to force refresh.
+-                            </button>
+-                          </div>
+-                        )}
++                        
+                                                   {nearbySearchList.length > 0 ? (
+                           nearbySearchList.map(loc => renderSearchItem(loc))
+                         ) : (
+@@ -1028,26 +428,32 @@ const MapPage = ({ onClose }) => {
+             return (
+               <MarkerClusterGroup chunkedLoading iconCreateFunction={createClusterIcon} disableClusteringAtZoom={17} maxClusterRadius={40}>
+                 {filteredData.map(loc => {
+-                  let markerIcon;
+-                  if (loc.type === 'pandal') {
+-                    markerIcon = isDarkMode ? pandalIconDark : pandalIconBright;
+-                  } else if (loc.type === 'toilet') {
+-                    markerIcon = isDarkMode ? toiletIconDark : toiletIconBright;
+-                  } else if (loc.type === 'metro') {
+-                    markerIcon = isDarkMode ? metroIconDark : metroIconBright;
+-                  } else if (loc.type === 'train') {
+-                    markerIcon = isDarkMode ? trainIconDark : trainIconBright;
+-                  } else {
+-                    markerIcon = createCustomIcon(loc.type, loc.count);
+-                  }
+-                  
+-                  return (
+-                    <Marker 
++                    let markerIcon;
++                    const isSelected = selectedLocation && selectedLocation.id === loc.id;
++                    const size = isSelected ? [62, 70] : [44, 50];
++                    const anchor = isSelected ? [31, 70] : [22, 50];
++                    const popup = isSelected ? [0, -70] : [0, -50];
++                    
++                    if (loc.type === 'pandal') {
++                      markerIcon = new L.Icon({ iconUrl: isDarkMode ? '/pandel-pin6.png' : '/pandal-pin4.png', iconSize: size, iconAnchor: anchor, popupAnchor: popup });
++                    } else if (loc.type === 'toilet') {
++                      markerIcon = new L.Icon({ iconUrl: isDarkMode ? '/toilet-night.png' : '/toilet-day.png', iconSize: size, iconAnchor: anchor, popupAnchor: popup });
++                    } else if (loc.type === 'metro') {
++                      markerIcon = new L.Icon({ iconUrl: isDarkMode ? '/metro-night.png' : '/metro-day.png', iconSize: size, iconAnchor: anchor, popupAnchor: popup });
++                    } else if (loc.type === 'train') {
++                      markerIcon = new L.Icon({ iconUrl: isDarkMode ? '/train-night.png' : '/train-day.png', iconSize: size, iconAnchor: anchor, popupAnchor: popup });
++                    } else {
++                      markerIcon = createCustomIcon(loc.type, loc.count);
++                    }
++                    
++                    return (
++                      <Marker 
+                       key={loc.id} 
+                       position={[loc.lat, loc.lng]} 
+-                      eventHandlers={{
+-                        click: () => handleMarkerClick(loc)
+-                      }}
++                        zIndexOffset={isSelected ? 1000 : 0}
++                        eventHandlers={{
++                          click: () => handleMarkerClick(loc)
++                        }}
+                       {...(markerIcon ? { icon: markerIcon } : {})}
+                     />
+                   );
+@@ -1075,7 +481,7 @@ const MapPage = ({ onClose }) => {
+ </div>
+             <div className="preview-title-block">
+               <h3 className="preview-title">{selectedLocation ? selectedLocation.name : 'Select a location'}</h3>
+-              <p className="preview-subtitle">Ballygunge Place, Ballygunge</p>
++              <p className="preview-subtitle">{selectedLocation?.address || (selectedLocation?.type === 'toilet' ? 'Toilet' : selectedLocation?.type === 'metro' ? 'Metro Station' : selectedLocation?.type === 'train' ? 'Train Station' : 'Kolkata, West Bengal')}</p>
+             </div>
+             <button className="preview-close-btn" onClick={() => setSelectedLocation(null)}>
+               <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+@@ -1117,12 +523,54 @@ const MapPage = ({ onClose }) => {
+             <button className="update-btn" onClick={() => setShowUpdatePopup(true)}>Update now ΓÇ║</button>
+           </div>
+ 
+-          <div className="preview-metro-info">
+-            <svg viewBox="0 0 24 24" width="16" height="16" fill="#2563eb">
+-              <path d="M12 2C8 2 4 5 4 9v7c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V9c0-4-4-7-8-7zm0 2c3.3 0 6 2.2 6 5H6c0-2.8 2.7-5 6-5zm-3 8a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm6 0a1.5 1.5 0 110-3 1.5 1.5 0 010 3z" />
+-              <path d="M6 19v3h2v-3H6zm10 0v3h2v-3h-2z" />
+-            </svg>
+-            <span className="metro-name">Jatin Das Park</span> ΓÇó exit <span className="metro-gate">Gate 3</span> ΓÇó 2.4 km walk
++                    <div className="preview-metro-info" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
++            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
++              <svg viewBox="0 0 24 24" width="16" height="16" fill="#2563eb">
++                <path d="M12 2C8 2 4 5 4 9v7c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V9c0-4-4-7-8-7zm0 2c3.3 0 6 2.2 6 5H6c0-2.8 2.7-5 6-5zm-3 8a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm6 0a1.5 1.5 0 110-3 1.5 1.5 0 010 3z" />
++                <path d="M6 19v3h2v-3H6zm10 0v3h2v-3h-2z" />
++              </svg>
++              <span><span className="metro-name">Jatin Das Park</span>   exit <span className="metro-gate">Gate 3</span>   2.4 km walk</span>
++            </div>
++            {(() => {
++              const isVisited = selectedLocation && visitedPandals.some(item => {
++                const name = typeof item === 'object' ? item.name : item;
++                return name === selectedLocation.id || name === selectedLocation.name;
++              });
++              return (
++                <span 
++                  style={{ 
++                    color: isVisited ? '#7c2d12' : '#b45309', 
++                    fontWeight: 'bold', 
++                    fontSize: '13px',
++                    cursor: 'pointer',
++                    userSelect: 'none'
++                  }}
++                  onClick={() => {
++                      if (selectedLocation) {
++                        setVisitedPandals(prev => {
++                          const nameOrId = selectedLocation.name || selectedLocation.id;
++                          let next;
++                            if (isVisited) {
++                              next = prev.filter(item => {
++                                const itemName = typeof item === 'object' ? item.name : item;
++                                return itemName !== nameOrId;
++                              });
++                            } else {
++                              const now = new Date();
++                              const timeString = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Kolkata', hour: 'numeric', minute: '2-digit', hour12: true });
++                              next = [...prev, { name: nameOrId, time: timeString }];
++                            }
++                          localStorage.setItem('visitedPandals', JSON.stringify(next));
++                          window.dispatchEvent(new Event('visitedPandalsUpdated'));
++                          return next;
++                        });
++                      }
++                    }}
++                >
++                  {isVisited ? 'Visited' : 'Visited?'}
++                </span>
++              );
++            })()}
+           </div>
+           </>
+         )}
+@@ -1136,20 +584,23 @@ const MapPage = ({ onClose }) => {
+             </button>
+             {(!selectedLocation || selectedLocation.type === 'pandal' || selectedLocation.type === 'train') && (
+                 <button className={`btn-route ${plannedStops.find(s => s.id === selectedLocation?.id) ? 'added' : ''}`} onClick={() => {
+-                    if (selectedLocation && selectedLocation.type !== 'train') {
+-                      if (!plannedStops.find(s => s.id === selectedLocation.id)) {
+-                        setPlannedStops([...plannedStops, selectedLocation]);
+-                        setActiveTab('routes');
+-                      } else {
+-                        setPlannedStops(plannedStops.filter(s => s.id !== selectedLocation.id));
++                      if (selectedLocation && selectedLocation.type !== 'train') {
++                        if (!plannedStops.find(s => s.id === selectedLocation.id)) {
++                          if (plannedStops.length < 10) {
++                            setPlannedStops([...plannedStops, selectedLocation]);
++                          }
++                        } else {
++                          setPlannedStops(plannedStops.filter(s => s.id !== selectedLocation.id));
++                        }
+                       }
+-                    }
+-                  }}>
++                    }}>
+                     {selectedLocation && selectedLocation.type === 'train' ? (
+                       <><Clock size={18} /> Timetable</>
+                     ) : plannedStops.find(s => s.id === selectedLocation?.id) ? (
+-                      <><svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg> Route</>
+-                    ) : (
++                      <><svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Added</>
++                      ) : plannedStops.length >= 10 && selectedLocation?.type !== 'train' ? (
++                        <><svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line></svg> Route Full</>
++                      ) : (
+                       <><svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg> Route</>
+                     )}
+                   </button>
+@@ -1249,7 +700,12 @@ const MapPage = ({ onClose }) => {
+           <div className="routes-header">
+             <div>
+               <h2 className="routes-header-title">Your route</h2>
+-              <p className="routes-header-subtitle">Tonight ΓÇó 0 stops planned</p>
++              
++                {plannedStops.length >= 10 ? (
++                  <p className="routes-header-subtitle" style={{ color: '#7c2d12', fontWeight: 'bold' }}>10 of 10 added - route is full</p>
++                ) : (
++                  <p className="routes-header-subtitle">{plannedStops.length} stops planned</p>
++                )}
+             </div>
+             <div className="routes-menu-container">
+               <button 
+@@ -1266,20 +722,20 @@ const MapPage = ({ onClose }) => {
+               {isRouteMenuOpen && (
+                 <div className="routes-dropdown-menu">
+                   <button 
+-                    className="routes-dropdown-item"
+-                    onClick={() => {
+-                      // Add clear route logic here if needed in the future
+-                      setIsRouteMenuOpen(false);
+-                    }}
+-                  >
+-                    Clear route
+-                  </button>
++                      className="routes-dropdown-item"
++                      onClick={() => {
++                        setPlannedStops([]);
++                        setIsRouteMenuOpen(false);
++                      }}
++                    >
++                      Clear route
++                    </button>
+                 </div>
+               )}
+             </div>
+           </div>
+           
+-          <div className="routes-content" style={{ paddingBottom: '100px', backgroundColor: '#fafafa', minHeight: '100%' }}>
++          <div className="routes-content" style={{ paddingBottom: '100px', backgroundColor: '#fafafa', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+             {plannedStops.length === 0 ? (
+               <div className="routes-empty-card">
+                 <div className="routes-empty-icon" style={{ borderColor: '#fef3c7' }}>
+@@ -1296,17 +752,8 @@ const MapPage = ({ onClose }) => {
+                 </button>
+               </div>
+             ) : (
+-              <div className="routes-active-itinerary">
+-                {/* Header */}
+-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px 16px 8px 16px', backgroundColor: 'white' }}>
+-                  <div>
+-                    <h2 style={{ fontSize: '20px', fontWeight: 'bold', margin: 0, color: '#1f2937' }}>Your route</h2>
+-                    <p style={{ fontSize: '13px', color: '#6b7280', margin: 0 }}>Tonight ΓÇó {plannedStops.length} stops planned</p>
+-                  </div>
+-                  <button style={{ color: '#4b5563' }}>
+-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>
+-                  </button>
+-                </div>
++              <div className="routes-active-itinerary" style={{ display: 'flex', flexDirection: 'column', flex: 1, overflow: 'hidden' }}>
++                
+ 
+                 {/* Metrics */}
+                 <div style={{ display: 'flex', justifyContent: 'space-around', padding: '16px 0', backgroundColor: 'white', borderBottom: '1px solid #f3f4f6' }}>
+@@ -1316,7 +763,7 @@ const MapPage = ({ onClose }) => {
+                     <div style={{ fontSize: '11px', color: '#9ca3af' }}>Stops</div>
+                   </div>
+                   <div style={{ textAlign: 'center' }}>
+-                    <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '4px' }}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7280" strokeWidth="2"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg></div>
++                    <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '4px' }}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7280" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 22L10 2"></path><path d="M20 22L14 2"></path><path d="M12 22v-4"></path><path d="M12 14v-4"></path><path d="M12 6V2"></path></svg></div>
+                     <div style={{ fontSize: '15px', fontWeight: 'bold', color: '#111827' }}>{(plannedStops.length * 12.3).toFixed(1)} km</div>
+                     <div style={{ fontSize: '11px', color: '#9ca3af' }}>Distance</div>
+                   </div>
+@@ -1327,49 +774,150 @@ const MapPage = ({ onClose }) => {
+                   </div>
+                 </div>
+ 
+-                {/* Minimap Placeholder */}
+-                <div style={{ height: '180px', backgroundColor: '#e5e7eb', width: '100%', position: 'relative' }}>
+-                  <div style={{ width: '100%', height: '100%', backgroundImage: 'url(https://unpkg.com/leaflet@1.9.4/dist/images/layers.png)', backgroundSize: 'cover', opacity: 0.5 }}></div>
+-                  <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', backgroundColor: '#7c2d12', width: '32px', height: '32px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '3px solid white', boxShadow: '0 2px 4px rgba(0,0,0,0.2)' }}>
+-                    <img src="/pandel-icon.png" alt="pandal" style={{ width: "16px", height: "16px", filter: "invert(1)" }} />
++                {/* Minimap */}
++                  <div style={{ height: '180px', backgroundColor: '#e5e7eb', width: '100%', position: 'relative', zIndex: 1 }}>
++                    <MapContainer
++                      center={[22.5726, 88.3639]}
++                      zoom={12}
++                      zoomControl={false}
++                      attributionControl={false}
++                      dragging={true}
++                      scrollWheelZoom={false}
++                      doubleClickZoom={false}
++                      style={{ width: '100%', height: '100%' }}
++                    >
++                      <TileLayer
++                        url={isDarkMode ? `https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png?key=${import.meta.env.VITE_CARTO_API_KEY || 'cb1_2zpy_1_5578b74846ef709b32860fd7'}` : `https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?key=${import.meta.env.VITE_CARTO_API_KEY || 'cb1_2zpy_1_5578b74846ef709b32860fd7'}`}
++                        attribution='&copy; CARTO'
++                      />
++                      
++                      {plannedStops.filter(s => s && typeof s.lat === 'number' && typeof s.lng === 'number').map((stop, idx) => (
++                        <Marker 
++                          key={idx}
++                          position={[stop.lat, stop.lng]}
++                          icon={L.divIcon({
++                            className: 'custom-route-marker',
++                            html: `<div style="background-color: white; width: 24px; height: 24px; border-radius: 50%; color: #111827; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px; border: 2px solid ${idx === 0 ? '#10b981' : idx === plannedStops.length - 1 ? '#ef4444' : '#f59e0b'}; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">${idx + 1}</div>`,
++                            iconSize: [24, 24],
++                            iconAnchor: [12, 12]
++                          })}
++                        />
++                      ))}
++                      <MinimapController stops={plannedStops} userLocation={userLocation} />
++                      <MapResizer />
++                    </MapContainer>
+                   </div>
+-                </div>
+ 
+-                <div style={{ padding: '20px 16px' }}>
+-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+-                    <h3 style={{ fontSize: '16px', fontWeight: 'bold', margin: 0, color: '#1f2937' }}>Route timeline ({plannedStops.length}) <span style={{ color: '#9ca3af', fontSize: '13px', fontWeight: 'normal', marginLeft: '4px' }}>{plannedStops.length}/10</span></h3>
++                <div style={{ padding: '20px 16px 0 16px', display: 'flex', flexDirection: 'column', flex: 1, overflow: 'hidden' }}>
++                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', flexShrink: 0 }}>
++                    <h3 style={{ fontSize: '16px', fontWeight: 'bold', margin: 0, color: '#1f2937' }}>Route timeline ({plannedStops.length}) <span style={{ color: plannedStops.length >= 10 ? '#7c2d12' : '#9ca3af', fontSize: '13px', fontWeight: plannedStops.length >= 10 ? 'bold' : 'normal', marginLeft: '4px' }}>{plannedStops.length}/10</span></h3>
+                     <div style={{ display: 'flex', gap: '16px' }}>
+                       <button style={{ color: '#6b7280', fontSize: '14px', fontWeight: '500' }} onClick={() => setPlannedStops([])}>Clear all</button>
+-                      <button style={{ color: '#7c2d12', fontSize: '14px', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '4px' }}>Edit stops <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg></button>
++                      {isEditingRoute ? (
++                          <button style={{ color: '#7c2d12', fontSize: '15px', fontWeight: 'bold' }} onClick={() => setIsEditingRoute(false)}>Done</button>
++                        ) : (
++                          <button style={{ color: '#7c2d12', fontSize: '14px', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '4px' }} onClick={() => setIsEditingRoute(true)}>Edit stops <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg></button>
++                        )}
+                     </div>
+                   </div>
+ 
+-                  <div className="route-timeline-list" style={{ position: 'relative' }}>
++                  <div className="route-timeline-list" style={{ position: 'relative', flex: 1, overflowY: 'auto' }}>
+                     {plannedStops.map((stop, idx) => (
+-                      <div key={idx} style={{ display: 'flex', marginBottom: '0', position: 'relative', paddingBottom: '24px' }}>
++                      <div key={idx} style={{ display: 'flex', marginBottom: '0', position: 'relative', paddingBottom: '10px' }}>
+                         {idx < plannedStops.length - 1 && <div style={{ position: 'absolute', left: '15px', top: '32px', bottom: '0', width: '2px', backgroundColor: '#fcd34d', zIndex: 0 }}></div>}
+                         
+                         <div style={{ width: '32px', height: '32px', borderRadius: '50%', backgroundColor: 'white', border: '2px solid #fed7aa', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '14px', fontWeight: 'bold', color: '#111827', zIndex: 1, flexShrink: 0, marginRight: '16px' }}>
+                           {idx + 1}
+                         </div>
+                         
+-                        <div style={{ flex: 1, paddingBottom: '24px', borderBottom: idx < plannedStops.length - 1 ? '1px solid #f3f4f6' : 'none' }}>
++                        <div style={{ flex: 1, paddingBottom: '10px', borderBottom: idx < plannedStops.length - 1 ? '1px solid #f3f4f6' : 'none' }}>
+                           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                             <div>
+                               <div style={{ fontSize: '16px', fontWeight: 'bold', color: '#111827', marginBottom: '2px' }}>{stop.name}</div>
+                               <div style={{ fontSize: '14px', color: '#6b7280', textTransform: 'capitalize' }}>{stop.type}</div>
+                               <div style={{ fontSize: '13px', color: '#9ca3af', marginTop: '4px' }}>ETA {idx * 15 + 10}m ΓÇó {(idx * 2.4 + 1.2).toFixed(1)} km</div>
+                             </div>
+-                            <div style={{ display: 'flex', gap: '12px', color: '#9ca3af' }}>
+-                              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
+-                              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+-                            </div>
++                            <div style={{ display: 'flex', gap: '12px', color: '#9ca3af', alignItems: 'center' }}>
++                                {isEditingRoute ? (
++                                  <div 
++                                    style={{ width: '28px', height: '28px', backgroundColor: '#fef3c7', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
++                                    onClick={() => {
++                                      const newStops = [...plannedStops];
++                                      newStops.splice(idx, 1);
++                                      setPlannedStops(newStops);
++                                    }}
++                                  >
++                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7c2d12" strokeWidth="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
++                                  </div>
++                                ) : (
++                                    <div style={{ position: 'relative' }}>
++                                      <svg 
++                                        width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
++                                        onClick={(e) => { e.stopPropagation(); setActiveTimelineMenu(activeTimelineMenu === idx ? null : idx); }}
++                                        style={{ cursor: 'pointer' }}
++                                      >
++                                        <circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle>
++                                      </svg>
++                                      {activeTimelineMenu === idx && (
++                                        <>
++                                        <div 
++                                          style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, zIndex: 99 }}
++                                          onClick={(e) => { e.stopPropagation(); setActiveTimelineMenu(null); }}
++                                        />
++                                        <div style={{ position: 'absolute', right: '0', top: (idx >= plannedStops.length - 2 && idx > 0) ? 'auto' : '24px', bottom: (idx >= plannedStops.length - 2 && idx > 0) ? '-40px' : 'auto', backgroundColor: 'white', borderRadius: '16px', boxShadow: '0 8px 30px rgba(0,0,0,0.12)', padding: '8px 0', zIndex: 100, width: '160px', border: '1px solid #f3f4f6' }}>
++                                          <div 
++                                            style={{ padding: '12px 20px', fontSize: '15px', fontWeight: '500', color: idx === 0 ? '#d1d5db' : '#1f2937', cursor: idx === 0 ? 'default' : 'pointer' }}
++                                            onClick={(e) => {
++                                              e.stopPropagation();
++                                              if (idx > 0) {
++                                                const newStops = [...plannedStops];
++                                                [newStops[idx - 1], newStops[idx]] = [newStops[idx], newStops[idx - 1]];
++                                                setPlannedStops(newStops);
++                                                setActiveTimelineMenu(null);
++                                              }
++                                            }}
++                                          >
++                                            Move up
++                                          </div>
++                                          <div 
++                                            style={{ padding: '12px 20px', fontSize: '15px', fontWeight: '500', color: idx === plannedStops.length - 1 ? '#d1d5db' : '#1f2937', cursor: idx === plannedStops.length - 1 ? 'default' : 'pointer' }}
++                                            onClick={(e) => {
++                                              e.stopPropagation();
++                                              if (idx < plannedStops.length - 1) {
++                                                const newStops = [...plannedStops];
++                                                [newStops[idx], newStops[idx + 1]] = [newStops[idx + 1], newStops[idx]];
++                                                setPlannedStops(newStops);
++                                                setActiveTimelineMenu(null);
++                                              }
++                                            }}
++                                          >
++                                            Move down
++                                          </div>
++                                          <div 
++                                            style={{ padding: '12px 20px', fontSize: '15px', fontWeight: '500', color: '#991b1b', cursor: 'pointer' }}
++                                            onClick={(e) => {
++                                              e.stopPropagation();
++                                              const newStops = [...plannedStops];
++                                              newStops.splice(idx, 1);
++                                              setPlannedStops(newStops);
++                                              setActiveTimelineMenu(null);
++                                            }}
++                                          >
++                                            Remove
++                                          </div>
++                                        </div>
++                                        </>
++                                      )}
++                                    </div>
++                                  )}
++                                
++                              </div>
+                           </div>
+                         </div>
+                       </div>
+                     ))}
+-                  </div>
+ 
++                  </div>
+                   <button style={{ width: '100%', padding: '16px', backgroundColor: '#fff7ed', borderRadius: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', border: 'none', cursor: 'pointer' }} onClick={() => setActiveTab('map')}>
+                     <div style={{ display: 'flex', alignItems: 'center' }}>
+                       <div style={{ width: '32px', height: '32px', borderRadius: '50%', backgroundColor: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#7c2d12', marginRight: '16px' }}>
+@@ -1377,7 +925,7 @@ const MapPage = ({ onClose }) => {
+                       </div>
+                       <div>
+                         <div style={{ color: '#7c2d12', fontSize: '15px', fontWeight: 'bold', textAlign: 'left' }}>Next stop</div>
+-                        <div style={{ color: '#9ca3af', fontSize: '13px', textAlign: 'left' }}>Search pandals or add from map</div>
++                        <div style={{ color: '#9ca3af', fontSize: '13px', textAlign: 'left' }}>Add more pandels from map</div>
+                       </div>
+                     </div>
+                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7c2d12" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+@@ -1387,12 +935,15 @@ const MapPage = ({ onClose }) => {
+                 {/* FAB Overlay */}
+                 <div style={{ position: 'fixed', bottom: '80px', left: '0', right: '0', padding: '0 16px', zIndex: 100 }}>
+                   <button className="start-nav-fab" style={{ width: '100%', backgroundColor: '#7c2d12', color: 'white', padding: '16px', borderRadius: '12px', fontSize: '18px', fontWeight: 'bold', display: 'flex', alignItems: 'center', justifyContent: 'center', border: 'none', boxShadow: '0 8px 24px rgba(124, 45, 18, 0.4)', gap: '8px' }} onClick={() => {
+-                    if (plannedStops.length > 0) {
+-                      setNavigationDestination(plannedStops[0]);
+-                      setActiveDirectionMode('car');
+-                      setIsDirectionPopupOpen(true);
+-                    }
+-                  }}>
++                      if (plannedStops.length > 0) {
++                        if (!userLocation) {
++                          setPendingAction('route_navigation');
++                          setShowLocationPopup(true);
++                        } else {
++                          setIsRouteNavigationOpen(true);
++                        }
++                      }
++                    }}>
+                     <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                       <path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z" />
+                     </svg>
+@@ -1441,6 +992,15 @@ const MapPage = ({ onClose }) => {
+         </div>
+       </div>
+ 
++      {isRouteNavigationOpen && (
++        <RouteNavigationOverlay 
++          plannedStops={plannedStops} 
++          userLocation={userLocation} 
++          isDarkMode={isDarkMode}
++          onClose={() => setIsRouteNavigationOpen(false)} 
++        />
++      )}
++
+       {/* Location Request Popup */}
+       {showLocationPopup && (
+         <div className="location-popup-overlay" onClick={() => setShowLocationPopup(false)}>
+@@ -1723,7 +1283,7 @@ const MapPage = ({ onClose }) => {
+                   </div>
+                   <div className={`item-content ${index !== arr.length - 1 ? 'border-b' : ''}`}>
+                     <div className="item-title" style={{ color: isDarkMode ? '#f9fafb' : '#000000', fontSize: '16px', fontWeight: '600' }}>{loc.name}</div>
+-                    <div className="item-subtitle">{loc.address || 'Kolkata, West Bengal'}</div>
++                    <div className="item-subtitle">{loc.address || (activeDirectionMode === 'bike' ? 'Toilet' : activeDirectionMode === 'train' ? 'Metro Station' : activeDirectionMode === 'footprints' ? 'Train Station' : 'Kolkata, West Bengal')}</div>
+                   </div>
+                 </div>
+               ))}
+@@ -1759,7 +1319,7 @@ const MapPage = ({ onClose }) => {
+ </div>
+                 <div className="preview-title-block">
+                   <h4 className="share-loc-title">{selectedLocation ? selectedLocation.name : 'Unknown Location'}</h4>
+-                  <p className="share-loc-subtitle">Γùê {selectedLocation?.address || 'Ballygunge Place, Ballygunge'}</p>
++                  <p className="share-loc-subtitle">Γùê {selectedLocation?.address || (selectedLocation?.type === 'toilet' ? 'Toilet' : selectedLocation?.type === 'metro' ? 'Metro Station' : selectedLocation?.type === 'train' ? 'Train Station' : 'Kolkata, West Bengal')}</p>
+                 </div>
+               </div>
+               

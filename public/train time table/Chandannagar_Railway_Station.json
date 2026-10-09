@@ -1,0 +1,843 @@
+{
+    "Chandannagar Railway Station": {
+        "up": [
+            [
+                "37291",
+                "Howrah - Bandel Local",
+                "12:29 AM"
+            ],
+            [
+                "37811",
+                "Howrah - Barddhaman Local",
+                "04:59 AM"
+            ],
+            [
+                "37211",
+                "Howrah - Bandel Local",
+                "05:30 AM"
+            ],
+            [
+                "37813",
+                "Howrah - Barddhaman Local",
+                "05:44 AM"
+            ],
+            [
+                "37213",
+                "Howrah - Bandel Local",
+                "05:49 AM"
+            ],
+            [
+                "37815",
+                "Howrah - Barddhaman Galloping Local",
+                "05:56 AM"
+            ],
+            [
+                "37911",
+                "Howrah - Katwa Local",
+                "06:06 AM"
+            ],
+            [
+                "37817",
+                "Howrah - Barddhaman Local",
+                "07:04 AM"
+            ],
+            [
+                "37215",
+                "Howrah - Bandel Local",
+                "07:10 AM"
+            ],
+            [
+                "37819",
+                "Howrah - Barddhaman Local",
+                "07:43 AM"
+            ],
+            [
+                "37217",
+                "Howrah - Bandel Local",
+                "07:54 AM"
+            ],
+            [
+                "37219",
+                "Howrah - Bandel Local",
+                "08:22 AM"
+            ],
+            [
+                "37913",
+                "Howrah - Katwa Local",
+                "08:44 AM"
+            ],
+            [
+                "37821",
+                "Howrah - Barddhaman Local",
+                "08:49 AM"
+            ],
+            [
+                "37221",
+                "Howrah - Bandel Local",
+                "09:04 AM"
+            ],
+            [
+                "37651",
+                "Howrah - Memari Galloping Local",
+                "09:10 AM"
+            ],
+            [
+                "37223",
+                "Howrah - Bandel Local",
+                "09:24 AM"
+            ],
+            [
+                "37823",
+                "Howrah - Barddhaman Local",
+                "09:44 AM"
+            ],
+            [
+                "37225",
+                "Howrah - Bandel Local",
+                "09:55 AM"
+            ],
+            [
+                "37227",
+                "Howrah - Bandel Local",
+                "10:12 AM"
+            ],
+            [
+                "37229",
+                "Howrah - Bandel Local",
+                "10:34 AM"
+            ],
+            [
+                "37915",
+                "Howrah - Katwa Local",
+                "10:45 AM"
+            ],
+            [
+                "37825",
+                "Howrah - Barddhaman Local",
+                "10:49 AM"
+            ],
+            [
+                "37231",
+                "Howrah - Bandel Local",
+                "10:59 AM"
+            ],
+            [
+                "37233",
+                "Howrah - Bandel Local",
+                "11:16 AM"
+            ],
+            [
+                "37235",
+                "Howrah - Bandel Local",
+                "11:26 AM"
+            ],
+            [
+                "37237",
+                "Howrah - Bandel Local",
+                "11:50 AM"
+            ],
+            [
+                "37239",
+                "Howrah - Bandel Local",
+                "11:58 AM"
+            ],
+            [
+                "13081",
+                "Howrah - Jaynagar Express",
+                "12:05 PM"
+            ],
+            [
+                "37827",
+                "Howrah - Barddhaman Local",
+                "12:17 PM"
+            ],
+            [
+                "37611",
+                "Howrah - Pundooah Local",
+                "12:27 PM"
+            ],
+            [
+                "37241",
+                "Howrah - Bandel Local",
+                "12:44 PM"
+            ],
+            [
+                "37917",
+                "Howrah - Katwa Local",
+                "12:54 PM"
+            ],
+            [
+                "37243",
+                "Howrah - Bandel Local",
+                "01:05 PM"
+            ],
+            [
+                "37829",
+                "Howrah - Barddhaman Local",
+                "01:14 PM"
+            ],
+            [
+                "37655",
+                "Howrah - Memari Local",
+                "01:29 PM"
+            ],
+            [
+                "37245",
+                "Howrah - Bandel Local",
+                "01:39 PM"
+            ],
+            [
+                "37247",
+                "Howrah - Bandel Local",
+                "01:59 PM"
+            ],
+            [
+                "37249",
+                "Howrah - Bandel Local",
+                "02:09 PM"
+            ],
+            [
+                "37251",
+                "Howrah - Bandel Local",
+                "02:17 PM"
+            ],
+            [
+                "37657",
+                "Howrah - Memari Local",
+                "02:35 PM"
+            ],
+            [
+                "37831",
+                "Howrah - Barddhaman Galloping Local",
+                "03:02 PM"
+            ],
+            [
+                "37919",
+                "Howrah - Katwa Galloping Local",
+                "03:04 PM"
+            ],
+            [
+                "37253",
+                "Howrah - Bandel Local",
+                "03:26 PM"
+            ],
+            [
+                "37835",
+                "Howrah - Barddhaman Galloping local",
+                "03:29 PM"
+            ],
+            [
+                "37833",
+                "Howrah - Barddhaman Local",
+                "03:36 PM"
+            ],
+            [
+                "37255",
+                "Howrah - Bandel Local",
+                "03:45 PM"
+            ],
+            [
+                "37257",
+                "Howrah - Bandel Local",
+                "04:14 PM"
+            ],
+            [
+                "37837",
+                "Howrah - Barddhaman Galloping local",
+                "04:16 PM"
+            ],
+            [
+                "13021",
+                "Mithila Express",
+                "04:36 PM"
+            ],
+            [
+                "53001",
+                "Howrah - Azimganj Passenger",
+                "04:46 PM"
+            ],
+            [
+                "37259",
+                "Howrah - Bandel Local",
+                "05:00 PM"
+            ],
+            [
+                "53047",
+                "Viswabharati Fast Passenger",
+                "05:14 PM"
+            ],
+            [
+                "37839",
+                "Howrah - Barddhaman Galloping Local",
+                "05:23 PM"
+            ],
+            [
+                "37261",
+                "Howrah - Bandel Local",
+                "05:40 PM"
+            ],
+            [
+                "37921",
+                "Howrah - Katwa Galloping Local",
+                "05:49 PM"
+            ],
+            [
+                "37841",
+                "Howrah - Barddhaman Galloping Local",
+                "06:07 PM"
+            ],
+            [
+                "37511",
+                "Bally - Bandel Local",
+                "06:21 PM"
+            ],
+            [
+                "37263",
+                "Howrah - Bandel Local",
+                "06:32 PM"
+            ],
+            [
+                "37923",
+                "Howrah - Katwa Galloping Local",
+                "06:33 PM"
+            ],
+            [
+                "37845",
+                "Howrah - Barddhaman Galloping Local",
+                "06:46 PM"
+            ],
+            [
+                "37265",
+                "Howrah - Bandel Local",
+                "06:59 PM"
+            ],
+            [
+                "37267",
+                "Howrah - Bandel Local",
+                "07:04 PM"
+            ],
+            [
+                "37847",
+                "Howrah - Barddhaman Galloping Local",
+                "07:13 PM"
+            ],
+            [
+                "37269",
+                "Howrah - Bandel Local",
+                "07:29 PM"
+            ],
+            [
+                "37849",
+                "Howrah - Barddhaman Galloping Local",
+                "07:34 PM"
+            ],
+            [
+                "37201",
+                "Howrah - Bandel Matribhoomi Ladies Special Local",
+                "07:39 PM"
+            ],
+            [
+                "37851",
+                "Howrah - Barddhaman Local",
+                "07:54 PM"
+            ],
+            [
+                "37925",
+                "Howrah - Katwa Galloping Local",
+                "07:57 PM"
+            ],
+            [
+                "37271",
+                "Howrah - Bandel Local",
+                "08:19 PM"
+            ],
+            [
+                "37273",
+                "Howrah - Bandel Local",
+                "08:39 PM"
+            ],
+            [
+                "37275",
+                "Howrah - Bandel Local",
+                "08:54 PM"
+            ],
+            [
+                "37853",
+                "Howrah - Barddhaman Local",
+                "09:04 PM"
+            ],
+            [
+                "13009",
+                "Doon Express",
+                "09:07 PM"
+            ],
+            [
+                "37927",
+                "Howrah - Katwa Local",
+                "09:18 PM"
+            ],
+            [
+                "37855",
+                "Howrah - Barddhaman Local",
+                "09:36 PM"
+            ],
+            [
+                "37277",
+                "Howrah - Bandel Local",
+                "09:44 PM"
+            ],
+            [
+                "37279",
+                "Howrah - Bandel Local",
+                "09:54 PM"
+            ],
+            [
+                "37281",
+                "Howrah - Bandel Local",
+                "10:14 PM"
+            ],
+            [
+                "37283",
+                "Howrah - Bandel Local",
+                "10:35 PM"
+            ],
+            [
+                "37857",
+                "Howrah - Barddhaman Local",
+                "10:54 PM"
+            ],
+            [
+                "37285",
+                "Howrah - Bandel Local",
+                "11:14 PM"
+            ],
+            [
+                "37287",
+                "Howrah - Bandel Local",
+                "11:35 PM"
+            ],
+            [
+                "13029",
+                "Howrah - Mokama Express",
+                "11:58 PM"
+            ],
+            [
+                "37289",
+                "Howrah - Bandel Local",
+                "11:59 PM"
+            ]
+        ],
+        "down": [
+            [
+                "53002",
+                "Azimganj - Howrah Passenger",
+                "01:35 AM"
+            ],
+            [
+                "13030",
+                "Mokama - Howrah Express",
+                "01:59 AM"
+            ],
+            [
+                "37212",
+                "Bandel - Howrah Local",
+                "03:17 AM"
+            ],
+            [
+                "37214",
+                "Bandel - Howrah Local",
+                "03:40 AM"
+            ],
+            [
+                "37812",
+                "Barddhaman - Howrah Local",
+                "04:30 AM"
+            ],
+            [
+                "37216",
+                "Bandel - Howrah Local",
+                "04:55 AM"
+            ],
+            [
+                "37218",
+                "Bandel - Howrah Local",
+                "05:20 AM"
+            ],
+            [
+                "37814",
+                "Barddhaman - Howrah Local",
+                "05:36 AM"
+            ],
+            [
+                "13010",
+                "Doon Express",
+                "05:36 AM"
+            ],
+            [
+                "37220",
+                "Bandel - Howrah Local",
+                "05:50 AM"
+            ],
+            [
+                "37912",
+                "Katwa - Howrah Local",
+                "05:58 AM"
+            ],
+            [
+                "37816",
+                "Barddhaman - Howrah Local",
+                "06:30 AM"
+            ],
+            [
+                "37222",
+                "Bandel - Howrah Local",
+                "06:40 AM"
+            ],
+            [
+                "37224",
+                "Bandel - Howrah Local",
+                "07:00 AM"
+            ],
+            [
+                "37818",
+                "Barddhaman - Howrah Local",
+                "07:09 AM"
+            ],
+            [
+                "37226",
+                "Bandel - Howrah Local",
+                "07:25 AM"
+            ],
+            [
+                "37820",
+                "Barddhaman - Howrah Local",
+                "07:33 AM"
+            ],
+            [
+                "37914",
+                "Katwa - Howrah Galloping Local",
+                "07:58 AM"
+            ],
+            [
+                "37228",
+                "Bandel - Howrah Local",
+                "08:15 AM"
+            ],
+            [
+                "37230",
+                "Bandel - Howrah Local",
+                "08:38 AM"
+            ],
+            [
+                "37916",
+                "Katwa - Howrah Galloping Local",
+                "08:38 AM"
+            ],
+            [
+                "37824",
+                "Barddhaman - Howrah Galloping Local",
+                "08:47 AM"
+            ],
+            [
+                "37202",
+                "Bandel - Howrah Matribhoomi Ladies Special Local",
+                "08:50 AM"
+            ],
+            [
+                "37232",
+                "Bandel - Howrah Local",
+                "09:00 AM"
+            ],
+            [
+                "37826",
+                "Barddhaman - Howrah Galloping Local",
+                "09:07 AM"
+            ],
+            [
+                "53048",
+                "Viswabharati Fast Passenger",
+                "09:16 AM"
+            ],
+            [
+                "37234",
+                "Bandel - Howrah Local",
+                "09:17 AM"
+            ],
+            [
+                "37918",
+                "Katwa - Howrah Local",
+                "09:22 AM"
+            ],
+            [
+                "37612",
+                "Pundooah - Howrah Galloping Local",
+                "09:33 AM"
+            ],
+            [
+                "37828",
+                "Barddhaman - Howrah Galloping Local",
+                "09:46 AM"
+            ],
+            [
+                "37236",
+                "Bandel - Howrah Local",
+                "09:56 AM"
+            ],
+            [
+                "37920",
+                "Katwa - Howrah Galloping Local",
+                "10:07 AM"
+            ],
+            [
+                "37830",
+                "Barddhaman - Howrah Galloping Local",
+                "10:19 AM"
+            ],
+            [
+                "37238",
+                "Bandel - Howrah Local",
+                "10:40 AM"
+            ],
+            [
+                "37240",
+                "Bandel - Howrah Local",
+                "10:55 AM"
+            ],
+            [
+                "37242",
+                "Bandel - Howrah Local",
+                "11:32 AM"
+            ],
+            [
+                "37832",
+                "Barddhaman - Howrah Local",
+                "11:46 AM"
+            ],
+            [
+                "37652",
+                "Memari - Howrah Galloping Local",
+                "12:14 PM"
+            ],
+            [
+                "37244",
+                "Bandel - Howrah Local",
+                "12:25 PM"
+            ],
+            [
+                "37246",
+                "Bandel - Howrah Local",
+                "12:45 PM"
+            ],
+            [
+                "37834",
+                "Barddhaman - Howrah Local",
+                "12:54 PM"
+            ],
+            [
+                "37922",
+                "Katwa - Howrah Local",
+                "01:13 PM"
+            ],
+            [
+                "37248",
+                "Bandel - Howrah Local",
+                "01:25 PM"
+            ],
+            [
+                "37250",
+                "Bandel - Howrah Local",
+                "01:45 PM"
+            ],
+            [
+                "37836",
+                "Barddhaman - Howrah Local",
+                "01:54 PM"
+            ],
+            [
+                "37614",
+                "Pundooah - Howrah Local",
+                "02:07 PM"
+            ],
+            [
+                "37252",
+                "Bandel - Howrah Local",
+                "02:30 PM"
+            ],
+            [
+                "37254",
+                "Bandel - Howrah Local",
+                "03:05 PM"
+            ],
+            [
+                "37838",
+                "Barddhaman - Howrah Local",
+                "03:09 PM"
+            ],
+            [
+                "37256",
+                "Bandel - Howrah Local",
+                "03:20 PM"
+            ],
+            [
+                "37258",
+                "Bandel - Howrah Local",
+                "03:45 PM"
+            ],
+            [
+                "37656",
+                "Memari - Howrah Local",
+                "03:59 PM"
+            ],
+            [
+                "37260",
+                "Bandel - Howrah Local",
+                "04:15 PM"
+            ],
+            [
+                "37512",
+                "Bandel - Bally Local",
+                "04:35 PM"
+            ],
+            [
+                "37840",
+                "Barddhaman - Howrah Local",
+                "04:42 PM"
+            ],
+            [
+                "37262",
+                "Bandel - Howrah Local",
+                "04:50 PM"
+            ],
+            [
+                "37658",
+                "Memari - Howrah Local",
+                "04:54 PM"
+            ],
+            [
+                "37264",
+                "Bandel - Howrah Local",
+                "05:00 PM"
+            ],
+            [
+                "37266",
+                "Bandel - Howrah Local",
+                "05:25 PM"
+            ],
+            [
+                "37268",
+                "Bandel - Howrah Local",
+                "05:40 PM"
+            ],
+            [
+                "37926",
+                "Katwa - Howrah Local",
+                "05:52 PM"
+            ],
+            [
+                "37842",
+                "Barddhaman - Howrah Local",
+                "06:01 PM"
+            ],
+            [
+                "37270",
+                "Bandel - Howrah Local",
+                "06:15 PM"
+            ],
+            [
+                "37272",
+                "Bandel - Howrah Local",
+                "06:28 PM"
+            ],
+            [
+                "37846",
+                "Barddhaman - Howrah Local",
+                "06:54 PM"
+            ],
+            [
+                "37844",
+                "Barddhaman - Howrah Galloping Local",
+                "06:54 PM"
+            ],
+            [
+                "37274",
+                "Bandel - Howrah Local",
+                "07:00 PM"
+            ],
+            [
+                "37848",
+                "Barddhaman - Howrah Local",
+                "07:29 PM"
+            ],
+            [
+                "37276",
+                "Bandel - Howrah Local",
+                "07:40 PM"
+            ],
+            [
+                "37278",
+                "Bandel - Howrah Local",
+                "07:55 PM"
+            ],
+            [
+                "37850",
+                "Barddhaman - Howrah Local",
+                "08:04 PM"
+            ],
+            [
+                "13032",
+                "Jaynagar - Howrah Express",
+                "08:08 PM"
+            ],
+            [
+                "37280",
+                "Bandel - Howrah Local",
+                "08:43 PM"
+            ],
+            [
+                "37282",
+                "Bandel - Howrah Local",
+                "09:10 PM"
+            ],
+            [
+                "37852",
+                "Barddhaman - Howrah Local",
+                "09:17 PM"
+            ],
+            [
+                "37928",
+                "Katwa - Howrah Local",
+                "09:45 PM"
+            ],
+            [
+                "37284",
+                "Bandel - Howrah Local",
+                "09:55 PM"
+            ],
+            [
+                "37854",
+                "Barddhaman - Howrah Local",
+                "10:14 PM"
+            ],
+            [
+                "37286",
+                "Bandel - Howrah Local",
+                "10:28 PM"
+            ],
+            [
+                "37288",
+                "Bandel - Howrah Local",
+                "10:40 PM"
+            ],
+            [
+                "37290",
+                "Bandel - Howrah Local",
+                "10:55 PM"
+            ],
+            [
+                "63502",
+                "Barddhaman - Howrah MEMU",
+                "11:21 PM"
+            ]
+        ]
+    }
+}

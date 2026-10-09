@@ -1,0 +1,248 @@
+{
+    "Santoshpur Railway Station": {
+        "up": [
+            {
+                "number": "34111",
+                "name": "Komagata Maru Budge Budge - Sealdah Local",
+                "time": "4:57 AM"
+            },
+            {
+                "number": "34113",
+                "name": "Komagata Maru Budge Budge - Sealdah Local",
+                "time": "5:55 AM"
+            },
+            {
+                "number": "34115",
+                "name": "Komagata Maru Budge Budge - Sealdah Local",
+                "time": "6:45 AM"
+            },
+            {
+                "number": "34117",
+                "name": "Komagata Maru Budge Budge - Sealdah Local",
+                "time": "8:20 AM"
+            },
+            {
+                "number": "34119",
+                "name": "Komagata Maru Budge Budge - Sealdah Local",
+                "time": "8:35 AM"
+            },
+            {
+                "number": "34121",
+                "name": "Komagata Maru Budge Budge - Sealdah Local",
+                "time": "9:21 AM"
+            },
+            {
+                "number": "34123",
+                "name": "Komagata Maru Budge Budge - Sealdah Local",
+                "time": "9:49 AM"
+            },
+            {
+                "number": "34125",
+                "name": "Komagata Maru Budge Budge - Sealdah Local",
+                "time": "10:34 AM"
+            },
+            {
+                "number": "34127",
+                "name": "Komagata Maru Budge Budge - Sealdah Local",
+                "time": "11:05 AM"
+            },
+            {
+                "number": "34129",
+                "name": "Komagata Maru Budge Budge - Sealdah Local",
+                "time": "11:43 AM"
+            },
+            {
+                "number": "34133",
+                "name": "Komagata Maru Budge Budge - Sealdah Local",
+                "time": "12:47 PM"
+            },
+            {
+                "number": "34137",
+                "name": "Komagata Maru Budge Budge - Sealdah Local",
+                "time": "1:35 PM"
+            },
+            {
+                "number": "34141",
+                "name": "Komagata Maru Budge Budge - Sealdah Local",
+                "time": "3:00 PM"
+            },
+            {
+                "number": "34167",
+                "name": "Komagata Maru Budge Budge - Sealdah Local",
+                "time": "3:45 PM"
+            },
+            {
+                "number": "34145",
+                "name": "Komagata Maru Budge Budge - Sealdah Local",
+                "time": "4:29 PM"
+            },
+            {
+                "number": "34147",
+                "name": "Komagata Maru Budge Budge - Sealdah Local",
+                "time": "5:10 PM"
+            },
+            {
+                "number": "34149",
+                "name": "Komagata Maru Budge Budge - Sealdah Local",
+                "time": "6:20 PM"
+            },
+            {
+                "number": "34151",
+                "name": "Komagata Maru Budge Budge - Sealdah Local",
+                "time": "7:10 PM"
+            },
+            {
+                "number": "34153",
+                "name": "Komagata Maru Budge Budge - Sealdah Local",
+                "time": "7:38 PM"
+            },
+            {
+                "number": "34155",
+                "name": "Komagata Maru Budge Budge - Sealdah Local",
+                "time": "8:32 PM"
+            },
+            {
+                "number": "34157",
+                "name": "Komagata Maru Budge Budge - Sealdah Local",
+                "time": "9:05 PM"
+            },
+            {
+                "number": "34159",
+                "name": "Komagata Maru Budge Budge - Sealdah Local",
+                "time": "9:50 PM"
+            },
+            {
+                "number": "34161",
+                "name": "Komagata Maru Budge Budge - Sealdah Local",
+                "time": "10:28 PM"
+            },
+            {
+                "number": "34163",
+                "name": "Komagata Maru Budge Budge - Sealdah Local",
+                "time": "11:16 PM"
+            }
+        ],
+        "down": [
+            {
+                "number": "34112",
+                "name": "Sealdah - Komagata Maru Budge Budge Local",
+                "time": "4:16 AM"
+            },
+            {
+                "number": "34114",
+                "name": "Sealdah - Komagata Maru Budge Budge Local",
+                "time": "5:08 AM"
+            },
+            {
+                "number": "34116",
+                "name": "Sealdah - Komagata Maru Budge Budge Local",
+                "time": "6:02 AM"
+            },
+            {
+                "number": "34118",
+                "name": "Sealdah - Komagata Maru Budge Budge Local",
+                "time": "6:42 AM"
+            },
+            {
+                "number": "34120",
+                "name": "Sealdah - Komagata Maru Budge Budge Local",
+                "time": "7:52 AM"
+            },
+            {
+                "number": "34122",
+                "name": "Sealdah - Komagata Maru Budge Budge Local",
+                "time": "8:40 AM"
+            },
+            {
+                "number": "34124",
+                "name": "Sealdah - Komagata Maru Budge Budge Local",
+                "time": "9:07 AM"
+            },
+            {
+                "number": "34126",
+                "name": "Sealdah - Komagata Maru Budge Budge Local",
+                "time": "9:54 AM"
+            },
+            {
+                "number": "34128",
+                "name": "Sealdah - Komagata Maru Budge Budge Local",
+                "time": "10:17 AM"
+            },
+            {
+                "number": "34130",
+                "name": "Sealdah - Komagata Maru Budge Budge Local",
+                "time": "10:50 AM"
+            },
+            {
+                "number": "34132",
+                "name": "Sealdah - Komagata Maru Budge Budge Local",
+                "time": "11:22 AM"
+            },
+            {
+                "number": "34136",
+                "name": "Sealdah - Komagata Maru Budge Budge Local",
+                "time": "12:28 PM"
+            },
+            {
+                "number": "34140",
+                "name": "Sealdah - Komagata Maru Budge Budge Local",
+                "time": "1:46 PM"
+            },
+            {
+                "number": "34168",
+                "name": "Sealdah - Komagata Maru Budge Budge Local",
+                "time": "3:02 PM"
+            },
+            {
+                "number": "34146",
+                "name": "Sealdah - Komagata Maru Budge Budge Local",
+                "time": "3:40 PM"
+            },
+            {
+                "number": "34148",
+                "name": "Sealdah - Komagata Maru Budge Budge Local",
+                "time": "4:29 PM"
+            },
+            {
+                "number": "34150",
+                "name": "Sealdah - Komagata Maru Budge Budge Local",
+                "time": "5:04 PM"
+            },
+            {
+                "number": "34152",
+                "name": "Sealdah - Komagata Maru Budge Budge Local",
+                "time": "5:34 PM"
+            },
+            {
+                "number": "34154",
+                "name": "Sealdah - Komagata Maru Budge Budge Local",
+                "time": "6:19 PM"
+            },
+            {
+                "number": "34156",
+                "name": "Sealdah - Komagata Maru Budge Budge Local",
+                "time": "6:57 PM"
+            },
+            {
+                "number": "34158",
+                "name": "Sealdah - Komagata Maru Budge Budge Local",
+                "time": "7:47 PM"
+            },
+            {
+                "number": "34160",
+                "name": "Sealdah - Komagata Maru Budge Budge Local",
+                "time": "9:07 PM"
+            },
+            {
+                "number": "34162",
+                "name": "Sealdah - Komagata Maru Budge Budge Local",
+                "time": "9:47 PM"
+            },
+            {
+                "number": "34164",
+                "name": "Sealdah - Komagata Maru Budge Budge Local",
+                "time": "10:36 PM"
+            }
+        ]
+    }
+}

@@ -1,0 +1,2168 @@
+{
+    "Sealdah Railway Station": {
+        "up": [
+            {
+                "number": "34111",
+                "name": "Komagata Maru Budge Budge - Sealdah Local",
+                "time": "5:42 AM"
+            },
+            {
+                "number": "34113",
+                "name": "Komagata Maru Budge Budge - Sealdah Local",
+                "time": "6:41 AM"
+            },
+            {
+                "number": "34115",
+                "name": "Komagata Maru Budge Budge - Sealdah Local",
+                "time": "7:29 AM"
+            },
+            {
+                "number": "34117",
+                "name": "Komagata Maru Budge Budge - Sealdah Local",
+                "time": "9:03 AM"
+            },
+            {
+                "number": "34119",
+                "name": "Komagata Maru Budge Budge - Sealdah Local",
+                "time": "9:20 AM"
+            },
+            {
+                "number": "34121",
+                "name": "Komagata Maru Budge Budge - Sealdah Local",
+                "time": "10:01 AM"
+            },
+            {
+                "number": "34123",
+                "name": "Komagata Maru Budge Budge - Sealdah Local",
+                "time": "10:35 AM"
+            },
+            {
+                "number": "34125",
+                "name": "Komagata Maru Budge Budge - Sealdah Local",
+                "time": "11:15 AM"
+            },
+            {
+                "number": "34127",
+                "name": "Komagata Maru Budge Budge - Sealdah Local",
+                "time": "11:50 AM"
+            },
+            {
+                "number": "34129",
+                "name": "Komagata Maru Budge Budge - Sealdah Local",
+                "time": "12:30 PM"
+            },
+            {
+                "number": "34133",
+                "name": "Komagata Maru Budge Budge - Sealdah Local",
+                "time": "1:32 PM"
+            },
+            {
+                "number": "34137",
+                "name": "Komagata Maru Budge Budge - Sealdah Local",
+                "time": "2:18 PM"
+            },
+            {
+                "number": "34141",
+                "name": "Komagata Maru Budge Budge - Sealdah Local",
+                "time": "3:42 PM"
+            },
+            {
+                "number": "34167",
+                "name": "Komagata Maru Budge Budge - Sealdah Local",
+                "time": "4:25 PM"
+            },
+            {
+                "number": "34145",
+                "name": "Komagata Maru Budge Budge - Sealdah Local",
+                "time": "5:08 PM"
+            },
+            {
+                "number": "34147",
+                "name": "Komagata Maru Budge Budge - Sealdah Local",
+                "time": "5:50 PM"
+            },
+            {
+                "number": "34149",
+                "name": "Komagata Maru Budge Budge - Sealdah Local",
+                "time": "7:03 PM"
+            },
+            {
+                "number": "34151",
+                "name": "Komagata Maru Budge Budge - Sealdah Local",
+                "time": "7:55 PM"
+            },
+            {
+                "number": "34153",
+                "name": "Komagata Maru Budge Budge - Sealdah Local",
+                "time": "8:22 PM"
+            },
+            {
+                "number": "34155",
+                "name": "Komagata Maru Budge Budge - Sealdah Local",
+                "time": "9:17 PM"
+            },
+            {
+                "number": "34157",
+                "name": "Komagata Maru Budge Budge - Sealdah Local",
+                "time": "9:49 PM"
+            },
+            {
+                "number": "34159",
+                "name": "Komagata Maru Budge Budge - Sealdah Local",
+                "time": "10:35 PM"
+            },
+            {
+                "number": "34161",
+                "name": "Komagata Maru Budge Budge - Sealdah Local",
+                "time": "11:08 PM"
+            },
+            {
+                "number": "34163",
+                "name": "Komagata Maru Budge Budge - Sealdah Local",
+                "time": "11:58 PM"
+            },
+            {
+                "number": "34811",
+                "name": "Diamond Harbour - Sealdah Local",
+                "time": "4:45 AM"
+            },
+            {
+                "number": "34711",
+                "name": "Lakshmikantapur - Sealdah Local",
+                "time": "4:50 AM"
+            },
+            {
+                "number": "34511",
+                "name": "Canning - Sealdah Local",
+                "time": "5:05 AM"
+            },
+            {
+                "number": "34411",
+                "name": "Sonarpur - Sealdah Local",
+                "time": "5:12 AM"
+            },
+            {
+                "number": "34713",
+                "name": "Lakshmikantapur - Sealdah Local",
+                "time": "5:20 AM"
+            },
+            {
+                "number": "34813",
+                "name": "Diamond Harbour - Sealdah Local",
+                "time": "5:35 AM"
+            },
+            {
+                "number": "34513",
+                "name": "Canning - Sealdah Local",
+                "time": "5:47 AM"
+            },
+            {
+                "number": "34715",
+                "name": "Lakshmikantapur - Sealdah Local",
+                "time": "5:58 AM"
+            },
+            {
+                "number": "34815",
+                "name": "Diamond Harbour - Sealdah Local",
+                "time": "6:14 AM"
+            },
+            {
+                "number": "34717",
+                "name": "Lakshmikantapur - Sealdah Local",
+                "time": "6:20 AM"
+            },
+            {
+                "number": "34515",
+                "name": "Canning - Sealdah Local",
+                "time": "6:35 AM"
+            },
+            {
+                "number": "34791",
+                "name": "Namkhana - Sealdah Galloping Local",
+                "time": "6:50 AM"
+            },
+            {
+                "number": "34611",
+                "name": "Baruipur - Sealdah Local",
+                "time": "7:00 AM"
+            },
+            {
+                "number": "34517",
+                "name": "Canning - Sealdah Local",
+                "time": "7:08 AM"
+            },
+            {
+                "number": "34817",
+                "name": "Diamond Harbour - Sealdah Local",
+                "time": "7:17 AM"
+            },
+            {
+                "number": "34719",
+                "name": "Lakshmikantapur - Sealdah Local",
+                "time": "7:23 AM"
+            },
+            {
+                "number": "34819",
+                "name": "Diamond Harbour - Sealdah Local",
+                "time": "7:36 AM"
+            },
+            {
+                "number": "34613",
+                "name": "Baruipur - Sealdah Local",
+                "time": "7:45 AM"
+            },
+            {
+                "number": "34795",
+                "name": "Namkhana - Sealdah Local",
+                "time": "7:55 AM"
+            },
+            {
+                "number": "34413",
+                "name": "Sonarpur - Sealdah Local",
+                "time": "8:00 AM"
+            },
+            {
+                "number": "34519",
+                "name": "Canning - Sealdah Local",
+                "time": "8:07 AM"
+            },
+            {
+                "number": "34721",
+                "name": "Lakshmikantapur - Sealdah Local",
+                "time": "8:15 AM"
+            },
+            {
+                "number": "34615",
+                "name": "Baruipur - Sealdah Local",
+                "time": "8:22 AM"
+            },
+            {
+                "number": "34821",
+                "name": "Diamond Harbour - Sealdah Local",
+                "time": "8:30 AM"
+            },
+            {
+                "number": "34521",
+                "name": "Canning - Sealdah Local",
+                "time": "8:37 AM"
+            },
+            {
+                "number": "34617",
+                "name": "Baruipur - Sealdah Local",
+                "time": "8:45 AM"
+            },
+            {
+                "number": "34723",
+                "name": "Lakshmikantapur - Sealdah Local",
+                "time": "8:52 AM"
+            },
+            {
+                "number": "34863",
+                "name": "Sealdah DH - SDAH LOCAL",
+                "time": "8:58 AM"
+            },
+            {
+                "number": "34619",
+                "name": "Baruipur - Sealdah Local",
+                "time": "9:08 AM"
+            },
+            {
+                "number": "34415",
+                "name": "Sonarpur - Sealdah Local",
+                "time": "9:15 AM"
+            },
+            {
+                "number": "34823",
+                "name": "Diamond Harbour - Sealdah Local",
+                "time": "9:25 AM"
+            },
+            {
+                "number": "34523",
+                "name": "Canning - Sealdah Local",
+                "time": "9:32 AM"
+            },
+            {
+                "number": "34725",
+                "name": "Lakshmikantapur - Sealdah Local",
+                "time": "9:37 AM"
+            },
+            {
+                "number": "34621",
+                "name": "Baruipur - Sealdah Local",
+                "time": "9:43 AM"
+            },
+            {
+                "number": "34501",
+                "name": "Canning - Sealdah Matribhoomi Ladies Special Local",
+                "time": "9:48 AM"
+            },
+            {
+                "number": "34417",
+                "name": "Sonarpur - Sealdah Local",
+                "time": "9:54 AM"
+            },
+            {
+                "number": "34825",
+                "name": "Diamond Harbour - Sealdah Local",
+                "time": "10:09 AM"
+            },
+            {
+                "number": "34623",
+                "name": "Baruipur - Sealdah Local",
+                "time": "10:14 AM"
+            },
+            {
+                "number": "34727",
+                "name": "Lakshmikantapur - Sealdah Local",
+                "time": "10:19 AM"
+            },
+            {
+                "number": "34525",
+                "name": "Canning - Sealdah Local",
+                "time": "10:24 AM"
+            },
+            {
+                "number": "34601",
+                "name": "Baruipur - Sealdah Matribhoomi Ladies Special Local",
+                "time": "10:30 AM"
+            },
+            {
+                "number": "34625",
+                "name": "Baruipur - Sealdah Local",
+                "time": "10:40 AM"
+            },
+            {
+                "number": "34419",
+                "name": "Sonarpur - Sealdah Local",
+                "time": "10:45 AM"
+            },
+            {
+                "number": "34827",
+                "name": "Diamond Harbour - Sealdah Local",
+                "time": "10:52 AM"
+            },
+            {
+                "number": "34729",
+                "name": "Lakshmikantapur - Sealdah Local",
+                "time": "11:03 AM"
+            },
+            {
+                "number": "34829",
+                "name": "Diamond Harbour - Sealdah Galloping Local",
+                "time": "11:08 AM"
+            },
+            {
+                "number": "34527",
+                "name": "Canning - Sealdah Local",
+                "time": "11:20 AM"
+            },
+            {
+                "number": "34627",
+                "name": "Baruipur - Sealdah Local",
+                "time": "11:27 AM"
+            },
+            {
+                "number": "34831",
+                "name": "Diamond Harbour - Sealdah Local",
+                "time": "11:45 AM"
+            },
+            {
+                "number": "34629",
+                "name": "Baruipur - Sealdah Local",
+                "time": "11:55 AM"
+            },
+            {
+                "number": "34529",
+                "name": "Canning - Sealdah Local",
+                "time": "12:05 PM"
+            },
+            {
+                "number": "34731",
+                "name": "Lakshmikantapur - Sealdah Local",
+                "time": "12:15 PM"
+            },
+            {
+                "number": "34833",
+                "name": "Diamond Harbour - Sealdah Local",
+                "time": "12:40 PM"
+            },
+            {
+                "number": "34733",
+                "name": "Lakshmikantapur - Sealdah Local",
+                "time": "1:15 PM"
+            },
+            {
+                "number": "34531",
+                "name": "Canning - Sealdah Local",
+                "time": "1:26 PM"
+            },
+            {
+                "number": "34835",
+                "name": "Diamond Harbour - Sealdah Local",
+                "time": "1:38 PM"
+            },
+            {
+                "number": "34649",
+                "name": "Baruipur - Sealdah Local",
+                "time": "1:47 PM"
+            },
+            {
+                "number": "34633",
+                "name": "Baruipur - Sealdah Local",
+                "time": "2:10 PM"
+            },
+            {
+                "number": "34837",
+                "name": "Diamond Harbour - Sealdah Local",
+                "time": "2:28 PM"
+            },
+            {
+                "number": "34533",
+                "name": "Canning - Sealdah Local",
+                "time": "2:40 PM"
+            },
+            {
+                "number": "34735",
+                "name": "Lakshmikantapur - Sealdah Local",
+                "time": "2:50 PM"
+            },
+            {
+                "number": "34535",
+                "name": "Canning - Sealdah Local",
+                "time": "3:07 PM"
+            },
+            {
+                "number": "34651",
+                "name": "Baruipur - Sealdah Local",
+                "time": "3:25 PM"
+            },
+            {
+                "number": "34737",
+                "name": "Lakshmikantapur - Sealdah Local",
+                "time": "3:37 PM"
+            },
+            {
+                "number": "34839",
+                "name": "Diamond Harbour - Sealdah Local",
+                "time": "4:00 PM"
+            },
+            {
+                "number": "34537",
+                "name": "Canning - Sealdah Local",
+                "time": "4:20 PM"
+            },
+            {
+                "number": "34841",
+                "name": "Diamond Harbour - Sealdah Local",
+                "time": "4:30 PM"
+            },
+            {
+                "number": "34423",
+                "name": "Sonarpur -Sealdah Local",
+                "time": "4:37 PM"
+            },
+            {
+                "number": "34637",
+                "name": "Baruipur - Sealdah Local",
+                "time": "4:50 PM"
+            },
+            {
+                "number": "34739",
+                "name": "Lakshmikantapur - Sealdah Local",
+                "time": "4:57 PM"
+            },
+            {
+                "number": "34539",
+                "name": "Canning - Sealdah Local",
+                "time": "5:02 PM"
+            },
+            {
+                "number": "34843",
+                "name": "Diamond Harbour - Sealdah Local",
+                "time": "5:18 PM"
+            },
+            {
+                "number": "34541",
+                "name": "Canning - Sealdah Local",
+                "time": "5:28 PM"
+            },
+            {
+                "number": "34425",
+                "name": "Sonarpur - Sealdah Local",
+                "time": "5:38 PM"
+            },
+            {
+                "number": "34845",
+                "name": "Diamond Harbour - Sealdah Local",
+                "time": "5:45 PM"
+            },
+            {
+                "number": "34639",
+                "name": "Baruipur - Sealdah Local",
+                "time": "5:57 PM"
+            },
+            {
+                "number": "34741",
+                "name": "Lakshmikantapur - Sealdah Local",
+                "time": "6:04 PM"
+            },
+            {
+                "number": "34427",
+                "name": "Sonarpur -Sealdah Local",
+                "time": "6:17 PM"
+            },
+            {
+                "number": "34847",
+                "name": "Diamond Harbour - Sealdah Local",
+                "time": "6:25 PM"
+            },
+            {
+                "number": "34543",
+                "name": "Canning - Sealdah Local",
+                "time": "6:31 PM"
+            },
+            {
+                "number": "34429",
+                "name": "Sonarpur - Sealdah Local",
+                "time": "6:37 PM"
+            },
+            {
+                "number": "34641",
+                "name": "Baruipur - Sealdah Local",
+                "time": "6:44 PM"
+            },
+            {
+                "number": "34743",
+                "name": "Lakshmikantapur - Sealdah Local",
+                "time": "6:55 PM"
+            },
+            {
+                "number": "34849",
+                "name": "Diamond Harbour - Sealdah Local",
+                "time": "7:08 PM"
+            },
+            {
+                "number": "34793",
+                "name": "Namkhana - Sealdah Local",
+                "time": "7:18 PM"
+            },
+            {
+                "number": "34643",
+                "name": "Baruipur - Sealdah Local",
+                "time": "7:30 PM"
+            },
+            {
+                "number": "34545",
+                "name": "Canning - Sealdah Local",
+                "time": "7:35 PM"
+            },
+            {
+                "number": "34745",
+                "name": "Lakshmikantapur - Sealdah Local",
+                "time": "7:40 PM"
+            },
+            {
+                "number": "34431",
+                "name": "Sonarpur - Sealdah Local",
+                "time": "7:50 PM"
+            },
+            {
+                "number": "34547",
+                "name": "Canning - Sealdah Local",
+                "time": "8:02 PM"
+            },
+            {
+                "number": "34861",
+                "name": "Diamond Harbour - Sealdah Local",
+                "time": "8:12 PM"
+            },
+            {
+                "number": "34747",
+                "name": "Lakshmikantapur - Sealdah Local",
+                "time": "8:17 PM"
+            },
+            {
+                "number": "34549",
+                "name": "Canning - Sealdah Local",
+                "time": "8:34 PM"
+            },
+            {
+                "number": "34851",
+                "name": "Diamond Harbour - Sealdah Local",
+                "time": "8:48 PM"
+            },
+            {
+                "number": "34645",
+                "name": "Baruipur - Sealdah Local",
+                "time": "8:55 PM"
+            },
+            {
+                "number": "34647",
+                "name": "Baruipur - Sealdah Local",
+                "time": "9:12 PM"
+            },
+            {
+                "number": "34551",
+                "name": "Canning - Sealdah Local",
+                "time": "9:22 PM"
+            },
+            {
+                "number": "34749",
+                "name": "Lakshmikantapur - Sealdah Local",
+                "time": "9:28 PM"
+            },
+            {
+                "number": "34853",
+                "name": "Diamond Harbour - Sealdah Local",
+                "time": "9:44 PM"
+            },
+            {
+                "number": "34751",
+                "name": "Lakshmikantapur - Sealdah Local",
+                "time": "9:55 PM"
+            },
+            {
+                "number": "34899",
+                "name": "Sealdah DH - SDAH LOCAL",
+                "time": "10:10 PM"
+            },
+            {
+                "number": "34553",
+                "name": "Canning - Sealdah Local",
+                "time": "10:20 PM"
+            },
+            {
+                "number": "34753",
+                "name": "Lakshmikantapur - Sealdah Local",
+                "time": "10:28 PM"
+            },
+            {
+                "number": "34855",
+                "name": "Diamond Harbour - Sealdah Local",
+                "time": "10:40 PM"
+            },
+            {
+                "number": "34555",
+                "name": "Canning - Sealdah Local",
+                "time": "10:50 PM"
+            },
+            {
+                "number": "34857",
+                "name": "Diamond Harbour - Sealdah Local",
+                "time": "11:19 PM"
+            },
+            {
+                "number": "34755",
+                "name": "Lakshmikantapur - Sealdah Local",
+                "time": "11:30 PM"
+            },
+            {
+                "number": "34557",
+                "name": "Canning - Sealdah Local",
+                "time": "11:36 PM"
+            },
+            {
+                "number": "34859",
+                "name": "Diamond Harbour - Sealdah Local",
+                "time": "11:52 PM"
+            },
+            {
+                "number": "34757",
+                "name": "Lakshmikantapur - Sealdah Local",
+                "time": "12:02 AM"
+            },
+            {
+                "number": "31811",
+                "name": "Sealdah - Krishnanagar City Local",
+                "time": "3:20 AM"
+            },
+            {
+                "number": "53171",
+                "name": "Sealdah - Lalgola Passenger",
+                "time": "3:45 AM"
+            },
+            {
+                "number": "31311",
+                "name": "Sealdah - Kalyani Simanta Local",
+                "time": "4:12 AM"
+            },
+            {
+                "number": "31911",
+                "name": "Sealdah - Gede Local",
+                "time": "4:20 AM"
+            },
+            {
+                "number": "31511",
+                "name": "Sealdah - Shantipur Local",
+                "time": "4:40 AM"
+            },
+            {
+                "number": "31611",
+                "name": "Sealdah - Ranaghat Local",
+                "time": "5:05 AM"
+            },
+            {
+                "number": "31613",
+                "name": "Sealdah - Ranaghat Local",
+                "time": "5:20 AM"
+            },
+            {
+                "number": "31313",
+                "name": "Sealdah - Kalyani Simanta Local",
+                "time": "5:30 AM"
+            },
+            {
+                "number": "31813",
+                "name": "Sealdah - Krishnanagar City Local",
+                "time": "5:37 AM"
+            },
+            {
+                "number": "31513",
+                "name": "Sealdah - Shantipur Local",
+                "time": "6:00 AM"
+            },
+            {
+                "number": "31815",
+                "name": "Sealdah - Krishnanagar City Local",
+                "time": "6:10 AM"
+            },
+            {
+                "number": "31615",
+                "name": "Sealdah - Ranaghat Local",
+                "time": "6:20 AM"
+            },
+            {
+                "number": "31315",
+                "name": "Sealdah - Kalyani Simanta Local",
+                "time": "6:30 AM"
+            },
+            {
+                "number": "31817",
+                "name": "Sealdah - Krishnanagar City Local",
+                "time": "6:55 AM"
+            },
+            {
+                "number": "31317",
+                "name": "Sealdah - Kalyani Simanta Local",
+                "time": "7:18 AM"
+            },
+            {
+                "number": "31515",
+                "name": "Sealdah - Shantipur Local",
+                "time": "7:25 AM"
+            },
+            {
+                "number": "31913",
+                "name": "Sealdah - Gede Local",
+                "time": "7:40 AM"
+            },
+            {
+                "number": "31819",
+                "name": "Sealdah - Krishnanagar City Galloping Local",
+                "time": "7:52 AM"
+            },
+            {
+                "number": "31617",
+                "name": "Sealdah - Ranaghat Local",
+                "time": "8:07 AM"
+            },
+            {
+                "number": "31319",
+                "name": "Sealdah - Kalyani Simanta Local",
+                "time": "8:30 AM"
+            },
+            {
+                "number": "31517",
+                "name": "Sealdah - Shantipur Local",
+                "time": "8:55 AM"
+            },
+            {
+                "number": "31321",
+                "name": "Sealdah - Kalyani Simanta Local",
+                "time": "9:20 AM"
+            },
+            {
+                "number": "31931",
+                "name": "Sealdah - Gede Special Local",
+                "time": "9:28 AM"
+            },
+            {
+                "number": "31821",
+                "name": "Sealdah - Krishnanagar City Galloping Local",
+                "time": "9:34 AM"
+            },
+            {
+                "number": "31845",
+                "name": "Sealdah - Krishnanagar City AC Local",
+                "time": "9:48 AM"
+            },
+            {
+                "number": "31915",
+                "name": "Sealdah - Gede Local",
+                "time": "9:58 AM"
+            },
+            {
+                "number": "63107",
+                "name": "Sealdah - Lalgola MEMU",
+                "time": "10:28 AM"
+            },
+            {
+                "number": "31519",
+                "name": "Sealdah - Shantipur Local",
+                "time": "10:40 AM"
+            },
+            {
+                "number": "31825",
+                "name": "Sealdah - Krishnanagar City Local",
+                "time": "10:52 AM"
+            },
+            {
+                "number": "31323",
+                "name": "Sealdah - Kalyani Simanta Local",
+                "time": "11:22 AM"
+            },
+            {
+                "number": "31521",
+                "name": "Sealdah - Shantipur Local",
+                "time": "11:35 AM"
+            },
+            {
+                "number": "31621",
+                "name": "Sealdah - Ranaghat Local",
+                "time": "11:45 AM"
+            },
+            {
+                "number": "31847",
+                "name": "Sealdah - Krishnanagar City AC Local",
+                "time": "11:55 AM"
+            },
+            {
+                "number": "31827",
+                "name": "Sealdah - Krishnanagar City Local",
+                "time": "12:05 PM"
+            },
+            {
+                "number": "31325",
+                "name": "Sealdah - Kalyani Simanta Local",
+                "time": "12:30 PM"
+            },
+            {
+                "number": "53175",
+                "name": "Sealdah - Lalgola Passenger",
+                "time": "12:40 PM"
+            },
+            {
+                "number": "31917",
+                "name": "Sealdah - Gede Local",
+                "time": "12:45 PM"
+            },
+            {
+                "number": "31523",
+                "name": "Sealdah - Shantipur Local",
+                "time": "1:00 PM"
+            },
+            {
+                "number": "31829",
+                "name": "Sealdah - Krishnanagar City Local",
+                "time": "1:15 PM"
+            },
+            {
+                "number": "31919",
+                "name": "Sealdah - Gede Local",
+                "time": "2:05 PM"
+            },
+            {
+                "number": "31525",
+                "name": "Sealdah - Shantipur Local",
+                "time": "2:20 PM"
+            },
+            {
+                "number": "31329",
+                "name": "Sealdah - Kalyani Simanta Local",
+                "time": "2:40 PM"
+            },
+            {
+                "number": "31623",
+                "name": "Sealdah - Ranaghat Local",
+                "time": "3:00 PM"
+            },
+            {
+                "number": "31347",
+                "name": "Sealdah - Kalyani AC Local",
+                "time": "3:10 PM"
+            },
+            {
+                "number": "31831",
+                "name": "Sealdah - Krishnanagar City Local",
+                "time": "3:25 PM"
+            },
+            {
+                "number": "31331",
+                "name": "Sealdah - Kalyani Simanta Local",
+                "time": "3:40 PM"
+            },
+            {
+                "number": "31527",
+                "name": "Sealdah - Shantipur Local",
+                "time": "3:48 PM"
+            },
+            {
+                "number": "31833",
+                "name": "Sealdah - Krishnanagar City Galloping Local",
+                "time": "4:08 PM"
+            },
+            {
+                "number": "31625",
+                "name": "Sealdah - Ranaghat Galloping Local",
+                "time": "4:15 PM"
+            },
+            {
+                "number": "31333",
+                "name": "Sealdah - Kalyani Simanta Local",
+                "time": "4:30 PM"
+            },
+            {
+                "number": "31543",
+                "name": "Sealdah - Shantipur Local",
+                "time": "4:35 PM"
+            },
+            {
+                "number": "63177",
+                "name": "Sealdah - Lalgola MEMU",
+                "time": "4:40 PM"
+            },
+            {
+                "number": "31933",
+                "name": "Sealdah - Gede Special Local",
+                "time": "4:50 PM"
+            },
+            {
+                "number": "31529",
+                "name": "Sealdah - Shantipur Local",
+                "time": "4:57 PM"
+            },
+            {
+                "number": "31801",
+                "name": "Sealdah - Krishnanagar City Matribhoomi Ladies Special Local",
+                "time": "5:05 PM"
+            },
+            {
+                "number": "31921",
+                "name": "Sealdah - Gede Local",
+                "time": "5:16 PM"
+            },
+            {
+                "number": "31835",
+                "name": "Sealdah - Krishnanagar City Galloping Local",
+                "time": "5:34 PM"
+            },
+            {
+                "number": "31531",
+                "name": "Sealdah - Shantipur Galloping Local",
+                "time": "5:50 PM"
+            },
+            {
+                "number": "31601",
+                "name": "Sealdah - Ranaghat Matribhumi Ladies Special",
+                "time": "5:55 PM"
+            },
+            {
+                "number": "31335",
+                "name": "Sealdah - Kalyani Simanta Local",
+                "time": "6:12 PM"
+            },
+            {
+                "number": "31923",
+                "name": "Sealdah - Gede Local",
+                "time": "6:20 PM"
+            },
+            {
+                "number": "31837",
+                "name": "Sealdah - Krishnanagar City Galloping Local",
+                "time": "6:43 PM"
+            },
+            {
+                "number": "31637",
+                "name": "Sealdah - Ranaghat Galloping AC Local",
+                "time": "6:50 PM"
+            },
+            {
+                "number": "31533",
+                "name": "Sealdah - Shantipur Local",
+                "time": "6:55 PM"
+            },
+            {
+                "number": "31337",
+                "name": "Sealdah - Kalyani Simanta SUPER Local",
+                "time": "7:10 PM"
+            },
+            {
+                "number": "63103",
+                "name": "Sealdah - Lalgola MEMU",
+                "time": "7:15 PM"
+            },
+            {
+                "number": "31925",
+                "name": "Sealdah - Gede Local",
+                "time": "7:28 PM"
+            },
+            {
+                "number": "31841",
+                "name": "Sealdah - Krishnanagar City Local",
+                "time": "7:35 PM"
+            },
+            {
+                "number": "31535",
+                "name": "Sealdah - Shantipur Local",
+                "time": "7:50 PM"
+            },
+            {
+                "number": "31339",
+                "name": "Sealdah - Kalyani Simanta Local",
+                "time": "8:05 PM"
+            },
+            {
+                "number": "63105",
+                "name": "Sealdah - Lalgola MEMU",
+                "time": "8:20 PM"
+            },
+            {
+                "number": "31627",
+                "name": "Sealdah - Ranaghat Local",
+                "time": "8:25 PM"
+            },
+            {
+                "number": "31537",
+                "name": "Sealdah - Shantipur Local",
+                "time": "8:32 PM"
+            },
+            {
+                "number": "31927",
+                "name": "Sealdah - Gede Local",
+                "time": "8:45 PM"
+            },
+            {
+                "number": "31843",
+                "name": "Sealdah - Krishnanagar City Local",
+                "time": "9:00 PM"
+            },
+            {
+                "number": "31929",
+                "name": "Sealdah - Gede Local",
+                "time": "9:35 PM"
+            },
+            {
+                "number": "31539",
+                "name": "Sealdah - Shantipur Local",
+                "time": "9:50 PM"
+            },
+            {
+                "number": "31341",
+                "name": "Sealdah - Kalyani Simanta Local",
+                "time": "10:00 PM"
+            },
+            {
+                "number": "31629",
+                "name": "Sealdah - Ranaghat Local",
+                "time": "10:08 PM"
+            },
+            {
+                "number": "31541",
+                "name": "Sealdah - Shantipur Local",
+                "time": "10:40 PM"
+            },
+            {
+                "number": "31631",
+                "name": "Sealdah - Ranaghat Local",
+                "time": "10:50 PM"
+            },
+            {
+                "number": "53181",
+                "name": "Sealdah - Lalgola Passenger",
+                "time": "11:30 PM"
+            },
+            {
+                "number": "63111",
+                "name": "Sealdah - Ranaghat MEMU",
+                "time": "11:58 PM"
+            }
+        ],
+        "down": [
+            {
+                "number": "34148",
+                "name": "Sealdah - Komagata Maru Budge Budge Local",
+                "time": "3:57 PM"
+            },
+            {
+                "number": "34150",
+                "name": "Sealdah - Komagata Maru Budge Budge Local",
+                "time": "4:30 PM"
+            },
+            {
+                "number": "34152",
+                "name": "Sealdah - Komagata Maru Budge Budge Local",
+                "time": "5:02 PM"
+            },
+            {
+                "number": "34154",
+                "name": "Sealdah - Komagata Maru Budge Budge Local",
+                "time": "5:47 PM"
+            },
+            {
+                "number": "34156",
+                "name": "Sealdah - Komagata Maru Budge Budge Local",
+                "time": "6:25 PM"
+            },
+            {
+                "number": "34158",
+                "name": "Sealdah - Komagata Maru Budge Budge Local",
+                "time": "7:15 PM"
+            },
+            {
+                "number": "34160",
+                "name": "Sealdah - Komagata Maru Budge Budge Local",
+                "time": "8:35 PM"
+            },
+            {
+                "number": "34162",
+                "name": "Sealdah - Komagata Maru Budge Budge Local",
+                "time": "9:15 PM"
+            },
+            {
+                "number": "34164",
+                "name": "Sealdah - Komagata Maru Budge Budge Local",
+                "time": "10:04 PM"
+            },
+            {
+                "number": "34112",
+                "name": "Sealdah - Komagata Maru Budge Budge Local",
+                "time": "3:45 AM"
+            },
+            {
+                "number": "34114",
+                "name": "Sealdah - Komagata Maru Budge Budge Local",
+                "time": "4:36 AM"
+            },
+            {
+                "number": "34116",
+                "name": "Sealdah - Komagata Maru Budge Budge Local",
+                "time": "5:30 AM"
+            },
+            {
+                "number": "34118",
+                "name": "Sealdah - Komagata Maru Budge Budge Local",
+                "time": "6:10 AM"
+            },
+            {
+                "number": "34120",
+                "name": "Sealdah - Komagata Maru Budge Budge Local",
+                "time": "7:20 AM"
+            },
+            {
+                "number": "34122",
+                "name": "Sealdah - Komagata Maru Budge Budge Local",
+                "time": "8:09 AM"
+            },
+            {
+                "number": "34124",
+                "name": "Sealdah - Komagata Maru Budge Budge Local",
+                "time": "8:35 AM"
+            },
+            {
+                "number": "34126",
+                "name": "Sealdah - Komagata Maru Budge Budge Local",
+                "time": "9:22 AM"
+            },
+            {
+                "number": "34128",
+                "name": "Sealdah - Komagata Maru Budge Budge Local",
+                "time": "9:45 AM"
+            },
+            {
+                "number": "34130",
+                "name": "Sealdah - Komagata Maru Budge Budge Local",
+                "time": "10:18 AM"
+            },
+            {
+                "number": "34132",
+                "name": "Sealdah - Komagata Maru Budge Budge Local",
+                "time": "10:50 AM"
+            },
+            {
+                "number": "34136",
+                "name": "Sealdah - Komagata Maru Budge Budge Local",
+                "time": "11:56 AM"
+            },
+            {
+                "number": "34140",
+                "name": "Sealdah - Komagata Maru Budge Budge Local",
+                "time": "1:14 PM"
+            },
+            {
+                "number": "34168",
+                "name": "Sealdah - Komagata Maru Budge Budge Local",
+                "time": "2:30 PM"
+            },
+            {
+                "number": "34146",
+                "name": "Sealdah - Komagata Maru Budge Budge Local",
+                "time": "3:08 PM"
+            },
+            {
+                "number": "34812",
+                "name": "Sealdah - Diamond Harbour Galloping Local",
+                "time": "3:54 AM"
+            },
+            {
+                "number": "34712",
+                "name": "Sealdah - Lakshmikantapur Local",
+                "time": "4:00 AM"
+            },
+            {
+                "number": "34412",
+                "name": "Sealdah - Sonarpur Local",
+                "time": "4:15 AM"
+            },
+            {
+                "number": "34814",
+                "name": "Sealdah - Diamond Harbour Local",
+                "time": "4:45 AM"
+            },
+            {
+                "number": "34714",
+                "name": "Sealdah - Lakshmikantapur Local",
+                "time": "4:50 AM"
+            },
+            {
+                "number": "34612",
+                "name": "Sealdah - Baruipur Local",
+                "time": "5:05 AM"
+            },
+            {
+                "number": "34716",
+                "name": "Sealdah - Lakshmikantapur Local",
+                "time": "5:20 AM"
+            },
+            {
+                "number": "34816",
+                "name": "Sealdah - Diamond Harbour Local",
+                "time": "5:25 AM"
+            },
+            {
+                "number": "34512",
+                "name": "Sealdah - Canning Local",
+                "time": "5:45 AM"
+            },
+            {
+                "number": "34718",
+                "name": "Sealdah - Lakshmikantapur Local",
+                "time": "5:55 AM"
+            },
+            {
+                "number": "34614",
+                "name": "Sealdah - Baruipur Local",
+                "time": "6:02 AM"
+            },
+            {
+                "number": "34818",
+                "name": "Sealdah - Diamond Harbour Local",
+                "time": "6:24 AM"
+            },
+            {
+                "number": "34514",
+                "name": "Sealdah - Canning Local",
+                "time": "6:30 AM"
+            },
+            {
+                "number": "34616",
+                "name": "Sealdah - Baruipur Local",
+                "time": "6:40 AM"
+            },
+            {
+                "number": "34820",
+                "name": "Sealdah - Diamond Harbour Local",
+                "time": "6:55 AM"
+            },
+            {
+                "number": "34618",
+                "name": "Sealdah - Baruipur Local",
+                "time": "7:08 AM"
+            },
+            {
+                "number": "34720",
+                "name": "Sealdah - Lakshmikantapur Local",
+                "time": "7:14 AM"
+            },
+            {
+                "number": "34822",
+                "name": "Sealdah - Diamond Harbour Galloping Local",
+                "time": "7:25 AM"
+            },
+            {
+                "number": "34620",
+                "name": "Sealdah - Baruipur Local",
+                "time": "7:31 AM"
+            },
+            {
+                "number": "34516",
+                "name": "Sealdah - Canning Local",
+                "time": "7:42 AM"
+            },
+            {
+                "number": "34824",
+                "name": "Sealdah - Diamond Harbour Local",
+                "time": "7:50 AM"
+            },
+            {
+                "number": "34622",
+                "name": "Sealdah - Baruipur Local",
+                "time": "8:00 AM"
+            },
+            {
+                "number": "34556",
+                "name": "Sealdah - Canning Local",
+                "time": "8:05 AM"
+            },
+            {
+                "number": "34722",
+                "name": "Sealdah - Lakshmikantapur Local",
+                "time": "8:15 AM"
+            },
+            {
+                "number": "34414",
+                "name": "Sealdah - Sonarpur Local",
+                "time": "8:22 AM"
+            },
+            {
+                "number": "34518",
+                "name": "Sealdah - Canning Local",
+                "time": "8:28 AM"
+            },
+            {
+                "number": "34416",
+                "name": "Sealdah - Sonarpur Local",
+                "time": "8:40 AM"
+            },
+            {
+                "number": "34624",
+                "name": "Sealdah - Baruipur Local",
+                "time": "8:50 AM"
+            },
+            {
+                "number": "34826",
+                "name": "Sealdah - Diamond Harbour Local",
+                "time": "8:57 AM"
+            },
+            {
+                "number": "34520",
+                "name": "Sealdah - Canning Local",
+                "time": "9:10 AM"
+            },
+            {
+                "number": "34724",
+                "name": "Sealdah - Lakshmikantapur Local",
+                "time": "9:16 AM"
+            },
+            {
+                "number": "34418",
+                "name": "Sealdah - Sonarpur Local",
+                "time": "9:30 AM"
+            },
+            {
+                "number": "34440",
+                "name": "Sonarpur Jn. SDAH-SPR LOCAL",
+                "time": "9:35 AM"
+            },
+            {
+                "number": "34626",
+                "name": "Sealdah - Baruipur Local",
+                "time": "9:40 AM"
+            },
+            {
+                "number": "34420",
+                "name": "Sealdah - Canning Local",
+                "time": "9:50 AM"
+            },
+            {
+                "number": "34828",
+                "name": "Sealdah - Diamond Harbour Local",
+                "time": "9:57 AM"
+            },
+            {
+                "number": "34628",
+                "name": "Sealdah - Baruipur Local",
+                "time": "10:12 AM"
+            },
+            {
+                "number": "34522",
+                "name": "Sealdah - Canning Local",
+                "time": "10:24 AM"
+            },
+            {
+                "number": "34756",
+                "name": "Sealdah - Lakshmikantapur Local",
+                "time": "10:30 AM"
+            },
+            {
+                "number": "34830",
+                "name": "Sealdah - Diamond Harbour Local",
+                "time": "10:38 AM"
+            },
+            {
+                "number": "34424",
+                "name": "Sealdah - Sonarpur Local",
+                "time": "10:45 AM"
+            },
+            {
+                "number": "34426",
+                "name": "Sealdah - Sonarpur Local",
+                "time": "10:55 AM"
+            },
+            {
+                "number": "34726",
+                "name": "Sealdah - Lakshmikantapur Local",
+                "time": "11:02 AM"
+            },
+            {
+                "number": "34428",
+                "name": "Sealdah - Sonarpur Local",
+                "time": "11:08 AM"
+            },
+            {
+                "number": "34524",
+                "name": "Sealdah - Canning Local",
+                "time": "11:25 AM"
+            },
+            {
+                "number": "34832",
+                "name": "Sealdah - Diamond Harbour Local",
+                "time": "11:42 AM"
+            },
+            {
+                "number": "34728",
+                "name": "Sealdah - Lakshmikantapur Local",
+                "time": "11:50 AM"
+            },
+            {
+                "number": "34650",
+                "name": "Sealdah - Baruipur Local",
+                "time": "12:02 PM"
+            },
+            {
+                "number": "34526",
+                "name": "Sealdah - Canning Local",
+                "time": "12:10 PM"
+            },
+            {
+                "number": "34632",
+                "name": "Sealdah - Baruipur Local",
+                "time": "12:25 PM"
+            },
+            {
+                "number": "34834",
+                "name": "Sealdah - Diamond Harbour Local",
+                "time": "12:35 PM"
+            },
+            {
+                "number": "34730",
+                "name": "Sealdah - Lakshmikantapur Local",
+                "time": "12:50 PM"
+            },
+            {
+                "number": "34792",
+                "name": "Sealdah - Namkhana Local",
+                "time": "1:20 PM"
+            },
+            {
+                "number": "34836",
+                "name": "Sealdah - Diamond Harbour Local",
+                "time": "1:26 PM"
+            },
+            {
+                "number": "34528",
+                "name": "Sealdah - Canning Local",
+                "time": "1:40 PM"
+            },
+            {
+                "number": "34652",
+                "name": "Sealdah - Baruipur Local",
+                "time": "1:47 PM"
+            },
+            {
+                "number": "34530",
+                "name": "Sealdah - Canning Local",
+                "time": "2:02 PM"
+            },
+            {
+                "number": "34838",
+                "name": "Sealdah - Diamond Harbour Local",
+                "time": "2:10 PM"
+            },
+            {
+                "number": "34732",
+                "name": "Sealdah - Lakshmikantapur Local",
+                "time": "2:18 PM"
+            },
+            {
+                "number": "34532",
+                "name": "Sealdah - Canning Local",
+                "time": "2:48 PM"
+            },
+            {
+                "number": "34840",
+                "name": "Sealdah - Diamond Harbour Local",
+                "time": "2:55 PM"
+            },
+            {
+                "number": "34636",
+                "name": "Sealdah - Baruipur Local",
+                "time": "3:02 PM"
+            },
+            {
+                "number": "34734",
+                "name": "Sealdah - Lakshmikantapur Local",
+                "time": "3:16 PM"
+            },
+            {
+                "number": "34842",
+                "name": "Sealdah - Diamond Harbour Local",
+                "time": "3:33 PM"
+            },
+            {
+                "number": "34534",
+                "name": "Sealdah - Canning Local",
+                "time": "3:40 PM"
+            },
+            {
+                "number": "34736",
+                "name": "Sealdah - Lakshmikantapur Local",
+                "time": "3:50 PM"
+            },
+            {
+                "number": "34638",
+                "name": "Sealdah - Baruipur Local",
+                "time": "4:15 PM"
+            },
+            {
+                "number": "34536",
+                "name": "Sealdah - Canning Local",
+                "time": "4:35 PM"
+            },
+            {
+                "number": "34844",
+                "name": "Sealdah - Diamond Harbour Local",
+                "time": "4:42 PM"
+            },
+            {
+                "number": "34738",
+                "name": "Sealdah - Lakshmikantapur Local",
+                "time": "4:50 PM"
+            },
+            {
+                "number": "34640",
+                "name": "Sealdah - Baruipur Local",
+                "time": "4:56 PM"
+            },
+            {
+                "number": "34538",
+                "name": "Sealdah - Canning Local",
+                "time": "5:08 PM"
+            },
+            {
+                "number": "34432",
+                "name": "Sealdah - Sonarpur Local",
+                "time": "5:14 PM"
+            },
+            {
+                "number": "34740",
+                "name": "Sealdah - Lakshmikantapur Local",
+                "time": "5:29 PM"
+            },
+            {
+                "number": "34602",
+                "name": "Sealdah - Baruipur Matribhoomi Ladies Special Local",
+                "time": "5:35 PM"
+            },
+            {
+                "number": "34642",
+                "name": "Sealdah - Baruipur Local",
+                "time": "5:41 PM"
+            },
+            {
+                "number": "34540",
+                "name": "Sealdah - Canning Local",
+                "time": "5:53 PM"
+            },
+            {
+                "number": "34846",
+                "name": "Sealdah - Diamond Harbour Local",
+                "time": "6:02 PM"
+            },
+            {
+                "number": "34502",
+                "name": "Sealdah - Canning Matribhoomi Ladies Special Local",
+                "time": "6:08 PM"
+            },
+            {
+                "number": "34742",
+                "name": "Sealdah - Lakshmikantapur Local",
+                "time": "6:15 PM"
+            },
+            {
+                "number": "34862",
+                "name": "Diamond Harbour SDAH-DH LOCAL",
+                "time": "6:20 PM"
+            },
+            {
+                "number": "34434",
+                "name": "Sealdah - Sonarpur Local",
+                "time": "6:30 PM"
+            },
+            {
+                "number": "34542",
+                "name": "Sealdah - Canning local",
+                "time": "6:38 PM"
+            },
+            {
+                "number": "34848",
+                "name": "Sealdah - Diamond Harbour Local",
+                "time": "6:45 PM"
+            },
+            {
+                "number": "34744",
+                "name": "Sealdah - Lakshmikantapur Local",
+                "time": "6:55 PM"
+            },
+            {
+                "number": "34898",
+                "name": "Diamond Harbour SDAH-DH LOCAL",
+                "time": "7:05 PM"
+            },
+            {
+                "number": "34644",
+                "name": "Sealdah - Baruipur Local",
+                "time": "7:24 PM"
+            },
+            {
+                "number": "34544",
+                "name": "Sealdah - Canning Local",
+                "time": "7:30 PM"
+            },
+            {
+                "number": "34746",
+                "name": "Sealdah - Lakshmikantapur Local",
+                "time": "7:36 PM"
+            },
+            {
+                "number": "34850",
+                "name": "Sealdah - Diamond Harbour Local",
+                "time": "7:45 PM"
+            },
+            {
+                "number": "34646",
+                "name": "Lakshmikantapur SDAH LKPR LOCAL",
+                "time": "7:56 PM"
+            },
+            {
+                "number": "34546",
+                "name": "Sealdah - Canning Local",
+                "time": "8:11 PM"
+            },
+            {
+                "number": "34852",
+                "name": "Sealdah - Diamond Harbour Local",
+                "time": "8:20 PM"
+            },
+            {
+                "number": "34782",
+                "name": "Sealdah - Kakdwip Local",
+                "time": "8:30 PM"
+            },
+            {
+                "number": "34648",
+                "name": "Sealdah - Baruipur Local",
+                "time": "8:40 PM"
+            },
+            {
+                "number": "34548",
+                "name": "Sealdah - Canning Local",
+                "time": "8:48 PM"
+            },
+            {
+                "number": "34438",
+                "name": "Sealdah - Sonarpur Local",
+                "time": "8:54 PM"
+            },
+            {
+                "number": "34854",
+                "name": "Sealdah - Diamond Harbour Local",
+                "time": "9:00 PM"
+            },
+            {
+                "number": "34748",
+                "name": "Sealdah - Lakshmikantapur Local",
+                "time": "9:10 PM"
+            },
+            {
+                "number": "34794",
+                "name": "Sealdah - Namkhana Galloping Local",
+                "time": "9:30 PM"
+            },
+            {
+                "number": "34550",
+                "name": "Sealdah - Canning Local",
+                "time": "9:37 PM"
+            },
+            {
+                "number": "34750",
+                "name": "Sealdah - Lakshmikantapur Local",
+                "time": "9:45 PM"
+            },
+            {
+                "number": "34856",
+                "name": "Sealdah - Diamond Harbour Local",
+                "time": "9:56 PM"
+            },
+            {
+                "number": "34752",
+                "name": "Sealdah - Lakshmikantapur Local",
+                "time": "10:20 PM"
+            },
+            {
+                "number": "34436",
+                "name": "Sealdah - Sonarpur Local",
+                "time": "10:27 PM"
+            },
+            {
+                "number": "34552",
+                "name": "Sealdah - Canning Local",
+                "time": "10:36 PM"
+            },
+            {
+                "number": "34858",
+                "name": "Sealdah - Diamond Harbour Local",
+                "time": "10:45 PM"
+            },
+            {
+                "number": "34754",
+                "name": "Sealdah - Lakshmikantapur Local",
+                "time": "11:06 PM"
+            },
+            {
+                "number": "34554",
+                "name": "Sealdah - Canning Local",
+                "time": "11:19 PM"
+            },
+            {
+                "number": "34860",
+                "name": "Sealdah - Diamond Harbour Local",
+                "time": "11:52 PM"
+            },
+            {
+                "number": "53172",
+                "name": "Lalgola - Sealdah Passenger",
+                "time": "4:30 AM"
+            },
+            {
+                "number": "31512",
+                "name": "Shantipur - Sealdah Local",
+                "time": "5:40 AM"
+            },
+            {
+                "number": "31612",
+                "name": "Ranaghat - Sealdah Local",
+                "time": "6:05 AM"
+            },
+            {
+                "number": "31912",
+                "name": "Gede - Sealdah Local",
+                "time": "6:25 AM"
+            },
+            {
+                "number": "31312",
+                "name": "Kalyani Simanta - Sealdah Local",
+                "time": "6:30 AM"
+            },
+            {
+                "number": "31812",
+                "name": "Krishnanagar City - Sealdah Local",
+                "time": "6:46 AM"
+            },
+            {
+                "number": "31514",
+                "name": "Shantipur - Sealdah Local",
+                "time": "7:05 AM"
+            },
+            {
+                "number": "31814",
+                "name": "Krishnanagar City - Sealdah Galloping Local",
+                "time": "7:12 AM"
+            },
+            {
+                "number": "31314",
+                "name": "Kalyani Simanta - Sealdah Local",
+                "time": "7:30 AM"
+            },
+            {
+                "number": "31614",
+                "name": "Ranaghat - Sealdah Local",
+                "time": "7:37 AM"
+            },
+            {
+                "number": "31914",
+                "name": "Gede - Sealdah Local",
+                "time": "7:50 AM"
+            },
+            {
+                "number": "31516",
+                "name": "Shantipur - Sealdah Local",
+                "time": "8:13 AM"
+            },
+            {
+                "number": "31816",
+                "name": "Krishnanagar City - Sealdah Local",
+                "time": "8:27 AM"
+            },
+            {
+                "number": "31316",
+                "name": "Kalyani Simanta - Sealdah Local",
+                "time": "8:40 AM"
+            },
+            {
+                "number": "31616",
+                "name": "Ranaghat - Sealdah Local",
+                "time": "9:07 AM"
+            },
+            {
+                "number": "63112",
+                "name": "Ranaghat - Sealdah MEMU",
+                "time": "9:12 AM"
+            },
+            {
+                "number": "31818",
+                "name": "Krishnanagar City - Sealdah Galloping Local",
+                "time": "9:22 AM"
+            },
+            {
+                "number": "31602",
+                "name": "Ranaghat - Sealdah Matribhoomi Ladies Local",
+                "time": "9:28 AM"
+            },
+            {
+                "number": "31518",
+                "name": "Shantipur - Sealdah Galloping Local",
+                "time": "9:40 AM"
+            },
+            {
+                "number": "31916",
+                "name": "Gede - Sealdah Galloping Local",
+                "time": "9:52 AM"
+            },
+            {
+                "number": "63108",
+                "name": "Lalgola - Sealdah MEMU",
+                "time": "10:05 AM"
+            },
+            {
+                "number": "31638",
+                "name": "Ranaghat - Sealdah Galloping AC Local",
+                "time": "10:10 AM"
+            },
+            {
+                "number": "31620",
+                "name": "Ranaghat - Sealdah Galloping Local",
+                "time": "10:18 AM"
+            },
+            {
+                "number": "31318",
+                "name": "Kalyani Simanta - Sealdah Local",
+                "time": "10:46 AM"
+            },
+            {
+                "number": "31520",
+                "name": "Shantipur - Sealdah Local",
+                "time": "10:52 AM"
+            },
+            {
+                "number": "31802",
+                "name": "Krishnanagar City - Sealdah Matribhoomi Ladies Special Local",
+                "time": "11:00 AM"
+            },
+            {
+                "number": "31930",
+                "name": "Gede - Sealdah Special Local",
+                "time": "10:57 AM"
+            },
+            {
+                "number": "31820",
+                "name": "Krishnanagar City - Sealdah Local",
+                "time": "11:22 AM"
+            },
+            {
+                "number": "31918",
+                "name": "Gede - Sealdah Local",
+                "time": "11:27 AM"
+            },
+            {
+                "number": "31320",
+                "name": "Kalyani Simanta - Sealdah Local",
+                "time": "11:35 AM"
+            },
+            {
+                "number": "31622",
+                "name": "Ranaghat - Sealdah Local",
+                "time": "12:00 PM"
+            },
+            {
+                "number": "31822",
+                "name": "Krishnanagar City - Sealdah Local",
+                "time": "12:10 PM"
+            },
+            {
+                "number": "31522",
+                "name": "Shantipur - Sealdah Local",
+                "time": "12:22 PM"
+            },
+            {
+                "number": "63176",
+                "name": "Lalgola - Sealdah MEMU",
+                "time": "12:45 PM"
+            },
+            {
+                "number": "31920",
+                "name": "Gede - Sealdah Local",
+                "time": "1:18 PM"
+            },
+            {
+                "number": "31524",
+                "name": "Shantipur - Sealdah Local",
+                "time": "1:42 PM"
+            },
+            {
+                "number": "31342",
+                "name": "Kalyani - Sealdah Local",
+                "time": "2:10 PM"
+            },
+            {
+                "number": "31824",
+                "name": "Krishnanagar City - Sealdah Local",
+                "time": "2:30 PM"
+            },
+            {
+                "number": "31624",
+                "name": "Ranaghat - Sealdah Local",
+                "time": "2:41 PM"
+            },
+            {
+                "number": "31322",
+                "name": "Kalyani Simanta - Sealdah Local",
+                "time": "3:00 PM"
+            },
+            {
+                "number": "53178",
+                "name": "Lalgola - Sealdah Passenger",
+                "time": "3:12 PM"
+            },
+            {
+                "number": "31526",
+                "name": "Shantipur - Sealdah Local",
+                "time": "3:32 PM"
+            },
+            {
+                "number": "31846",
+                "name": "Krishnanagar City - Sealdah AC Local",
+                "time": "3:40 PM"
+            },
+            {
+                "number": "31324",
+                "name": "Kalyani Simanta - Sealdah Local",
+                "time": "3:45 PM"
+            },
+            {
+                "number": "63104",
+                "name": "Lalgola - Sealdah MEMU",
+                "time": "4:00 PM"
+            },
+            {
+                "number": "31828",
+                "name": "Krishnanagar City - Sealdah Galloping Local",
+                "time": "4:15 PM"
+            },
+            {
+                "number": "31528",
+                "name": "Shantipur - Sealdah Local",
+                "time": "4:40 PM"
+            },
+            {
+                "number": "31922",
+                "name": "Gede - Sealdah Local",
+                "time": "5:00 PM"
+            },
+            {
+                "number": "31830",
+                "name": "Krishnanagar City - Sealdah Local",
+                "time": "5:37 PM"
+            },
+            {
+                "number": "31328",
+                "name": "Kalyani Simanta - Sealdah Local",
+                "time": "6:00 PM"
+            },
+            {
+                "number": "31530",
+                "name": "Shantipur - Sealdah Local",
+                "time": "6:05 PM"
+            },
+            {
+                "number": "31924",
+                "name": "Gede - Sealdah Local",
+                "time": "6:12 PM"
+            },
+            {
+                "number": "31344",
+                "name": "Kalyani - Sealdah AC Local",
+                "time": "6:20 PM"
+            },
+            {
+                "number": "31848",
+                "name": "Krishnanagar City - Sealdah AC Local",
+                "time": "6:20 PM"
+            },
+            {
+                "number": "31832",
+                "name": "Krishnanagar City - Sealdah Galloping Local",
+                "time": "6:40 PM"
+            },
+            {
+                "number": "31330",
+                "name": "Kalyani Simanta - Sealdah Local",
+                "time": "7:05 PM"
+            },
+            {
+                "number": "31628",
+                "name": "Ranaghat - Sealdah Galloping Local",
+                "time": "7:10 PM"
+            },
+            {
+                "number": "31532",
+                "name": "Shantipur - Sealdah Local",
+                "time": "7:25 PM"
+            },
+            {
+                "number": "53180",
+                "name": "Lalgola - Sealdah Passenger",
+                "time": "8:10 PM"
+            },
+            {
+                "number": "31630",
+                "name": "Ranaghat - Sealdah Local",
+                "time": "8:30 PM"
+            },
+            {
+                "number": "31332",
+                "name": "Kalyani Simanta - Sealdah Local",
+                "time": "8:35 PM"
+            },
+            {
+                "number": "31534",
+                "name": "Shantipur - Sealdah Galloping Local",
+                "time": "8:45 PM"
+            },
+            {
+                "number": "31834",
+                "name": "Krishnanagar City - Sealdah Local",
+                "time": "8:58 PM"
+            },
+            {
+                "number": "31632",
+                "name": "Ranaghat - Sealdah Local",
+                "time": "9:15 PM"
+            },
+            {
+                "number": "31334",
+                "name": "Kalyani Simanta-Sealdah Local",
+                "time": "9:32 PM"
+            },
+            {
+                "number": "31836",
+                "name": "Krishnanagar City - Sealdah Galloping Local",
+                "time": "9:43 PM"
+            },
+            {
+                "number": "31634",
+                "name": "Ranaghat - Sealdah Local",
+                "time": "9:55 PM"
+            },
+            {
+                "number": "31536",
+                "name": "Shantipur - Sealdah Local",
+                "time": "10:05 PM"
+            },
+            {
+                "number": "31340",
+                "name": "Kalyani - Sealdah Local",
+                "time": "10:19 PM"
+            },
+            {
+                "number": "31838",
+                "name": "Krishnanagar City - Sealdah Local",
+                "time": "10:25 PM"
+            },
+            {
+                "number": "31926",
+                "name": "Gede - Sealdah Local",
+                "time": "10:35 PM"
+            },
+            {
+                "number": "31336",
+                "name": "Kalyani Simanta - Sealdah Local",
+                "time": "10:45 PM"
+            },
+            {
+                "number": "31840",
+                "name": "Krishnanagar City - Sealdah Galloping Local",
+                "time": "10:55 PM"
+            },
+            {
+                "number": "31538",
+                "name": "Shantipur - Sealdah Local",
+                "time": "11:15 PM"
+            },
+            {
+                "number": "31636",
+                "name": "Ranaghat - Sealdah Local",
+                "time": "11:25 PM"
+            },
+            {
+                "number": "63106",
+                "name": "Lalgola - Sealdah MEMU",
+                "time": "11:25 PM"
+            },
+            {
+                "number": "31338",
+                "name": "Kalyani Simanta - Sealdah Local",
+                "time": "11:42 PM"
+            },
+            {
+                "number": "31540",
+                "name": "Shantipur - Sealdah Local",
+                "time": "11:50 PM"
+            },
+            {
+                "number": "31928",
+                "name": "Gede - Sealdah Galloping Local",
+                "time": "12:02 AM"
+            },
+            {
+                "number": "31844",
+                "name": "Krishnanagar City - Sealdah Local",
+                "time": "12:40 AM"
+            },
+            {
+                "number": "31542",
+                "name": "Shantipur - Sealdah Local",
+                "time": "12:58 AM"
+            }
+        ]
+    }
+}

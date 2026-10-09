@@ -204,8 +204,8 @@ const rawPujos = [
   {
     "name": "Baghbazar Sarbojonin Durgotsab & Exhibition",
     "category": "North Kolkata",
-    "lat": 22.6001,
-    "lng": 88.3695
+    "lat": 22.605118,
+    "lng": 88.365859
   },
   {
     "name": "Joramandir",
@@ -300,8 +300,8 @@ const rawPujos = [
   {
     "name": "Lalabagan Yubak Brinda - Nabankur Sangha",
     "category": "North Kolkata",
-    "lat": 22.5895,
-    "lng": 88.3715
+    "lat": 22.587800,
+    "lng": 88.376900
   },
   {
     "name": "Sammilita Lalabagan Sarbojanin",
@@ -720,8 +720,8 @@ const rawPujos = [
   {
     "name": "Sovabazar Beniatola",
     "category": "North Kolkata",
-    "lat": 22.594,
-    "lng": 88.363
+    "lat": 22.596000,
+    "lng": 88.362000
   },
   {
     "name": "Sreebhumi Sporting Club",
@@ -894,8 +894,8 @@ const rawPujos = [
   {
     "name": "Baghbazar Pally",
     "category": "North Kolkata",
-    "lat": 22.6015,
-    "lng": 88.3705
+    "lat": 22.603150,
+    "lng": 88.366900
   },
   {
     "name": "Beadon Street Sarbojanin",
@@ -930,8 +930,8 @@ const rawPujos = [
   {
     "name": "Hatkhola Gosain Para",
     "category": "North Kolkata",
-    "lat": 22.5925,
-    "lng": 88.3645
+    "lat": 22.5991,
+    "lng": 88.356729
   },
   {
     "name": "Laketown Vivekananda Park",

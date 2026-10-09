@@ -2357,3 +2357,11 @@ button:focus, a:focus, .map-action-btn:focus, .map-filter-pill:focus {
 .btn-route.added svg {
   stroke: white;
 }
+
+.route-timeline-list::-webkit-scrollbar {
+  display: none;
+}
+.route-timeline-list {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}

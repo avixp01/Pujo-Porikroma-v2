@@ -1,9 +1,10 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, useMap, ZoomControl, Polyline } from 'react-leaflet';
 import L from 'leaflet';
 import { Search, Map as MapIcon, Route, ArrowLeft, Compass, LocateFixed, ChevronUp, Plus, X, Mic, Sun, Moon, Car, Bike, Train, TramFront, Footprints, Home, Clock, ArrowUpDown, MapPin, MoreVertical, Navigation, Edit2, Menu, ChevronRight } from 'lucide-react';
 import 'leaflet/dist/leaflet.css';
 import 'leaflet-rotate';
+import trainTimetable from '../data/trainTimetable.json';
 import './MapPage.css';
 
 import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
@@ -32,7 +33,8 @@ const formattedPujos = allPujos.map((p, index) => ({
   name: p.name,
   category: p.category,
   lat: p.lat,
-  lng: p.lng
+  lng: p.lng,
+  address: p.address
 }));
 
 const formattedToilets = allToilets.map((t, index) => ({
@@ -96,6 +98,17 @@ const createCustomIcon = (type, count) => {
 };
 
 // Component to handle recentering when clicking a marker
+const MiniMapBounds = ({ stops }) => {
+  const map = useMap();
+  React.useEffect(() => {
+    if (stops && stops.length > 0) {
+      const bounds = L.latLngBounds(stops.map(s => [s.lat, s.lng]));
+      map.fitBounds(bounds, { padding: [20, 20], maxZoom: 15 });
+    }
+  }, [stops, map]);
+  return null;
+};
+
 const RecenterMap = ({ center, zoom }) => {
   const map = useMap();
   React.useEffect(() => {
@@ -243,6 +256,101 @@ const LiveTracker = ({ isFollowing, position }) => {
 
 // Removed nearbyMockData as we calculate dynamically
 
+
+const TimetableDisplay = ({ stationName, isDarkMode }) => {
+  const [now, setNow] = React.useState(new Date());
+
+  React.useEffect(() => {
+    const timer = setInterval(() => setNow(new Date()), 10000); // refresh every 10s
+    return () => clearInterval(timer);
+  }, []);
+
+  const getNextTrains = (trains) => {
+    if (!trains) return [];
+    const nowMs = now.getTime();
+    
+    const nextTrains = [];
+    for (const t of trains) {
+      const [h, m] = t.time.split(':').map(Number);
+      let d = new Date(now);
+      d.setHours(h, m, 0, 0);
+      
+      // If the time has already passed today, it must be tomorrow's train
+      if (d.getTime() < nowMs) {
+        d.setDate(d.getDate() + 1);
+      }
+      
+      const diffMs = d.getTime() - nowMs;
+      const arriveIn = Math.floor(diffMs / 60000);
+      
+      nextTrains.push({ ...t, diffMs, arriveIn });
+    }
+    
+    // Always return exactly the next 5 upcoming trains
+    return nextTrains.sort((a, b) => a.diffMs - b.diffMs).slice(0, 5);
+  };
+
+  const cleanName = stationName ? stationName.replace(/ Railway Station/i, '').trim() : '';
+  const stationData = trainTimetable[cleanName] || { up: [], down: [] };
+  
+  const upTrains = getNextTrains(stationData.up);
+  const downTrains = getNextTrains(stationData.down);
+
+  const renderTrainList = (trains) => {
+    if (trains.length === 0) {
+      return <p style={{ color: isDarkMode ? '#aaa' : '#666', fontSize: '13px' }}>No trains in next 30 mins.</p>;
+    }
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+        {trains.map((t, idx) => (
+          <div key={idx} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '13px', background: isDarkMode ? 'rgba(255,255,255,0.05)' : '#f9f9f9', padding: '6px 10px', borderRadius: '4px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'left' }}>
+              <span style={{ fontWeight: 'bold', color: isDarkMode ? '#eee' : '#333' }}>{t.trainNumber} - {t.trainName}</span>
+              <span style={{ color: '#7c2d12', fontSize: '11px' }}>Arrival: {t.time}</span>
+            </div>
+            <div style={{ fontWeight: 'bold', color: '#16a085', minWidth: '45px', textAlign: 'right' }}>
+              {t.arriveIn === 0 ? 'Now' : `${t.arriveIn} m`}
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  };
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '15px', width: '100%', boxSizing: 'border-box' }}>
+      <div style={{ width: '100%', boxSizing: 'border-box', padding: '15px', textAlign: 'center', border: '1px dashed #ccc', borderRadius: '8px' }}>
+        <h4 style={{ color: '#7c2d12', marginBottom: '10px', fontWeight: 'bold' }}>Up Train</h4>
+        {renderTrainList(upTrains)}
+      </div>
+      <div style={{ width: '100%', boxSizing: 'border-box', padding: '15px', textAlign: 'center', border: '1px dashed #ccc', borderRadius: '8px' }}>
+        <h4 style={{ color: '#7c2d12', marginBottom: '10px', fontWeight: 'bold' }}>Down Train</h4>
+        {renderTrainList(downTrains)}
+      </div>
+    </div>
+  );
+};
+
+
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false, error: null };
+  }
+  static getDerivedStateFromError(error) {
+    return { hasError: true, error };
+  }
+  componentDidCatch(error, errorInfo) {
+    console.error("ErrorBoundary caught an error", error, errorInfo);
+  }
+  render() {
+    if (this.state.hasError) {
+      return <div style={{background: 'white', color: 'red', padding: '20px', zIndex: 9999, position: 'relative', height: '100vh', width: '100vw'}}><h1>Something went wrong.</h1><pre>{this.state.error.toString()}</pre></div>;
+    }
+    return this.props.children;
+  }
+}
+
 const MapPage = ({ onClose }) => {
   const [activeFilters, setActiveFilters] = useState(['pandal', 'toilet', 'metro', 'train']);
   const [plannedStops, setPlannedStops] = useState([]); // multi-select filter
@@ -253,14 +361,88 @@ const MapPage = ({ onClose }) => {
   const [mapCenter, setMapCenter] = useState([22.5726, 88.3639]); // Default Kolkata
   const [mapZoom, setMapZoom] = useState(12);
   const [activeTab, setActiveTab] = useState('map'); // 'map' or 'routes'
+  const [isEditingStops, setIsEditingStops] = useState(false);
   const [isRouteMenuOpen, setIsRouteMenuOpen] = useState(false);
   const [showLocationPopup, setShowLocationPopup] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isDirectionPopupOpen, setIsDirectionPopupOpen] = useState(false);
+  const [isNavigationActive, setIsNavigationActive] = useState(false);
+  const [isLiveNavigating, setIsLiveNavigating] = useState(false);
+  const [pendingLiveNavigation, setPendingLiveNavigation] = useState(false);
   const [activeDirectionMode, setActiveDirectionMode] = useState('footprints');
+  const [showTimetablePopup, setShowTimetablePopup] = useState(false);
   const [showUpdatePopup, setShowUpdatePopup] = useState(false);
   const [crowdLevel, setCrowdLevel] = useState(3);
   const [rainStatus, setRainStatus] = useState('no_rain');
+  const [visitedPandals, setVisitedPandals] = useState([]);
+  const [liveUpdateMsg, setLiveUpdateMsg] = useState('');
+
+  React.useEffect(() => {
+    let expiry = localStorage.getItem('ghasBaganTestExpiry');
+    if (!expiry || Date.now() > parseInt(expiry)) {
+      localStorage.setItem('ghasBaganTestExpiry', (Date.now() + 10 * 60 * 1000).toString());
+    }
+  }, []);
+
+  const getMajorityUpdate = (pandalName) => {
+    try {
+      const stored = localStorage.getItem('liveUpdates');
+      if (!stored) return null;
+      const allUpdates = JSON.parse(stored);
+      const pandalUpdates = allUpdates[pandalName] || [];
+      const validUpdates = pandalUpdates.filter(u => Date.now() - u.timestamp < 30 * 60 * 1000);
+      if (validUpdates.length === 0) return null;
+      
+      const rainCounts = {};
+      const crowdCounts = {};
+      validUpdates.forEach(u => {
+        rainCounts[u.rain] = (rainCounts[u.rain] || 0) + 1;
+        crowdCounts[u.crowd] = (crowdCounts[u.crowd] || 0) + 1;
+      });
+      
+      const majorityRain = Object.keys(rainCounts).reduce((a, b) => rainCounts[a] > rainCounts[b] ? a : b);
+      const majorityCrowd = Object.keys(crowdCounts).reduce((a, b) => crowdCounts[a] > crowdCounts[b] ? a : b);
+      
+      return { rain: majorityRain, crowd: parseInt(majorityCrowd) };
+    } catch (e) {
+      return null;
+    }
+  };
+
+
+  React.useEffect(() => {
+    const loadVisited = () => {
+      try {
+        const stored = localStorage.getItem('visitedPandals');
+        if (stored) setVisitedPandals(JSON.parse(stored));
+      } catch(e) {}
+    };
+    loadVisited();
+    window.addEventListener('visitedPandalsUpdated', loadVisited);
+    return () => window.removeEventListener('visitedPandalsUpdated', loadVisited);
+  }, []);
+
+  const handleMarkVisited = () => {
+    if (!selectedLocation || !selectedLocation.name) return;
+    try {
+      const stored = localStorage.getItem('visitedPandals');
+      let list = stored ? JSON.parse(stored) : [];
+      
+      const alreadyVisited = list.some(item => {
+        if (typeof item === 'string') return item === selectedLocation.name;
+        return item.name === selectedLocation.name;
+      });
+      
+      if (!alreadyVisited) {
+        const timeStr = new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+        list.push({ name: selectedLocation.name, time: timeStr });
+        localStorage.setItem('visitedPandals', JSON.stringify(list));
+        setVisitedPandals(list);
+        window.dispatchEvent(new Event('visitedPandalsUpdated'));
+      }
+    } catch(e) {}
+  };
+
   const [navigationDestination, setNavigationDestination] = useState(null);
   const [isRouteSwapped, setIsRouteSwapped] = useState(false);
   const [customOrigin, setCustomOrigin] = useState(null);
@@ -268,6 +450,7 @@ const MapPage = ({ onClose }) => {
   const [destSearch, setDestSearch] = useState("");
   const [activeDirectionInput, setActiveDirectionInput] = useState('dest');
   const [routeData, setRouteData] = useState(null);
+  
   const [transitRouteData, setTransitRouteData] = useState(null);
   const [metroRouteData, setMetroRouteData] = useState(null);
   const [isRoutingLoading, setIsRoutingLoading] = useState(false);
@@ -372,6 +555,14 @@ const MapPage = ({ onClose }) => {
     isFollowingRef.current = status;
   };
 
+  
+  React.useEffect(() => {
+    if (pendingLiveNavigation && userLocation) {
+      setIsLiveNavigating(true);
+      setPendingLiveNavigation(false);
+    }
+  }, [userLocation, pendingLiveNavigation]);
+
   const startTracking = () => {
     setShowLocationPopup(false);
     if (navigator.geolocation) {
@@ -411,8 +602,6 @@ const MapPage = ({ onClose }) => {
 
 
   React.useEffect(() => {
-    if (isDirectionPopupOpen && navigationDestination && (userLocation || customOrigin)) {
-      React.useEffect(() => {
     if (isDirectionPopupOpen) {
        const defaultText = userLocation ? "Current Location" : ".....";
        if (navigationDestination) {
@@ -424,9 +613,11 @@ const MapPage = ({ onClose }) => {
           setActiveDirectionInput('dest');
        }
     }
-  }, [isDirectionPopupOpen, navigationDestination, customOrigin, isRouteSwapped, userLocation]);
-  
-  const fetchRouteData = async () => {
+    }, [isDirectionPopupOpen, navigationDestination, customOrigin, isRouteSwapped, userLocation]);
+
+  React.useEffect(() => {
+    if (isDirectionPopupOpen && navigationDestination && (userLocation || customOrigin)) {
+      const fetchRouteData = async () => {
         setIsRoutingLoading(true);
         try {
           const originObj = isRouteSwapped ? navigationDestination : customOrigin;
@@ -458,7 +649,23 @@ const MapPage = ({ onClose }) => {
           }
 
           // Train Route Simulation
-          const calculateRoute = (stationList, routeName) => {
+          const fetchWalkSubRoute = async (sLng, sLat, eLng, eLat) => {
+            const url = `https://router.project-osrm.org/route/v1/foot/${sLng},${sLat};${eLng},${eLat}?steps=true&geometries=geojson&overview=full`;
+            try {
+              const res = await fetch(url);
+              const d = await res.json();
+              if (d.routes && d.routes.length > 0) {
+                 return { 
+                    steps: d.routes[0].legs[0].steps, 
+                    distance: d.routes[0].distance,
+                    coordinates: d.routes[0].geometry.coordinates.map(coord => [coord[1], coord[0]])
+                 };
+              }
+            } catch (e) { console.error(e); }
+            return null;
+          };
+
+          const calculateRouteAsync = async (stationList, routeName) => {
             let nearestOrigin = null;
             let minOriginDist = Infinity;
             let nearestDest = null;
@@ -478,19 +685,32 @@ const MapPage = ({ onClose }) => {
               }
             });
 
+            let originWalkData = null;
+            let destWalkData = null;
+            if (nearestOrigin) originWalkData = await fetchWalkSubRoute(startLng, startLat, nearestOrigin.lng, nearestOrigin.lat);
+            if (nearestDest) destWalkData = await fetchWalkSubRoute(nearestDest.lng, nearestDest.lat, endLng, endLat);
+
             return {
               originStation: nearestOrigin,
               destStation: nearestDest,
-              walkToOriginDist: (minOriginDist * 111).toFixed(1),
-              walkToDestDist: (minDestDist * 111).toFixed(1),
+              walkToOriginDist: originWalkData ? (originWalkData.distance / 1000).toFixed(1) : (minOriginDist * 111).toFixed(1),
+              walkToDestDist: destWalkData ? (destWalkData.distance / 1000).toFixed(1) : (minDestDist * 111).toFixed(1),
+              originWalkSteps: originWalkData ? originWalkData.steps : null,
+              destWalkSteps: destWalkData ? destWalkData.steps : null,
+              originWalkCoords: originWalkData ? originWalkData.coordinates : null,
+              destWalkCoords: destWalkData ? destWalkData.coordinates : null,
               trainName: routeName,
               trainDuration: Math.floor(Math.random() * 30) + 15,
               departureTime: new Date(Date.now() + 5 * 60000).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
             };
           };
 
-          setTransitRouteData(calculateRoute(allTrains, '31914 - Sealdah Local'));
-          setMetroRouteData(calculateRoute(allMetros, 'Blue Line Metro'));
+          const [transitDataRes, metroDataRes] = await Promise.all([
+            calculateRouteAsync(allTrains, '31914 - Sealdah Local'),
+            calculateRouteAsync(allMetros, 'Blue Line Metro')
+          ]);
+          setTransitRouteData(transitDataRes);
+          setMetroRouteData(metroDataRes);
 
         } catch (error) {
           console.error("Routing error:", error);
@@ -557,7 +777,7 @@ const MapPage = ({ onClose }) => {
       if (stateId !== 'preview' && selectedLocation) setSelectedLocation(null);
       if (stateId !== 'location-popup' && showLocationPopup) setShowLocationPopup(false);
       if (stateId !== 'routes' && activeTab === 'routes') setActiveTab('map');
-      if (stateId !== 'direction' && isDirectionPopupOpen) setIsDirectionPopupOpen(false);
+      if (stateId !== 'direction' && isDirectionPopupOpen) { setIsDirectionPopupOpen(false); setIsNavigationActive(false); }
     };
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
@@ -703,12 +923,8 @@ const MapPage = ({ onClose }) => {
   const renderSearchItem = (loc) => {
       const theme = getItemTheme(loc.type);
       const distStr = getDistString(loc.rawDist);
-      let distFormatted = distStr ? distStr.replace(' away', '') : '';
-        if (!distFormatted) {
-          const pseudoRandom = Math.floor((loc.lat + loc.lng) * 100000) % 950 + 50;
-          distFormatted = pseudoRandom < 1000 ? `${pseudoRandom} m` : `${(pseudoRandom / 1000).toFixed(1)} km`;
-        }
-      const categoryDisplay = loc.category ? `${loc.type.charAt(0).toUpperCase() + loc.type.slice(1)} • ${loc.category}` : loc.type;
+      let distFormatted = distStr ? distStr.replace(' away', '') : '...';
+      const categoryDisplay = (loc.type === 'pandal' && loc.address) ? loc.address : (loc.category ? `${loc.type.charAt(0).toUpperCase() + loc.type.slice(1)} � ${loc.category}` : loc.type);
   
       return (
         <div 
@@ -717,14 +933,14 @@ const MapPage = ({ onClose }) => {
             style={{ borderBottom: '1px solid #e5e7eb', paddingTop: '7px', paddingBottom: '7px' }}
           onMouseDown={() => handleSearchSelect(loc)}
         >
-          <div className="flex-1 min-w-0 pr-2">
-            <div className="text-[14px] font-bold truncate flex items-center gap-[7px]" style={{ color: isDarkMode ? '#d2b48c' : '#111827' }}>
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                {theme.icon}
+          <div className="flex-1 min-w-0 pr-[10px]">
+            <div className="text-[14px] font-bold flex items-start gap-[7px]" style={{ color: isDarkMode ? '#d2b48c' : '#111827' }}>
+                <div style={{ display: 'flex', alignItems: 'center', marginTop: '2px', flexShrink: 0 }}>
+                  {theme.icon}
+                </div>
+                <div style={{ lineHeight: '1.3', overflowWrap: 'break-word', wordBreak: 'normal' }}>{loc.name}</div>
               </div>
-              {loc.name}
-            </div>
-            <div className="text-[12px] truncate" style={{ color: '#6b7280', marginTop: '2px', marginLeft: '23px' }}>
+            <div className="text-[12px]" style={{ color: '#6b7280', marginTop: '2px', marginLeft: '23px', lineHeight: '1.3', overflowWrap: 'break-word', wordBreak: 'normal' }}>
               {categoryDisplay}
             </div>
           </div>
@@ -737,6 +953,147 @@ const MapPage = ({ onClose }) => {
         </div>
       );
     };
+
+  const originObjForRender = isRouteSwapped ? navigationDestination : customOrigin;
+  const destObjForRender = isRouteSwapped ? customOrigin : navigationDestination;
+  const renderStartLat = originObjForRender ? originObjForRender.lat : (userLocation ? userLocation[0] : 22.5726);
+  const renderStartLng = originObjForRender ? originObjForRender.lng : (userLocation ? userLocation[1] : 88.3639);
+  const renderEndLat = destObjForRender ? destObjForRender.lat : (userLocation ? userLocation[0] : 22.5726);
+  const renderEndLng = destObjForRender ? destObjForRender.lng : (userLocation ? userLocation[1] : 88.3639);
+
+  
+  const routeMetrics = React.useMemo(() => {
+    let totalDist = 0;
+    let stopsMetrics = [];
+    let currentPoint = userLocation || (plannedStops.length > 0 ? [plannedStops[0].lat, plannedStops[0].lng] : null);
+
+    plannedStops.forEach((stop) => {
+      let dist = 0;
+      if (currentPoint) {
+         dist = getDistance(currentPoint[0], currentPoint[1], stop.lat, stop.lng);
+      }
+      totalDist += dist;
+      stopsMetrics.push({
+         cumulativeDist: totalDist,
+         cumulativeTime: Math.round(totalDist * 12)
+      });
+      currentPoint = [stop.lat, stop.lng];
+    });
+    
+    return {
+      totalDist: totalDist.toFixed(1),
+      totalTime: Math.round(totalDist * 12),
+      stops: stopsMetrics
+    };
+  }, [plannedStops, userLocation]);
+
+  
+  if (isLiveNavigating) {
+    return (
+      <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, zIndex: 999999, display: 'flex', flexDirection: 'column', backgroundColor: '#f9fafb' }}>
+        {/* Header */}
+        <div style={{ padding: '16px', backgroundColor: 'white', display: 'flex', alignItems: 'center', boxShadow: '0 2px 4px rgba(0,0,0,0.05)', zIndex: 10 }}>
+          <button onClick={() => setIsLiveNavigating(false)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '8px', marginRight: '8px' }}>
+            <ArrowLeft size={24} color="#111827" />
+          </button>
+          <div style={{ flex: 1 }}>
+            <div style={{ fontSize: '18px', fontWeight: 'bold', color: '#1f2937' }}>Your route</div>
+            <div style={{ fontSize: '13px', color: '#6b7280' }}>{plannedStops.length} stops planned</div>
+          </div>
+          <div style={{ display: 'flex', gap: '20px' }}>
+            <div style={{ textAlign: 'center' }}>
+              <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '4px' }}><MapPin size={18} color="#6b7280" strokeWidth={2} /></div>
+              <div style={{ fontSize: '14px', fontWeight: 'bold', color: '#111827' }}>{plannedStops.length}</div>
+              <div style={{ fontSize: '10px', color: '#9ca3af' }}>Stops</div>
+            </div>
+            <div style={{ textAlign: 'center' }}>
+              <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '4px' }}><Route size={18} color="#6b7280" strokeWidth={2} /></div>
+              <div style={{ fontSize: '14px', fontWeight: 'bold', color: '#111827' }}>{routeMetrics.totalDist} km</div>
+              <div style={{ fontSize: '10px', color: '#9ca3af' }}>Distance</div>
+            </div>
+            <div style={{ textAlign: 'center' }}>
+              <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '4px' }}><Clock size={18} color="#6b7280" strokeWidth={2} /></div>
+              <div style={{ fontSize: '14px', fontWeight: 'bold', color: '#111827' }}>{routeMetrics.totalTime}m</div>
+              <div style={{ fontSize: '10px', color: '#9ca3af' }}>Est. time</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Map */}
+        <div style={{ flex: 1, position: 'relative' }}>
+          <MapContainer center={userLocation || (plannedStops.length > 0 ? [plannedStops[0].lat, plannedStops[0].lng] : [22.5726, 88.3639])} zoom={15} style={{ width: '100%', height: '100%' }} zoomControl={false}>
+            <TileLayer 
+              url={isDarkMode 
+                ? `https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png?key=${import.meta.env.VITE_CARTO_API_KEY || 'cb1_2zpy_1_5578b74846ef709b32860fd7'}`
+                : `https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?key=${import.meta.env.VITE_CARTO_API_KEY || 'cb1_2zpy_1_5578b74846ef709b32860fd7'}`
+              }
+            />
+            
+            {userLocation && (
+              <Marker position={userLocation} icon={L.divIcon({
+                  className: 'custom-user-nav-icon',
+                  html: `<div style="width:24px;height:24px;background-color:#3b82f6;border-radius:50%;border:3px solid white;box-shadow:0 0 10px rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;"><svg width="12" height="12" viewBox="0 0 24 24" fill="white" stroke="none" style="margin-left: 1px;"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg></div>`,
+                  iconSize: [24,24],
+                  iconAnchor: [12,12]
+              })} />
+            )}
+            
+            {plannedStops.map((stop, idx) => (
+              <Marker key={`nav-stop-${idx}`} position={[stop.lat, stop.lng]} icon={L.divIcon({
+                  className: 'nav-stop-icon',
+                  html: `<div style="background-color: #7c2d12; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid white; box-shadow: 0 1px 3px rgba(0,0,0,0.3); font-size: 12px; font-weight: bold; color: white;">${idx + 1}</div>`,
+                  iconSize: [24,24],
+                  iconAnchor: [12,12]
+              })} />
+            ))}
+
+            {userLocation && plannedStops.length > 0 && (
+              <Polyline 
+                positions={[userLocation, ...plannedStops.map(s => [s.lat, s.lng])]} 
+                color="#3b82f6" 
+                weight={5} 
+                opacity={0.8}
+                lineCap="round"
+                lineJoin="round"
+              />
+            )}
+          </MapContainer>
+          
+          <div style={{ position: 'absolute', right: '16px', bottom: '24px', display: 'flex', flexDirection: 'column', gap: '8px', zIndex: 1000 }}>
+            <button style={{ width: '40px', height: '40px', backgroundColor: 'white', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', border: 'none', boxShadow: '0 2px 4px rgba(0,0,0,0.1)', color: '#4b5563', cursor: 'pointer' }}><Compass size={20} /></button>
+            <button style={{ width: '40px', height: '40px', backgroundColor: '#eef2ff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', border: 'none', boxShadow: '0 2px 4px rgba(0,0,0,0.1)', color: '#3b82f6', cursor: 'pointer' }}><LocateFixed size={20} /></button>
+            <div style={{ backgroundColor: 'white', borderRadius: '20px', display: 'flex', flexDirection: 'column', boxShadow: '0 2px 4px rgba(0,0,0,0.1)', overflow: 'hidden', marginTop: '8px' }}>
+                <button style={{ width: '40px', height: '40px', backgroundColor: 'transparent', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', borderBottom: '1px solid #f3f4f6', color: '#4b5563', cursor: 'pointer' }}><Plus size={20} /></button>
+                <button style={{ width: '40px', height: '40px', backgroundColor: 'transparent', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#4b5563', cursor: 'pointer' }}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg></button>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div style={{ backgroundColor: 'white', padding: '16px', display: 'flex', alignItems: 'center', gap: '16px', boxShadow: '0 -2px 10px rgba(0,0,0,0.05)', zIndex: 10 }}>
+          <div style={{ backgroundColor: '#27272a', borderRadius: '8px', padding: '12px', display: 'flex', alignItems: 'center', gap: '12px', minWidth: '120px' }}>
+            <div style={{ width: '32px', height: '32px', backgroundColor: '#3f3f46', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+            </div>
+            <div>
+              <div style={{ color: 'white', fontSize: '14px', fontWeight: 'bold' }}>Head out</div>
+              <div style={{ color: '#a1a1aa', fontSize: '12px' }}>In 0 m</div>
+            </div>
+          </div>
+          
+          <div style={{ flex: 1, paddingLeft: '8px' }}>
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px', marginBottom: '4px' }}>
+              <span style={{ fontSize: '18px', fontWeight: 'bold', color: '#111827' }}>{routeMetrics.totalTime} min</span>
+              <span style={{ fontSize: '12px', color: '#6b7280' }}>{routeMetrics.totalDist} km left</span>
+            </div>
+            <div style={{ fontSize: '12px', color: '#9ca3af', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '200px' }}>
+              Stop 1 of {plannedStops.length} • {plannedStops.length > 0 ? plannedStops[0].name : 'Loading...'}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={`map-page-container ${isDarkMode ? 'dark-mode' : ''}`}>
@@ -793,21 +1150,7 @@ const MapPage = ({ onClose }) => {
                     ) : (
                       // LOCATION ON: NEARBY LIST
                       <>
-                        {poorAccuracy && (
-                          <div className="px-5 pb-3 pt-1">
-                            <button 
-                              onClick={(e) => { e.preventDefault(); startTracking(); }}
-                              style={{ width: '100%', backgroundColor: '#f59e0b', color: 'white', fontSize: '12px', fontWeight: 'bold', padding: '8px 12px', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', border: 'none', cursor: 'pointer' }}
-                            >
-                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{marginRight: '6px'}}>
-                                <circle cx="12" cy="12" r="10"/>
-                                <line x1="12" y1="8" x2="12" y2="12"/>
-                                <line x1="12" y1="16" x2="12.01" y2="16"/>
-                              </svg>
-                              Poor GPS signal. Tap to force refresh.
-                            </button>
-                          </div>
-                        )}
+                        
                                                   {nearbySearchList.length > 0 ? (
                           nearbySearchList.map(loc => renderSearchItem(loc))
                         ) : (
@@ -818,14 +1161,14 @@ const MapPage = ({ onClose }) => {
             style={{ borderBottom: '1px solid #e5e7eb', paddingTop: '7px', paddingBottom: '7px' }}
                             onMouseDown={(e) => { e.preventDefault(); if (userLocation) setMapCenter(userLocation); setIsSearchFocused(false); }}
                           >
-                            <div className="flex-1 min-w-0 pr-2">
+                            <div className="flex-1 min-w-0 pr-[10px]">
                               <div className="text-[14px] font-bold truncate flex items-center gap-[7px]" style={{ color: isDarkMode ? '#d2b48c' : '#111827' }}>
                                 <div style={{ display: 'flex', alignItems: 'center', color: '#9333ea' }}>
                                   <Home size={16} />
                                 </div>
                                 Home
                               </div>
-                              <div className="text-[12px] truncate" style={{ color: '#6b7280', marginTop: '2px', marginLeft: '23px' }}>
+                              <div className="text-[12px]" style={{ color: '#6b7280', marginTop: '2px', marginLeft: '23px', lineHeight: '1.3', overflowWrap: 'break-word', wordBreak: 'normal' }}>
                                 Saved home · {homeAddress}
                               </div>
                             </div>
@@ -928,16 +1271,32 @@ const MapPage = ({ onClose }) => {
           )}
           {isDirectionPopupOpen && navigationDestination && transitRouteData && activeDirectionMode === 'train' && transitRouteData.originStation && transitRouteData.destStation && (
             <>
-              <Polyline positions={[[renderStartLat, renderStartLng], [transitRouteData.originStation.lat, transitRouteData.originStation.lng]]} color="#6b7280" weight={4} dashArray="5, 10" />
+              {transitRouteData.originWalkCoords ? (
+                <Polyline positions={transitRouteData.originWalkCoords} color="#6b7280" weight={4} dashArray="5, 10" />
+              ) : (
+                <Polyline positions={[[renderStartLat, renderStartLng], [transitRouteData.originStation.lat, transitRouteData.originStation.lng]]} color="#6b7280" weight={4} dashArray="5, 10" />
+              )}
               <Polyline positions={[[transitRouteData.originStation.lat, transitRouteData.originStation.lng], [transitRouteData.destStation.lat, transitRouteData.destStation.lng]]} color="#16a085" weight={5} />
-              <Polyline positions={[[transitRouteData.destStation.lat, transitRouteData.destStation.lng], [renderEndLat, renderEndLng]]} color="#6b7280" weight={4} dashArray="5, 10" />
+              {transitRouteData.destWalkCoords ? (
+                <Polyline positions={transitRouteData.destWalkCoords} color="#6b7280" weight={4} dashArray="5, 10" />
+              ) : (
+                <Polyline positions={[[transitRouteData.destStation.lat, transitRouteData.destStation.lng], [renderEndLat, renderEndLng]]} color="#6b7280" weight={4} dashArray="5, 10" />
+              )}
             </>
           )}
           {isDirectionPopupOpen && navigationDestination && metroRouteData && activeDirectionMode === 'metro' && metroRouteData.originStation && metroRouteData.destStation && (
             <>
-              <Polyline positions={[[renderStartLat, renderStartLng], [metroRouteData.originStation.lat, metroRouteData.originStation.lng]]} color="#6b7280" weight={4} dashArray="5, 10" />
+              {metroRouteData.originWalkCoords ? (
+                <Polyline positions={metroRouteData.originWalkCoords} color="#6b7280" weight={4} dashArray="5, 10" />
+              ) : (
+                <Polyline positions={[[renderStartLat, renderStartLng], [metroRouteData.originStation.lat, metroRouteData.originStation.lng]]} color="#6b7280" weight={4} dashArray="5, 10" />
+              )}
               <Polyline positions={[[metroRouteData.originStation.lat, metroRouteData.originStation.lng], [metroRouteData.destStation.lat, metroRouteData.destStation.lng]]} color="#8b5cf6" weight={5} />
-              <Polyline positions={[[metroRouteData.destStation.lat, metroRouteData.destStation.lng], [renderEndLat, renderEndLng]]} color="#6b7280" weight={4} dashArray="5, 10" />
+              {metroRouteData.destWalkCoords ? (
+                <Polyline positions={metroRouteData.destWalkCoords} color="#6b7280" weight={4} dashArray="5, 10" />
+              ) : (
+                <Polyline positions={[[metroRouteData.destStation.lat, metroRouteData.destStation.lng], [renderEndLat, renderEndLng]]} color="#6b7280" weight={4} dashArray="5, 10" />
+              )}
             </>
           )}
 
@@ -1025,29 +1384,91 @@ const MapPage = ({ onClose }) => {
               popupAnchor: [0, -50]
             });
             
+            // 1.3x Selected versions of the icons
+            const pandalIconBrightSelected = new L.Icon({
+              iconUrl: '/pandal-pin4.png',
+              iconSize: [62, 70],
+              iconAnchor: [31, 70],
+              popupAnchor: [0, -70]
+            });
+            const pandalIconDarkSelected = new L.Icon({
+              iconUrl: '/pandel-pin6.png',
+              iconSize: [62, 70],
+              iconAnchor: [31, 70],
+              popupAnchor: [0, -70]
+            });
+            const toiletIconBrightSelected = new L.Icon({
+              iconUrl: '/toilet-day.png',
+              iconSize: [62, 70],
+              iconAnchor: [31, 70],
+              popupAnchor: [0, -70]
+            });
+            const toiletIconDarkSelected = new L.Icon({
+              iconUrl: '/toilet-night.png',
+              iconSize: [62, 70],
+              iconAnchor: [31, 70],
+              popupAnchor: [0, -70]
+            });
+            const metroIconBrightSelected = new L.Icon({
+              iconUrl: '/metro-day.png',
+              iconSize: [62, 70],
+              iconAnchor: [31, 70],
+              popupAnchor: [0, -70]
+            });
+            const metroIconDarkSelected = new L.Icon({
+              iconUrl: '/metro-night.png',
+              iconSize: [62, 70],
+              iconAnchor: [31, 70],
+              popupAnchor: [0, -70]
+            });
+            const trainIconBrightSelected = new L.Icon({
+              iconUrl: '/train-day.png',
+              iconSize: [62, 70],
+              iconAnchor: [31, 70],
+              popupAnchor: [0, -70]
+            });
+            const trainIconDarkSelected = new L.Icon({
+              iconUrl: '/train-night.png',
+              iconSize: [62, 70],
+              iconAnchor: [31, 70],
+              popupAnchor: [0, -70]
+            });
+            
             return (
               <MarkerClusterGroup chunkedLoading iconCreateFunction={createClusterIcon} disableClusteringAtZoom={17} maxClusterRadius={40}>
                 {filteredData.map(loc => {
-                  let markerIcon;
-                  if (loc.type === 'pandal') {
-                    markerIcon = isDarkMode ? pandalIconDark : pandalIconBright;
-                  } else if (loc.type === 'toilet') {
-                    markerIcon = isDarkMode ? toiletIconDark : toiletIconBright;
-                  } else if (loc.type === 'metro') {
-                    markerIcon = isDarkMode ? metroIconDark : metroIconBright;
-                  } else if (loc.type === 'train') {
-                    markerIcon = isDarkMode ? trainIconDark : trainIconBright;
-                  } else {
-                    markerIcon = createCustomIcon(loc.type, loc.count);
-                  }
-                  
-                  return (
-                    <Marker 
+                    let markerIcon;
+                    const isSelected = selectedLocation && selectedLocation.id === loc.id;
+                    
+                    if (loc.type === 'pandal') {
+                      markerIcon = isSelected 
+                        ? (isDarkMode ? pandalIconDarkSelected : pandalIconBrightSelected)
+                        : (isDarkMode ? pandalIconDark : pandalIconBright);
+                    } else if (loc.type === 'toilet') {
+                      markerIcon = isSelected 
+                        ? (isDarkMode ? toiletIconDarkSelected : toiletIconBrightSelected)
+                        : (isDarkMode ? toiletIconDark : toiletIconBright);
+                    } else if (loc.type === 'metro') {
+                      markerIcon = isSelected 
+                        ? (isDarkMode ? metroIconDarkSelected : metroIconBrightSelected)
+                        : (isDarkMode ? metroIconDark : metroIconBright);
+                    } else if (loc.type === 'train') {
+                      markerIcon = isSelected 
+                        ? (isDarkMode ? trainIconDarkSelected : trainIconBrightSelected)
+                        : (isDarkMode ? trainIconDark : trainIconBright);
+                    } else {
+                      // Custom clusters or other unscaled fallback
+                      markerIcon = createCustomIcon(loc.type, loc.count);
+                    }
+                    
+                    return (
+                      <Marker 
                       key={loc.id} 
                       position={[loc.lat, loc.lng]} 
-                      eventHandlers={{
-                        click: () => handleMarkerClick(loc)
-                      }}
+                        zIndexOffset={isSelected ? 1000 : 0}
+                        eventHandlers={{
+                          click: () => handleMarkerClick(loc)
+                        }}
                       {...(markerIcon ? { icon: markerIcon } : {})}
                     />
                   );
@@ -1059,7 +1480,7 @@ const MapPage = ({ onClose }) => {
       </div>
 
       {/* Bottom Floating Preview Card */}
-      <div className={`map-preview-card ${selectedLocation ? 'active' : ''}`}>
+      <div className={`map-preview-card ${selectedLocation && !isDirectionPopupOpen ? 'active' : ''}`}>
         <div className="detailed-preview-card">
           <div className="preview-header">
             <div className="preview-icon-box">
@@ -1075,7 +1496,12 @@ const MapPage = ({ onClose }) => {
 </div>
             <div className="preview-title-block">
               <h3 className="preview-title">{selectedLocation ? selectedLocation.name : 'Select a location'}</h3>
-              <p className="preview-subtitle">Ballygunge Place, Ballygunge</p>
+              <p className="preview-subtitle">
+                {selectedLocation?.type === 'toilet' ? 'Toilet' :
+                 selectedLocation?.type === 'metro' ? 'Metro' :
+                 selectedLocation?.type === 'train' ? 'Train' :
+                 (selectedLocation?.address || 'Ballygunge Place, Ballygunge')}
+              </p>
             </div>
             <button className="preview-close-btn" onClick={() => setSelectedLocation(null)}>
               <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
@@ -1085,23 +1511,54 @@ const MapPage = ({ onClose }) => {
           {(!selectedLocation || selectedLocation.type === 'pandal') && (
           <>
             <div className="preview-status-row">
-            <div className="preview-status-card rain">
-              <div className="status-card-header">
-                <svg viewBox="0 0 24 24" width="14" height="14" stroke="#6b7280" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"></path><path d="M16 14v6"></path><path d="M8 14v6"></path><path d="M12 16v6"></path></svg> Rain status
-              </div>
-              <div className="status-card-value">...</div>
-              <div className="status-card-desc">No recent reports</div>
-            </div>
-            <div className="preview-status-card crowd">
-              <div className="status-card-header">
-                <svg viewBox="0 0 24 24" width="14" height="14" stroke="#6b7280" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg> Crowd level
-              </div>
-              <div className="status-card-value">...</div>
-              <div className="status-card-desc">Waiting for an update</div>
-            </div>
-          </div>
+            {(() => {
+              const liveStatus = selectedLocation ? getMajorityUpdate(selectedLocation.name) : null;
+              
+              const rainText = liveStatus ? 
+                (liveStatus.rain === 'no_rain' ? 'No rain' : 
+                 liveStatus.rain === 'drizzle' ? 'Drizzle' : 
+                 liveStatus.rain === 'raining' ? 'Raining' : 'Heavy rain') 
+                : '...';
+              const rainColor = liveStatus ? 
+                (liveStatus.rain === 'no_rain' ? '#cc5550' : 
+                 liveStatus.rain === 'drizzle' ? '#2563eb' : 
+                 liveStatus.rain === 'raining' ? '#b91c1c' : '#374151') 
+                : '#6b7280';
+                
+              const crowdText = liveStatus ? `${liveStatus.crowd}/10` : '...';
+              const crowdDesc = liveStatus ? 
+                (liveStatus.crowd <= 3 ? 'Easy entry' : 
+                 liveStatus.crowd <= 6 ? 'Moderate' : 
+                 liveStatus.crowd <= 8 ? 'Busy' : 'Very crowded') 
+                : 'Waiting for an update';
+              const crowdColor = liveStatus ? 
+                (liveStatus.crowd <= 3 ? '#16a34a' : 
+                 liveStatus.crowd <= 6 ? '#b45309' : 
+                 liveStatus.crowd <= 8 ? '#b91c1c' : '#991b1b') 
+                : '#6b7280';
 
-          <div className="preview-update-card">
+              return (
+                <>
+                  <div className="preview-status-card rain">
+                    <div className="status-card-header">
+                      <svg viewBox="0 0 24 24" width="14" height="14" stroke="#6b7280" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"></path><path d="M16 14v6"></path><path d="M8 14v6"></path><path d="M12 16v6"></path></svg> Rain status
+                    </div>
+                    <div className="status-card-value" style={{ color: rainColor, fontWeight: liveStatus ? 'bold' : 'normal' }}>{rainText}</div>
+                    <div className="status-card-desc">{liveStatus ? 'Recent update' : 'No recent reports'}</div>
+                  </div>
+                  <div className="preview-status-card crowd">
+                    <div className="status-card-header">
+                      <svg viewBox="0 0 24 24" width="14" height="14" stroke="#6b7280" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg> Crowd level
+                    </div>
+                    <div className="status-card-value" style={{ color: crowdColor, fontWeight: liveStatus ? 'bold' : 'normal' }}>{crowdText}</div>
+                    <div className="status-card-desc" style={{ color: crowdColor }}>{crowdDesc}</div>
+                  </div>
+                </>
+              );
+            })()}
+            </div>
+  
+            <div className="preview-update-card">
             <div className="flex gap-3">
               <div className="mt-1">
                 <svg viewBox="0 0 24 24" width="16" height="16" fill="#d97706">
@@ -1117,13 +1574,65 @@ const MapPage = ({ onClose }) => {
             <button className="update-btn" onClick={() => setShowUpdatePopup(true)}>Update now ›</button>
           </div>
 
-          <div className="preview-metro-info">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="#2563eb">
-              <path d="M12 2C8 2 4 5 4 9v7c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V9c0-4-4-7-8-7zm0 2c3.3 0 6 2.2 6 5H6c0-2.8 2.7-5 6-5zm-3 8a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm6 0a1.5 1.5 0 110-3 1.5 1.5 0 010 3z" />
-              <path d="M6 19v3h2v-3H6zm10 0v3h2v-3h-2z" />
-            </svg>
-            <span className="metro-name">Jatin Das Park</span> • exit <span className="metro-gate">Gate 3</span> • 2.4 km walk
-          </div>
+          {(() => {
+              let nearestMetro = null;
+              let metroDistText = "...";
+              if (selectedLocation && formattedMetros && formattedMetros.length > 0) {
+                let minDist = Infinity;
+                formattedMetros.forEach(m => {
+                  const d = getDistance(selectedLocation.lat, selectedLocation.lng, m.lat, m.lng);
+                  if (d < minDist) {
+                    minDist = d;
+                    nearestMetro = m.name;
+                  }
+                });
+                if (minDist !== Infinity) {
+                    metroDistText = minDist < 1 ? `${Math.round(minDist * 1000)} m walk` : `${minDist.toFixed(1)} km walk`;
+                }
+              }
+
+              let nearestTrain = null;
+              let trainDistText = "...";
+              if (selectedLocation && formattedTrains && formattedTrains.length > 0) {
+                let minDist = Infinity;
+                formattedTrains.forEach(t => {
+                  const d = getDistance(selectedLocation.lat, selectedLocation.lng, t.lat, t.lng);
+                  if (d < minDist) {
+                    minDist = d;
+                    nearestTrain = t.name;
+                  }
+                });
+                if (minDist !== Infinity) {
+                    trainDistText = minDist < 1 ? `${Math.round(minDist * 1000)} m walk` : `${minDist.toFixed(1)} km walk`;
+                }
+              }
+
+              return (
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <div style={{ flex: 1 }}>
+                    <div className="preview-metro-info" style={{ marginBottom: "8px" }}>
+                      <img src="/metro-icon.png" alt="metro" style={{ width: "16px", height: "16px", objectFit: "contain", filter: isDarkMode ? "invert(1)" : "none" }} />
+                      <span className="metro-name">{nearestMetro || "Metro Station"}</span> &bull; {metroDistText}
+                    </div>
+                    <div className="preview-metro-info">
+                      <img src="/train-icon.png" alt="train" style={{ width: "16px", height: "16px", objectFit: "contain", filter: isDarkMode ? "invert(1)" : "none" }} />
+                      <span className="metro-name">{nearestTrain || "Railway Station"}</span> &bull; {trainDistText}
+                    </div>
+                  </div>
+                  {(() => {
+                    const isVisited = visitedPandals.some(item => {
+                      if (typeof item === 'string') return item === (selectedLocation?.name);
+                      return item.name === (selectedLocation?.name);
+                    });
+                    return (
+                      <button onClick={handleMarkVisited} style={{ background: 'none', border: 'none', color: isVisited ? '#d2b48c' : '#d97706', fontSize: '13px', fontWeight: 'bold', cursor: 'pointer', paddingRight: '16px' }}>
+                        {isVisited ? 'Visited ✓' : 'Visited?'}
+                      </button>
+                    );
+                  })()}
+                </div>
+              );
+            })()}
           </>
         )}
 
@@ -1136,8 +1645,11 @@ const MapPage = ({ onClose }) => {
             </button>
             {(!selectedLocation || selectedLocation.type === 'pandal' || selectedLocation.type === 'train') && (
                 <button className={`btn-route ${plannedStops.find(s => s.id === selectedLocation?.id) ? 'added' : ''}`} onClick={() => {
-                    if (selectedLocation && selectedLocation.type !== 'train') {
+                    if (selectedLocation && selectedLocation.type === 'train') {
+                      setShowTimetablePopup(true);
+                    } else if (selectedLocation && selectedLocation.type !== 'train') {
                       if (!plannedStops.find(s => s.id === selectedLocation.id)) {
+                        if (plannedStops.length >= 10) return;
                         setPlannedStops([...plannedStops, selectedLocation]);
                         setActiveTab('routes');
                       } else {
@@ -1148,7 +1660,9 @@ const MapPage = ({ onClose }) => {
                     {selectedLocation && selectedLocation.type === 'train' ? (
                       <><Clock size={18} /> Timetable</>
                     ) : plannedStops.find(s => s.id === selectedLocation?.id) ? (
-                      <><svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg> Route</>
+                      <>✔ Added</>
+                    ) : plannedStops.length >= 10 ? (
+                      <>Route Full</>
                     ) : (
                       <><svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg> Route</>
                     )}
@@ -1244,41 +1758,42 @@ const MapPage = ({ onClose }) => {
       </div>
 
       {/* Routes View Overlay */}
-      {activeTab === 'routes' && (
-        <div className="routes-view-container">
-          <div className="routes-header">
-            <div>
-              <h2 className="routes-header-title">Your route</h2>
-              <p className="routes-header-subtitle">Tonight • 0 stops planned</p>
+            {activeTab === 'routes' && (
+        <div className="routes-view-container" style={{ height: '100dvh', overflow: 'hidden' }}>
+          {plannedStops.length === 0 && (
+            <div className="routes-header" style={{ paddingLeft: '23px' }}>
+              <div>
+                <h2 className="routes-header-title">Your route</h2>
+                <p className="routes-header-subtitle">0 of 10 Stops added</p>
+              </div>
+              <div className="routes-menu-container">
+                <button 
+                  className="routes-header-menu"
+                  onClick={() => setIsRouteMenuOpen(!isRouteMenuOpen)}
+                >
+                  <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="12" r="1"></circle>
+                    <circle cx="12" cy="5" r="1"></circle>
+                    <circle cx="12" cy="19" r="1"></circle>
+                  </svg>
+                </button>
+                
+                {isRouteMenuOpen && (
+                  <div className="routes-dropdown-menu">
+                    <button 
+                      className="routes-dropdown-item"
+                      onClick={() => {
+                          setPlannedStops([]);
+                          setIsRouteMenuOpen(false);
+                        }}
+                      >
+                        Clear route
+                      </button>
+                  </div>
+                )}
+              </div>
             </div>
-            <div className="routes-menu-container">
-              <button 
-                className="routes-header-menu"
-                onClick={() => setIsRouteMenuOpen(!isRouteMenuOpen)}
-              >
-                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="12" cy="12" r="1"></circle>
-                  <circle cx="12" cy="5" r="1"></circle>
-                  <circle cx="12" cy="19" r="1"></circle>
-                </svg>
-              </button>
-              
-              {isRouteMenuOpen && (
-                <div className="routes-dropdown-menu">
-                  <button 
-                    className="routes-dropdown-item"
-                    onClick={() => {
-                      // Add clear route logic here if needed in the future
-                      setIsRouteMenuOpen(false);
-                    }}
-                  >
-                    Clear route
-                  </button>
-                </div>
-              )}
-            </div>
-          </div>
-          
+          )}
           <div className="routes-content" style={{ paddingBottom: '100px', backgroundColor: '#fafafa', minHeight: '100%' }}>
             {plannedStops.length === 0 ? (
               <div className="routes-empty-card">
@@ -1296,103 +1811,227 @@ const MapPage = ({ onClose }) => {
                 </button>
               </div>
             ) : (
-              <div className="routes-active-itinerary">
+              <div className="routes-active-itinerary" style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
                 {/* Header */}
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px 16px 8px 16px', backgroundColor: 'white' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '32px 16px 8px 16px', backgroundColor: 'white', flexShrink: 0 }}>
                   <div>
                     <h2 style={{ fontSize: '20px', fontWeight: 'bold', margin: 0, color: '#1f2937' }}>Your route</h2>
-                    <p style={{ fontSize: '13px', color: '#6b7280', margin: 0 }}>Tonight • {plannedStops.length} stops planned</p>
+                    <p style={{ fontSize: '13px', color: plannedStops.length >= 10 ? '#7c2d12' : '#6b7280', margin: 0, fontWeight: plannedStops.length >= 10 ? 'bold' : 'normal' }}>
+                      {plannedStops.length >= 10 ? '10 of 10 added - route is full' : `${plannedStops.length} of 10 Stops added`}
+                    </p>
                   </div>
-                  <button style={{ color: '#4b5563' }}>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>
-                  </button>
+                  <div style={{ position: 'relative' }}>
+                    <button style={{ color: '#4b5563' }} onClick={() => setIsRouteMenuOpen(!isRouteMenuOpen)}>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>
+                    </button>
+                    {isRouteMenuOpen && (
+                      <div className="routes-dropdown-menu" style={{ right: 0, top: '100%', position: 'absolute', zIndex: 10 }}>
+                        <button 
+                          className="routes-dropdown-item"
+                          onClick={() => {
+                          setPlannedStops([]);
+                          setIsRouteMenuOpen(false);
+                        }}
+                      >
+                        Clear route
+                      </button>
+                      </div>
+                    )}
+                  </div>
                 </div>
 
                 {/* Metrics */}
-                <div style={{ display: 'flex', justifyContent: 'space-around', padding: '16px 0', backgroundColor: 'white', borderBottom: '1px solid #f3f4f6' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-around', padding: '16px 0', backgroundColor: 'white', borderBottom: '1px solid #f3f4f6', flexShrink: 0 }}>
                   <div style={{ textAlign: 'center' }}>
                     <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '4px' }}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7280" strokeWidth="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></div>
                     <div style={{ fontSize: '15px', fontWeight: 'bold', color: '#111827' }}>{plannedStops.length}</div>
                     <div style={{ fontSize: '11px', color: '#9ca3af' }}>Stops</div>
                   </div>
                   <div style={{ textAlign: 'center' }}>
-                    <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '4px' }}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7280" strokeWidth="2"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg></div>
-                    <div style={{ fontSize: '15px', fontWeight: 'bold', color: '#111827' }}>{(plannedStops.length * 12.3).toFixed(1)} km</div>
-                    <div style={{ fontSize: '11px', color: '#9ca3af' }}>Distance</div>
+                    <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '4px' }}><Route size={18} color="#6b7280" strokeWidth={2} /></div>
+                      <div style={{ fontSize: '15px', fontWeight: 'bold', color: '#111827' }}>{routeMetrics.totalDist} km</div>
+                      <div style={{ fontSize: '11px', color: '#9ca3af' }}>Distance</div>
                   </div>
                   <div style={{ textAlign: 'center' }}>
                     <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '4px' }}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7280" strokeWidth="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
-                    <div style={{ fontSize: '15px', fontWeight: 'bold', color: '#111827' }}>{plannedStops.length * 23}m</div>
+                    <div style={{ fontSize: '15px', fontWeight: 'bold', color: '#111827' }}>{routeMetrics.totalTime}m</div>
                     <div style={{ fontSize: '11px', color: '#9ca3af' }}>Est. time</div>
                   </div>
                 </div>
 
-                {/* Minimap Placeholder */}
-                <div style={{ height: '180px', backgroundColor: '#e5e7eb', width: '100%', position: 'relative' }}>
-                  <div style={{ width: '100%', height: '100%', backgroundImage: 'url(https://unpkg.com/leaflet@1.9.4/dist/images/layers.png)', backgroundSize: 'cover', opacity: 0.5 }}></div>
-                  <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', backgroundColor: '#7c2d12', width: '32px', height: '32px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '3px solid white', boxShadow: '0 2px 4px rgba(0,0,0,0.2)' }}>
-                    <img src="/pandel-icon.png" alt="pandal" style={{ width: "16px", height: "16px", filter: "invert(1)" }} />
-                  </div>
+                {/* Mini Map Route View */}
+                <div style={{ height: '180px', width: '100%', position: 'relative', flexShrink: 0 }}>
+                  <MapContainer
+                    center={plannedStops.length > 0 ? [plannedStops[0].lat, plannedStops[0].lng] : [22.5726, 88.3639]}
+                    zoom={13}
+                    style={{ height: '100%', width: '100%' }}
+                    zoomControl={false}
+                    dragging={true}
+                    scrollWheelZoom={false}
+                    attributionControl={false}
+                  >
+                    <TileLayer
+                      key={isDarkMode ? 'dark' : 'light'}
+                      attribution=''
+                      url={isDarkMode 
+                        ? `https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png?key=${import.meta.env.VITE_CARTO_API_KEY || 'cb1_2zpy_1_5578b74846ef709b32860fd7'}`
+                        : `https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?key=${import.meta.env.VITE_CARTO_API_KEY || 'cb1_2zpy_1_5578b74846ef709b32860fd7'}`
+                      }
+                    />
+                    {plannedStops.map((stop, idx) => (
+                      <Marker 
+                        key={`minimap-marker-${idx}`}
+                        position={[stop.lat, stop.lng]}
+                        icon={L.divIcon({
+                          className: 'custom-div-icon',
+                          html: `<div style="background-color: #7c2d12; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid white; box-shadow: 0 1px 3px rgba(0,0,0,0.3); font-size: 12px; font-weight: bold; color: white;">${idx + 1}</div>`,
+                          iconSize: [24, 24],
+                          iconAnchor: [12, 12]
+                        })}
+                      />
+                    ))}
+                    {userLocation && (
+                      <Marker 
+                        position={userLocation}
+                        icon={L.divIcon({
+                          className: 'custom-user-marker',
+                          html: `<div class="user-location-dot"><div class="pulse"></div></div>`,
+                          iconSize: [24, 24],
+                          iconAnchor: [12, 12]
+                        })}
+                      />
+                    )}
+                    {(plannedStops.length > 1 || (plannedStops.length > 0 && userLocation)) && (
+                        <Polyline 
+                          positions={userLocation ? [userLocation, ...plannedStops.map(s => [s.lat, s.lng])] : plannedStops.map(s => [s.lat, s.lng])}
+                          color="#7c2d12"
+                          weight={3}
+                          dashArray="5, 5"
+                          opacity={0.7}
+                        />
+                      )}
+                    <MiniMapBounds stops={plannedStops} />
+                  </MapContainer>
                 </div>
 
-                <div style={{ padding: '20px 16px' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-                    <h3 style={{ fontSize: '16px', fontWeight: 'bold', margin: 0, color: '#1f2937' }}>Route timeline ({plannedStops.length}) <span style={{ color: '#9ca3af', fontSize: '13px', fontWeight: 'normal', marginLeft: '4px' }}>{plannedStops.length}/10</span></h3>
+                <div style={{ padding: '20px 16px 90px 16px', flex: 1, display: 'flex', flexDirection: 'column' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', flexShrink: 0 }}>
+                    <h3 style={{ fontSize: '16px', fontWeight: 'bold', margin: 0, color: '#1f2937' }}>Stops Timeline ({plannedStops.length}) <span style={{ color: plannedStops.length >= 10 ? '#7c2d12' : '#9ca3af', fontSize: '13px', fontWeight: plannedStops.length >= 10 ? 'bold' : 'normal', marginLeft: '4px' }}>{plannedStops.length}/10</span></h3>
                     <div style={{ display: 'flex', gap: '16px' }}>
                       <button style={{ color: '#6b7280', fontSize: '14px', fontWeight: '500' }} onClick={() => setPlannedStops([])}>Clear all</button>
-                      <button style={{ color: '#7c2d12', fontSize: '14px', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '4px' }}>Edit stops <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg></button>
+                      <button onClick={() => setIsEditingStops(!isEditingStops)} style={{ color: '#7c2d12', fontSize: '14px', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                          {isEditingStops ? 'Done' : 'Edit stops'}
+                          {!isEditingStops && <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>}
+                        </button>
                     </div>
                   </div>
 
-                  <div className="route-timeline-list" style={{ position: 'relative' }}>
+                  <div className="route-timeline-list" style={{ position: 'relative', height: 'calc(100dvh - 490px)', overflowY: 'auto', paddingRight: '4px', minHeight: '100px', paddingBottom: '160px' }}>
                     {plannedStops.map((stop, idx) => (
-                      <div key={idx} style={{ display: 'flex', marginBottom: '0', position: 'relative', paddingBottom: '24px' }}>
+                      <div key={idx} style={{ display: 'flex', marginBottom: '0', position: 'relative', paddingBottom: '9px' }}>
                         {idx < plannedStops.length - 1 && <div style={{ position: 'absolute', left: '15px', top: '32px', bottom: '0', width: '2px', backgroundColor: '#fcd34d', zIndex: 0 }}></div>}
                         
                         <div style={{ width: '32px', height: '32px', borderRadius: '50%', backgroundColor: 'white', border: '2px solid #fed7aa', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '14px', fontWeight: 'bold', color: '#111827', zIndex: 1, flexShrink: 0, marginRight: '16px' }}>
                           {idx + 1}
                         </div>
                         
-                        <div style={{ flex: 1, paddingBottom: '24px', borderBottom: idx < plannedStops.length - 1 ? '1px solid #f3f4f6' : 'none' }}>
+                        <div style={{ flex: 1, paddingBottom: '9px', borderBottom: idx < plannedStops.length - 1 ? '1px solid #f3f4f6' : 'none' }}>
                           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                             <div>
                               <div style={{ fontSize: '16px', fontWeight: 'bold', color: '#111827', marginBottom: '2px' }}>{stop.name}</div>
-                              <div style={{ fontSize: '14px', color: '#6b7280', textTransform: 'capitalize' }}>{stop.type}</div>
-                              <div style={{ fontSize: '13px', color: '#9ca3af', marginTop: '4px' }}>ETA {idx * 15 + 10}m • {(idx * 2.4 + 1.2).toFixed(1)} km</div>
+                              <div style={{ fontSize: '14px', color: '#6b7280', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '280px' }}>{stop.type === 'toilet' ? 'Toilet' : stop.type === 'metro' ? 'Metro' : stop.type === 'train' ? 'Train' : (stop.address || stop.type)}</div>
+                              <div style={{ fontSize: '13px', color: '#9ca3af', marginTop: '4px' }}>ETA {routeMetrics.stops[idx]?.cumulativeTime || 0}m • {routeMetrics.stops[idx]?.cumulativeDist.toFixed(1) || 0} km</div>
                             </div>
-                            <div style={{ display: 'flex', gap: '12px', color: '#9ca3af' }}>
+                            <div style={{ display: 'none', gap: '12px', color: '#9ca3af' }}>
                               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
                               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
                             </div>
+                            <div style={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
+                                {isEditingStops ? (
+                                  <button
+                                    onClick={() => {
+                                      const newStops = plannedStops.filter((_, i) => i !== idx);
+                                      setPlannedStops(newStops);
+                                    }}
+                                    style={{
+                                      background: 'none', border: 'none', padding: '8px', cursor: 'pointer',
+                                      color: '#ef4444'
+                                    }}
+                                  >
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                  </button>
+                                ) : (
+                                  <>
+                                    <button 
+                                      onClick={() => {
+                                        if (idx > 0) {
+                                          const newStops = [...plannedStops];
+                                          [newStops[idx - 1], newStops[idx]] = [newStops[idx], newStops[idx - 1]];
+                                          setPlannedStops(newStops);
+                                        }
+                                      }}
+                                      style={{ 
+                                        background: 'none', border: 'none', padding: '4px', cursor: idx > 0 ? 'pointer' : 'default',
+                                        color: idx > 0 ? '#4b5563' : '#d1d5db'
+                                      }}
+                                    >
+                                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+                                    </button>
+                                    
+                                    <button 
+                                      onClick={() => {
+                                        if (idx < plannedStops.length - 1) {
+                                          const newStops = [...plannedStops];
+                                          [newStops[idx], newStops[idx + 1]] = [newStops[idx + 1], newStops[idx]];
+                                          setPlannedStops(newStops);
+                                        }
+                                      }}
+                                      style={{ 
+                                        background: 'none', border: 'none', padding: '4px', cursor: idx < plannedStops.length - 1 ? 'pointer' : 'default',
+                                        color: idx < plannedStops.length - 1 ? '#4b5563' : '#d1d5db'
+                                      }}
+                                    >
+                                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                    </button>
+                                  </>
+                                )}
+                              </div>
                           </div>
                         </div>
                       </div>
                     ))}
                   </div>
 
-                  <button style={{ width: '100%', padding: '16px', backgroundColor: '#fff7ed', borderRadius: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', border: 'none', cursor: 'pointer' }} onClick={() => setActiveTab('map')}>
-                    <div style={{ display: 'flex', alignItems: 'center' }}>
-                      <div style={{ width: '32px', height: '32px', borderRadius: '50%', backgroundColor: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#7c2d12', marginRight: '16px' }}>
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                  
+                </div>
+
+                {/* Next Stop Fixed Overlay */}
+                <div style={{ position: 'fixed', bottom: '150px', left: '16px', right: '16px', zIndex: 90 }}>
+                  <button style={{ width: '100%', padding: '16px', backgroundColor: '#fff7ed', borderRadius: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', border: '1px solid #fed7aa', cursor: 'pointer', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)' }} onClick={() => setActiveTab('map')}>
+                      <div style={{ display: 'flex', alignItems: 'center' }}>
+                        <div style={{ width: '32px', height: '32px', borderRadius: '50%', backgroundColor: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#7c2d12', marginRight: '16px' }}>
+                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                        </div>
+                        <div>
+                          <div style={{ color: '#7c2d12', fontSize: '15px', fontWeight: 'bold', textAlign: 'left' }}>Next stop</div>
+                          <div style={{ color: '#9ca3af', fontSize: '13px', textAlign: 'left' }}>Add more pandels from map</div>
+                        </div>
                       </div>
-                      <div>
-                        <div style={{ color: '#7c2d12', fontSize: '15px', fontWeight: 'bold', textAlign: 'left' }}>Next stop</div>
-                        <div style={{ color: '#9ca3af', fontSize: '13px', textAlign: 'left' }}>Search pandals or add from map</div>
-                      </div>
-                    </div>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7c2d12" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7c2d12" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
                   </button>
                 </div>
 
                 {/* FAB Overlay */}
                 <div style={{ position: 'fixed', bottom: '80px', left: '0', right: '0', padding: '0 16px', zIndex: 100 }}>
                   <button className="start-nav-fab" style={{ width: '100%', backgroundColor: '#7c2d12', color: 'white', padding: '16px', borderRadius: '12px', fontSize: '18px', fontWeight: 'bold', display: 'flex', alignItems: 'center', justifyContent: 'center', border: 'none', boxShadow: '0 8px 24px rgba(124, 45, 18, 0.4)', gap: '8px' }} onClick={() => {
-                    if (plannedStops.length > 0) {
-                      setNavigationDestination(plannedStops[0]);
-                      setActiveDirectionMode('car');
-                      setIsDirectionPopupOpen(true);
-                    }
-                  }}>
+                      if (plannedStops.length === 0) return;
+                      if (!userLocation) {
+                        setPendingLiveNavigation(true);
+                        setShowLocationPopup(true);
+                      } else {
+                        setIsLiveNavigating(true);
+                      }
+                    }}>
                     <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
                       <path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z" />
                     </svg>
@@ -1477,7 +2116,7 @@ const MapPage = ({ onClose }) => {
           {/* Header */}
           <div className="direction-header">
             <div className="direction-top-row">
-              <button className="direction-back-btn" onClick={() => { setIsDirectionPopupOpen(false); setSelectedLocation(null); }}>
+              <button className="direction-back-btn" onClick={() => { setIsDirectionPopupOpen(false); setSelectedLocation(null); setIsNavigationActive(false); }}>
                 <ArrowLeft size={24} />
               </button>
               <div className="direction-inputs-container">
@@ -1565,7 +2204,7 @@ const MapPage = ({ onClose }) => {
                     <div className="walk-summary">
                       <div className="walk-time">
                         {(() => {
-                          const totalMins = Math.ceil(routeData.duration / 60);
+                          const totalMins = Math.ceil((routeData.distance / 1000) / 4.8 * 60);
                           return totalMins >= 60 ? `${Math.floor(totalMins / 60)} hr ${totalMins % 60} min` : `${totalMins} min`;
                         })()}
                         {' '}
@@ -1578,29 +2217,49 @@ const MapPage = ({ onClose }) => {
                         <div className="step-icon-col"><div className="dot-icon blue"></div></div>
                         <div className="step-content border-b">{isRouteSwapped ? navigationDestination.name : (userLocation ? "Current Location" : ".....")}</div>
                       </div>
-                      {routeData.steps.map((step, idx) => (
-                        <div className="step-item" key={idx}>
-                          <div className="step-icon-col">
-                            {step.maneuver.type.includes('turn') || step.maneuver.modifier ? (
-                              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 5l7 7-7 7"/></svg>
-                            ) : (
-                              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-                            )}
+                      {routeData.steps && routeData.steps.map((step, idx) => {
+                        const maneuver = step.maneuver || {};
+                        const { type = '', modifier = '' } = maneuver;
+                        let text = 'Head straight';
+                        if (type === 'turn') text = modifier ? `Turn ${modifier}` : 'Turn';
+                        else if (type === 'new name' || type === 'continue') text = modifier ? `Continue ${modifier}` : 'Continue straight';
+                        else if (type === 'depart') text = `Head ${modifier || 'straight'}`;
+                        else if (type === 'arrive') text = 'Arrive';
+                        else if (modifier) text = `Head ${modifier}`;
+                        
+                        if (step.name && step.name !== '') text += ` onto ${step.name}`;
+                        text = text.charAt(0).toUpperCase() + text.slice(1);
+
+                        let transform = 'rotate(0deg)';
+                        const lowerText = text.toLowerCase();
+                        if (lowerText.includes('uturn') || lowerText.includes('u-turn') || modifier === 'uturn') transform = 'rotate(180deg)';
+                        else if (lowerText.includes('left') || modifier.includes('left')) transform = 'rotate(-90deg)';
+                        else if (lowerText.includes('right') || modifier.includes('right')) transform = 'rotate(90deg)';
+
+                        return (
+                          <div className="step-item" key={idx}>
+                            <div className="step-icon-col">
+                              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ transform }}>
+                                <path d="M12 19V5M5 12l7-7 7 7"/>
+                              </svg>
+                            </div>
+                            <div className="step-content border-b">
+                              <div className="step-instruction">{text}</div>
+                              <div className="step-distance">{step.distance >= 1000 ? (step.distance / 1000).toFixed(1) + ' km' : Math.round(step.distance || 0) + ' m'}</div>
+                            </div>
                           </div>
-                          <div className="step-content border-b">
-                            <div className="step-instruction">{step.maneuver.instruction || `Head ${step.maneuver.modifier || 'straight'}`}</div>
-                            <div className="step-distance">{step.distance} m</div>
-                          </div>
-                        </div>
-                      ))}
+                        );
+                      })}
                       <div className="step-item">
                         <div className="step-icon-col"><MapPin size={18} color="#ea4335" /></div>
                         <div className="step-content border-b">{isRouteSwapped ? (userLocation ? "Current Location" : ".....") : navigationDestination.name}</div>
                       </div>
                     </div>
-                    <div className="start-btn-container">
-                      <button className="nav-start-btn"><svg viewBox="0 0 24 24" width="18" height="18" fill="white"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z" /></svg> Start</button>
-                    </div>
+                    {!isNavigationActive && (
+                      <div className="start-btn-container">
+                        <button className="nav-start-btn" onClick={() => { setIsNavigationActive(true); setFollowingStatus(true); }}><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z" /></svg> Start</button>
+                      </div>
+                    )}
                   </div>
                 ) : (activeDirectionMode === 'train' || activeDirectionMode === 'metro') ? (
                   (() => {
@@ -1611,7 +2270,7 @@ const MapPage = ({ onClose }) => {
                         <div className="transit-summary">
                           <div className="transit-time">
                             {(() => {
-                              const totalMins = Math.ceil((parseFloat(activeRoute.walkToOriginDist) + parseFloat(activeRoute.walkToDestDist))*15) + activeRoute.trainDuration;
+                              const totalMins = Math.ceil((parseFloat(activeRoute.walkToOriginDist) + parseFloat(activeRoute.walkToDestDist)) / 4.8 * 60) + activeRoute.trainDuration;
                               return totalMins >= 60 ? `${Math.floor(totalMins / 60)} hr ${totalMins % 60} min` : `${totalMins} min`;
                             })()}
                           </div>
@@ -1622,7 +2281,37 @@ const MapPage = ({ onClose }) => {
                             <div className="step-icon-col"><div className="dot-icon blue"></div><div className="dotted-line"></div></div>
                             <div className="step-content">
                               <div className="step-title">{isRouteSwapped ? navigationDestination.name : (userLocation ? "Current Location" : ".....")}</div>
-                              <div className="step-instruction" style={{marginTop: '12px'}}><Footprints size={14}/> Walk {(activeRoute.walkToOriginDist * 15).toFixed(0)} min ({activeRoute.walkToOriginDist} km)</div>
+                              <div className="step-instruction" style={{marginTop: '12px', fontWeight: 'bold'}}><Footprints size={14}/> Walk {(activeRoute.walkToOriginDist * 15).toFixed(0)} min ({activeRoute.walkToOriginDist} km)</div>
+                              {activeRoute.originWalkSteps && activeRoute.originWalkSteps.map((step, idx) => {
+                                const maneuver = step.maneuver || {};
+                                const { type = '', modifier = '' } = maneuver;
+                                let text = 'Head straight';
+                                if (type === 'turn') text = modifier ? `Turn ${modifier}` : 'Turn';
+                                else if (type === 'new name' || type === 'continue') text = modifier ? `Continue ${modifier}` : 'Continue straight';
+                                else if (type === 'depart') text = `Head ${modifier || 'straight'}`;
+                                else if (type === 'arrive') text = 'Arrive';
+                                else if (modifier) text = `Head ${modifier}`;
+                                if (step.name && step.name !== '') text += ` onto ${step.name}`;
+                                text = text.charAt(0).toUpperCase() + text.slice(1);
+                                let transform = 'rotate(0deg)';
+                                const lowerText = text.toLowerCase();
+                                if (lowerText.includes('uturn') || lowerText.includes('u-turn') || modifier === 'uturn') transform = 'rotate(180deg)';
+                                else if (lowerText.includes('left') || modifier.includes('left')) transform = 'rotate(-90deg)';
+                                else if (lowerText.includes('right') || modifier.includes('right')) transform = 'rotate(90deg)';
+                                return (
+                                  <div className="step-item" key={`orig-walk-${idx}`} style={{ marginTop: '0', marginLeft: '-24px', position: 'relative' }}>
+                                    <div className="step-icon-col" style={{ opacity: 0.7 }}>
+                                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ transform }}>
+                                        <path d="M12 19V5M5 12l7-7 7 7"/>
+                                      </svg>
+                                    </div>
+                                    <div className="step-content border-b">
+                                      <div className="step-instruction">{text}</div>
+                                      <div className="step-distance">{step.distance >= 1000 ? (step.distance / 1000).toFixed(1) + ' km' : Math.round(step.distance || 0) + ' m'}</div>
+                                    </div>
+                                  </div>
+                                );
+                              })}
                             </div>
                           </div>
                           <div className="step-item">
@@ -1638,7 +2327,37 @@ const MapPage = ({ onClose }) => {
                             <div className="step-icon-col"><div className="train-circle-icon">{activeDirectionMode === 'metro' ? <TramFront size={14} color="white"/> : <Train size={14} color="white"/>}</div><div className="dotted-line"></div></div>
                             <div className="step-content">
                               <div className="step-title">{activeRoute.destStation?.name || 'Destination Station'}</div>
-                              <div className="step-instruction" style={{marginTop: '12px'}}><Footprints size={14}/> Walk {(activeRoute.walkToDestDist * 15).toFixed(0)} min ({activeRoute.walkToDestDist} km)</div>
+                              <div className="step-instruction" style={{marginTop: '12px', fontWeight: 'bold'}}><Footprints size={14}/> Walk {(activeRoute.walkToDestDist * 15).toFixed(0)} min ({activeRoute.walkToDestDist} km)</div>
+                              {activeRoute.destWalkSteps && activeRoute.destWalkSteps.map((step, idx) => {
+                                const maneuver = step.maneuver || {};
+                                const { type = '', modifier = '' } = maneuver;
+                                let text = 'Head straight';
+                                if (type === 'turn') text = modifier ? `Turn ${modifier}` : 'Turn';
+                                else if (type === 'new name' || type === 'continue') text = modifier ? `Continue ${modifier}` : 'Continue straight';
+                                else if (type === 'depart') text = `Head ${modifier || 'straight'}`;
+                                else if (type === 'arrive') text = 'Arrive';
+                                else if (modifier) text = `Head ${modifier}`;
+                                if (step.name && step.name !== '') text += ` onto ${step.name}`;
+                                text = text.charAt(0).toUpperCase() + text.slice(1);
+                                let transform = 'rotate(0deg)';
+                                const lowerText = text.toLowerCase();
+                                if (lowerText.includes('uturn') || lowerText.includes('u-turn') || modifier === 'uturn') transform = 'rotate(180deg)';
+                                else if (lowerText.includes('left') || modifier.includes('left')) transform = 'rotate(-90deg)';
+                                else if (lowerText.includes('right') || modifier.includes('right')) transform = 'rotate(90deg)';
+                                return (
+                                  <div className="step-item" key={`dest-walk-${idx}`} style={{ marginTop: '0', marginLeft: '-24px', position: 'relative' }}>
+                                    <div className="step-icon-col" style={{ opacity: 0.7 }}>
+                                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ transform }}>
+                                        <path d="M12 19V5M5 12l7-7 7 7"/>
+                                      </svg>
+                                    </div>
+                                    <div className="step-content border-b">
+                                      <div className="step-instruction">{text}</div>
+                                      <div className="step-distance">{step.distance >= 1000 ? (step.distance / 1000).toFixed(1) + ' km' : Math.round(step.distance || 0) + ' m'}</div>
+                                    </div>
+                                  </div>
+                                );
+                              })}
                             </div>
                           </div>
                           <div className="step-item">
@@ -1646,6 +2365,11 @@ const MapPage = ({ onClose }) => {
                             <div className="step-content">{isRouteSwapped ? (userLocation ? "Current Location" : ".....") : navigationDestination.name}</div>
                           </div>
                         </div>
+                        {!isNavigationActive && (
+                          <div className="start-btn-container">
+                            <button className="nav-start-btn" onClick={() => { setIsNavigationActive(true); setFollowingStatus(true); }}><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z" /></svg> Start</button>
+                          </div>
+                        )}
                       </div>
                     );
                   })()
@@ -1734,6 +2458,34 @@ const MapPage = ({ onClose }) => {
         )}
 
 
+                {/* Train Timetable Popup */}
+        {showTimetablePopup && (
+          <div className="share-update-overlay" onClick={() => setShowTimetablePopup(false)}>
+            <div className="share-update-popup" onClick={e => e.stopPropagation()}>
+              <div className="share-popup-header">
+                <button className="share-popup-close" onClick={() => setShowTimetablePopup(false)}>
+                  <X size={16} />
+                </button>
+                <h3 className="share-popup-title">Train Timetable</h3>
+              </div>
+              
+              <div className="share-popup-location" style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  <div className="preview-icon-box">
+                    <img src="/train-icon.png" alt="train" style={{ width: "24px", height: "24px", objectFit: "contain", filter: isDarkMode ? "invert(1)" : "none" }} />
+                  </div>
+                  <div className="preview-title-block">
+                    <h4 className="share-loc-title">{selectedLocation ? selectedLocation.name : 'Railway Station'}</h4>
+                    <p className="share-loc-subtitle">Schedule</p>
+                  </div>
+                </div>
+                
+                <TimetableDisplay stationName={selectedLocation ? selectedLocation.name : ''} isDarkMode={isDarkMode} />
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Share Live Update Popup */}
         {showUpdatePopup && (
           <div className="share-update-overlay" onClick={() => setShowUpdatePopup(false)}>
@@ -1759,7 +2511,7 @@ const MapPage = ({ onClose }) => {
 </div>
                 <div className="preview-title-block">
                   <h4 className="share-loc-title">{selectedLocation ? selectedLocation.name : 'Unknown Location'}</h4>
-                  <p className="share-loc-subtitle">◈ {selectedLocation?.address || 'Ballygunge Place, Ballygunge'}</p>
+                  <p className="share-loc-subtitle">{selectedLocation?.type === 'toilet' ? 'Toilet' : selectedLocation?.type === 'metro' ? 'Metro' : selectedLocation?.type === 'train' ? 'Train' : (selectedLocation?.address || 'Ballygunge Place, Ballygunge')}</p>
                 </div>
               </div>
               
@@ -1832,13 +2584,57 @@ const MapPage = ({ onClose }) => {
               </div>
               
               <div className="share-popup-footer">
-                <div className="share-warning">◈ Move closer to the pandal or mark a recent visit to update.</div>
-                <button className="share-submit-btn" disabled>➤ Submit update</button>
-                <button className="share-not-now-btn" onClick={() => setShowUpdatePopup(false)}>Not now</button>
+                  <div className="share-warning">Move closer to the pandal or mark a recent visit to update.</div>
+                  <button 
+                    className="share-submit-btn" 
+                    onClick={() => {
+                      if (!userLocation) {
+                        setLiveUpdateMsg("Location required!");
+                        setTimeout(() => setLiveUpdateMsg(''), 3000);
+                        return;
+                      }
+                      
+                      const isTestMode = selectedLocation?.name === 'Ghas Bagan' && Date.now() < (parseInt(localStorage.getItem('ghasBaganTestExpiry')) || 0);
+                      const dist = getDistance(userLocation[0], userLocation[1], selectedLocation.lat, selectedLocation.lng);
+                      
+                      if (!isTestMode && dist > 0.05) {
+                        setLiveUpdateMsg("You are too far away from this pandal");
+                        setTimeout(() => setLiveUpdateMsg(''), 3000);
+                        return;
+                      }
+                      
+                      try {
+                        const stored = localStorage.getItem('liveUpdates');
+                        const allUpdates = stored ? JSON.parse(stored) : {};
+                        if (!allUpdates[selectedLocation.name]) allUpdates[selectedLocation.name] = [];
+                        allUpdates[selectedLocation.name].push({
+                          timestamp: Date.now(),
+                          rain: rainStatus,
+                          crowd: crowdLevel
+                        });
+                        localStorage.setItem('liveUpdates', JSON.stringify(allUpdates));
+                        setShowUpdatePopup(false);
+                      } catch (e) {}
+                    }}
+                    style={{
+                      background: userLocation ? '#4a3022' : '#e5e7eb',
+                      color: userLocation ? '#d97706' : '#9ca3af',
+                      cursor: userLocation ? 'pointer' : 'not-allowed',
+                      opacity: 1
+                    }}
+                  >
+                    Submit update
+                  </button>
+                  {liveUpdateMsg && (
+                    <div style={{ position: 'absolute', bottom: '80px', left: '50%', transform: 'translateX(-50%)', background: 'rgba(0,0,0,0.8)', color: 'white', padding: '8px 16px', borderRadius: '8px', fontSize: '13px', zIndex: 100, whiteSpace: 'nowrap' }}>
+                      {liveUpdateMsg}
+                    </div>
+                  )}
+                  <button className="share-not-now-btn" onClick={() => setShowUpdatePopup(false)}>Not now</button>
+                </div>
               </div>
             </div>
-          </div>
-        )}
+          )}
 
       </div>
   );
