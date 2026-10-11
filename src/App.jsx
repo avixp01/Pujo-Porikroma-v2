@@ -12,6 +12,7 @@ import './App.css';
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showMapPage, setShowMapPage] = useState(false);
+  const [targetPandal, setTargetPandal] = useState(null);
   const [isMapLoading, setIsMapLoading] = useState(false);
   const [isMapFadingOut, setIsMapFadingOut] = useState(false);
   const videoRef = React.useRef(null);
@@ -105,7 +106,8 @@ function App() {
     return () => window.removeEventListener('hashchange', handleHash);
   }, []);
 
-  const openMap = () => {
+  const openMap = (pandalName = null) => {
+    setTargetPandal(pandalName);
     setIsMapLoading(true);
     setIsMapFadingOut(false);
     if (videoRef.current) {
@@ -199,12 +201,7 @@ function App() {
             
             {/* ── Third-page countdown badge (yellow circle area) ── */}
             
-            <div className="tp3-countdown-badge">
-              <span className="tp3-countdown-text">
-                অপেক্ষার আর মাত্র {thirdPageDays} দিন
-              </span>
-              <span className="tp3-radio-icon" role="img" aria-label="radio">📻</span>
-            </div>
+            
 
             {/* ── Musical Wave + Bengali Text Animation ── */}
             <div className="music-wave-overlay" aria-hidden="true">
@@ -259,12 +256,7 @@ function App() {
 
             {/* Desktop countdown badges */}
             
-            <div className="tp3-desktop-countdown-badge">
-              <span className="tp3-desktop-countdown-text">
-                অপেক্ষার আর মাত্র {thirdPageDays} দিন
-              </span>
-              <span className="tp3-desktop-radio-icon" role="img" aria-label="radio">📻</span>
-            </div>
+            
 
             <div className="tp3-desktop-player">
               <ThirdPagePlayer playerId="third-page-desktop" />
@@ -283,11 +275,12 @@ function App() {
           <img src="/4th-page-dekstop.jpg" alt="Fourth Page Desktop" className="w-full h-auto fourth-page-desktop-img" />
           
           {/* Reusable Theme Card System */}
-          <PujoThemeCards />
+          <PujoThemeCards onExplore={(name) => openMap(name)} />
           <div style={{ position: 'absolute', bottom: '3px', width: '100%', textAlign: 'center', color: '#a69a8b', fontSize: '14px', zIndex: 20, fontFamily: 'sans-serif', letterSpacing: '1px' }}>
-            <div style={{ marginBottom: '0px', opacity: 0.8 }}>&copy; 2026 Pujo Porikroma. All rights reserved.</div>
-            <div style={{ opacity: 0.8 }}>contact us : saikatsom234@gmail.com</div>
-            <div style={{ opacity: 0.8, marginTop: '0px' }}>keep supporting · Happy Durga Puja😊</div>
+            <div style={{ marginBottom: '0px', opacity: 0.8 }}>&copy; 2026 Pujo-Porikroma. Created for cultural, and</div>
+            <div style={{ opacity: 0.8 }}>informational purposes only. All songs and media</div>
+            <div style={{ opacity: 0.8 }}>rights belong to their respective owners.</div>
+            <div style={{ opacity: 0.8 }}>No copyright infringement is intended.</div>
           </div>
         </div>
       </div>
@@ -309,7 +302,7 @@ function App() {
       </div>
 
       {/* Map Page */}
-      {showMapPage && <MapPage onClose={closeModal} />}
+      {showMapPage && <MapPage onClose={closeModal} initialPandalName={targetPandal} />}
     </div>
       )}
     </>

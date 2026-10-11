@@ -29,7 +29,6 @@ const ChatPopup = ({ onClose, socket }) => {
 
   const [selectedUserForInvite, setSelectedUserForInvite] = useState(null);
   const [invites, setInvites] = useState([]);
-  const isGuest = !localStorage.getItem("pujoUser");
 
   const messagesEndRef = useRef(null);
 
@@ -298,59 +297,13 @@ const ChatPopup = ({ onClose, socket }) => {
           </div>
         </div>
 
-        {isGuest && (
-          <div
-            style={{
-              position: "absolute",
-              top: "70px",
-              left: 0,
-              right: 0,
-              bottom: 0,
-              zIndex: 10,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              backgroundColor: "rgba(0,0,0,0.2)",
-            }}
-          >
-            <div
-              className="bengali-text"
-              style={{
-                background: "#33221c",
-                padding: "15px 30px",
-                borderRadius: "25px",
-                color: "#ffb366",
-                fontWeight: "bold",
-                fontSize: "18px",
-                border: "1px solid #ff8a00",
-                boxShadow: "0 4px 15px rgba(0,0,0,0.5)",
-                zIndex: 11,
-              }}
-            >
-              Log in করুন Chat পরিষেবার জন্য
-            </div>
-          </div>
-        )}
-
         <div
-          style={
-            isGuest
-              ? {
-                  filter: "blur(6px)",
-                  pointerEvents: "none",
-                  userSelect: "none",
-                  flex: 1,
-                  display: "flex",
-                  flexDirection: "column",
-                  overflow: "hidden",
-                }
-              : {
-                  flex: 1,
-                  display: "flex",
-                  flexDirection: "column",
-                  overflow: "hidden",
-                }
-          }
+          style={{
+            flex: 1,
+            display: "flex",
+            flexDirection: "column",
+            overflow: "hidden",
+          }}
         >
           {!activeGroupChatId && (
             <div className="chat-popup-tabs-container">

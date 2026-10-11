@@ -1,4 +1,0 @@
-const fs = require('fs');
-const code = fs.readFileSync('src/components/LoginModal.jsx', 'utf8');
-const start = code.indexOf("view === 'verify_success'");
-console.log(code.slice(start, start + 2000));

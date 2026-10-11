@@ -3,10 +3,10 @@ import { X, Copy } from 'lucide-react';
 import './InviteFriendsPopup.css';
 
 const InviteFriendsPopup = ({ onClose }) => {
-  const shareText = "🎉 Join me on Sharodiya — plan the perfect Durga P...";
+  const shareText = "🥳Welcome to Pujo Porikroma — Plan the best Durga Puja pandal hopping and skip the crowd ! Your ultimate digital companion for this Durga Puja. https://pujoporikroma.online";
 
   const handleCopy = () => {
-    navigator.clipboard.writeText("Join me on Sharodiya — plan the perfect Durga Pandal hopping route! https://sharodiya.com");
+    navigator.clipboard.writeText(shareText);
     // Optionally add a toast here later
   };
 

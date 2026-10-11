@@ -3,28 +3,147 @@ import { Play, Pause, SkipBack, SkipForward, Shuffle, Repeat, Music, ChevronDown
 import SongListPopup, { pandalSongs, mahalayaSongs } from './SongListPopup';
 import './MusicPlayer.css';
 
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+  static getDerivedStateFromError(error) {
+    return { hasError: true };
+  }
+  render() {
+    if (this.state.hasError) return null;
+    return this.props.children;
+  }
+}
+
+const extractYouTubeId = (url) => {
+  if (!url) return null;
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+  const match = url.match(regExp);
+  return (match && match[2].length === 11) ? match[2] : null;
+};
+
 const MusicPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [showSongList, setShowSongList] = useState(false);
   
-  const [currentSong, setCurrentSong] = useState({
-    title: 'Dugga Elo',
-    artist: 'Monali Thakur',
-    cover: '/dugga-elo-cover.jpg',
-    src: '/songs/dugga-elo.mp3'
-  });
+  const [currentSong, setCurrentSong] = useState(pandalSongs[1]);
   
-  const audioRef = useRef(null);
+  const iframeRef = useRef(null);
+  const ytPlayerRef = useRef(null);
   const isDraggingRef = useRef(false);
+  const lastLoadedIdRef = useRef(null);
+  const isChangingSongRef = useRef(false);
+  const changingSongTimeoutRef = useRef(null);
+  const isPlayingRef = useRef(isPlaying);
+  const currentSongRef = useRef(currentSong);
+
+  useEffect(() => {
+    isPlayingRef.current = isPlaying;
+  }, [isPlaying]);
+
+  useEffect(() => {
+    currentSongRef.current = currentSong;
+  }, [currentSong]);
+  
+  const [initialYtId] = useState(() => extractYouTubeId(pandalSongs[1].youtubeId) || 'Q23V-K90f7Q');
+  const currentYtId = extractYouTubeId(currentSong?.youtubeId);
+
   const [isDhakPlaying, setIsDhakPlaying] = useState(false);
+  
   const dhakAudioRef = useRef(null);
+
 
   const [isRepeat, setIsRepeat] = useState(false);
 
+  
+  // Mutual exclusion hooks
+  useEffect(() => {
+    const handleGlobalPlay = (e) => {
+      if (e.detail !== 'main-player') {
+        setIsPlaying(false);
+      }
+    };
+    window.addEventListener('player-play', handleGlobalPlay);
+    return () => window.removeEventListener('player-play', handleGlobalPlay);
+  }, []);
+
+  useEffect(() => {
+    if (isPlaying) {
+      window.dispatchEvent(new CustomEvent('player-play', { detail: 'main-player' }));
+    }
+  }, [isPlaying]);
+
+  const playYtSong = (ytId) => {
+    if (!ytId) return;
+    lastLoadedIdRef.current = ytId;
+    if (ytPlayerRef.current) {
+      try {
+        if (typeof ytPlayerRef.current.unMute === 'function') ytPlayerRef.current.unMute();
+        if (typeof ytPlayerRef.current.setVolume === 'function') ytPlayerRef.current.setVolume(100);
+      } catch(e) {}
+      try {
+        if (typeof ytPlayerRef.current.loadVideoById === 'function') {
+          ytPlayerRef.current.loadVideoById({ videoId: ytId, startSeconds: 0 });
+        }
+      } catch(e) {
+        try { ytPlayerRef.current.loadVideoById(ytId, 0); } catch(e2) {}
+      }
+      try {
+        if (typeof ytPlayerRef.current.playVideo === 'function') {
+          ytPlayerRef.current.playVideo();
+        }
+      } catch(e) {}
+    }
+    if (iframeRef.current && iframeRef.current.contentWindow) {
+      try {
+        const cw = iframeRef.current.contentWindow;
+        cw.postMessage(JSON.stringify({ event: 'command', func: 'unMute', args: [] }), '*');
+        cw.postMessage(JSON.stringify({ event: 'command', func: 'setVolume', args: [100] }), '*');
+        cw.postMessage(JSON.stringify({ event: 'command', func: 'loadVideoById', args: [ytId, 0] }), '*');
+        cw.postMessage(JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), '*');
+      } catch(e) {}
+    }
+  };
+
   const togglePlay = () => {
-    setIsPlaying(!isPlaying);
+    if (changingSongTimeoutRef.current) clearTimeout(changingSongTimeoutRef.current);
+    isChangingSongRef.current = false;
+    const nextIsPlaying = !isPlaying;
+    setIsPlaying(nextIsPlaying);
+    if (nextIsPlaying) {
+      if (currentYtId && lastLoadedIdRef.current !== currentYtId) {
+        playYtSong(currentYtId);
+      } else {
+        if (ytPlayerRef.current) {
+          try {
+            if (typeof ytPlayerRef.current.unMute === 'function') ytPlayerRef.current.unMute();
+            if (typeof ytPlayerRef.current.setVolume === 'function') ytPlayerRef.current.setVolume(100);
+            if (typeof ytPlayerRef.current.playVideo === 'function') ytPlayerRef.current.playVideo();
+          } catch(e) {}
+        }
+        if (iframeRef.current && iframeRef.current.contentWindow) {
+          try {
+            const cw = iframeRef.current.contentWindow;
+            cw.postMessage(JSON.stringify({ event: 'command', func: 'unMute', args: [] }), '*');
+            cw.postMessage(JSON.stringify({ event: 'command', func: 'setVolume', args: [100] }), '*');
+            cw.postMessage(JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), '*');
+          } catch(e) {}
+        }
+      }
+    } else {
+      if (ytPlayerRef.current && typeof ytPlayerRef.current.pauseVideo === 'function') {
+        try { ytPlayerRef.current.pauseVideo(); } catch(e){}
+      }
+      if (iframeRef.current && iframeRef.current.contentWindow) {
+        try {
+          iframeRef.current.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'pauseVideo', args: [] }), '*');
+        } catch(e){}
+      }
+    }
   };
 
   const toggleRepeat = () => {
@@ -39,9 +158,9 @@ const MusicPlayer = () => {
 
   const toggleFavoriteCurrent = () => {
     setFavoriteSongs(prev => {
-      const exists = prev.find(s => s.src === currentSong.src);
+      const exists = prev.find(s => (s.src && s.src === currentSong.src) || (s.youtubeId && s.youtubeId === currentSong.youtubeId));
       if (exists) {
-        return prev.filter(s => s.src !== currentSong.src);
+        return prev.filter(s => (s.src && s.src !== currentSong.src) && (s.youtubeId !== currentSong.youtubeId));
       }
       return [...prev, currentSong];
     });
@@ -66,7 +185,6 @@ const MusicPlayer = () => {
       setIsShuffled(false);
     }
   };
-
 
   const toggleDhak = () => {
     setIsDhakPlaying(!isDhakPlaying);
@@ -102,79 +220,410 @@ const MusicPlayer = () => {
   };
 
   const handleSelectSong = (song) => {
+    if (changingSongTimeoutRef.current) clearTimeout(changingSongTimeoutRef.current);
+    isChangingSongRef.current = true;
+    changingSongTimeoutRef.current = setTimeout(() => {
+      isChangingSongRef.current = false;
+    }, 2000);
+
     setCurrentSong(song);
+    currentSongRef.current = song;
+    setDuration(0); // Reset duration immediately
+    setCurrentTime(0);
     closeSongList();
     setIsPlaying(true);
+    const selectYtId = extractYouTubeId(song.youtubeId);
+    if (selectYtId) {
+      playYtSong(selectYtId);
+    }
   };
 
   const playNext = () => {
     let nextSong = null;
-    const favIndex = favoriteSongs.findIndex(s => s.src === currentSong.src);
+    const favIndex = favoriteSongs.findIndex(s => (s.src && s.src === currentSong.src) || (s.youtubeId && s.youtubeId === currentSong.youtubeId));
     if (isFavoriteMode && favIndex !== -1) {
       nextSong = favoriteSongs[(favIndex + 1) % favoriteSongs.length];
     } else {
-      const pandalIndex = activePandalSongs.findIndex(s => s.src === currentSong.src);
+      const pandalIndex = activePandalSongs.findIndex(s => (s.src && s.src === currentSong.src) || (s.youtubeId && s.youtubeId === currentSong.youtubeId));
       if (pandalIndex !== -1) {
         nextSong = activePandalSongs[(pandalIndex + 1) % activePandalSongs.length];
       } else {
-        const mahalayaIndex = activeMahalayaSongs.findIndex(s => s.src === currentSong.src);
+        const mahalayaIndex = activeMahalayaSongs.findIndex(s => (s.src && s.src === currentSong.src) || (s.youtubeId && s.youtubeId === currentSong.youtubeId));
         if (mahalayaIndex !== -1) {
           nextSong = activeMahalayaSongs[(mahalayaIndex + 1) % activeMahalayaSongs.length];
         }
       }
     }
     if (nextSong) {
+      if (changingSongTimeoutRef.current) clearTimeout(changingSongTimeoutRef.current);
+      isChangingSongRef.current = true;
+      changingSongTimeoutRef.current = setTimeout(() => {
+        isChangingSongRef.current = false;
+      }, 2000);
+
       setCurrentSong(nextSong);
+      currentSongRef.current = nextSong;
+      setDuration(0); setCurrentTime(0);
       setIsPlaying(true);
+      const nextYtId = extractYouTubeId(nextSong.youtubeId);
+      if (nextYtId) {
+        playYtSong(nextYtId);
+      }
     }
   };
 
   const playPrevious = () => {
     let prevSong = null;
-    const favIndex = favoriteSongs.findIndex(s => s.src === currentSong.src);
+    const favIndex = favoriteSongs.findIndex(s => (s.src && s.src === currentSong.src) || (s.youtubeId && s.youtubeId === currentSong.youtubeId));
     if (isFavoriteMode && favIndex !== -1) {
       prevSong = favoriteSongs[(favIndex - 1 + favoriteSongs.length) % favoriteSongs.length];
     } else {
-      const pandalIndex = activePandalSongs.findIndex(s => s.src === currentSong.src);
+      const pandalIndex = activePandalSongs.findIndex(s => (s.src && s.src === currentSong.src) || (s.youtubeId && s.youtubeId === currentSong.youtubeId));
       if (pandalIndex !== -1) {
         prevSong = activePandalSongs[(pandalIndex - 1 + activePandalSongs.length) % activePandalSongs.length];
       } else {
-        const mahalayaIndex = activeMahalayaSongs.findIndex(s => s.src === currentSong.src);
+        const mahalayaIndex = activeMahalayaSongs.findIndex(s => (s.src && s.src === currentSong.src) || (s.youtubeId && s.youtubeId === currentSong.youtubeId));
         if (mahalayaIndex !== -1) {
           prevSong = activeMahalayaSongs[(mahalayaIndex - 1 + activeMahalayaSongs.length) % activeMahalayaSongs.length];
         }
       }
     }
     if (prevSong) {
+      if (changingSongTimeoutRef.current) clearTimeout(changingSongTimeoutRef.current);
+      isChangingSongRef.current = true;
+      changingSongTimeoutRef.current = setTimeout(() => {
+        isChangingSongRef.current = false;
+      }, 2000);
+
       setCurrentSong(prevSong);
+      currentSongRef.current = prevSong;
+      setDuration(0); setCurrentTime(0);
       setIsPlaying(true);
+      const prevYtId = extractYouTubeId(prevSong.youtubeId);
+      if (prevYtId) {
+        playYtSong(prevYtId);
+      }
     }
   };
 
-  // Handle audio playback whenever the song changes or play state toggles
-  useEffect(() => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        window.dispatchEvent(new CustomEvent('player-play', { detail: 'first-page' }));
-        audioRef.current.play().catch(e => {
-          console.log("Playback interrupted or prevented:", e);
-          setIsPlaying(false);
-        });
+  const handleEnded = () => {
+    if (isRepeat) {
+      if (ytPlayerRef.current && typeof ytPlayerRef.current.seekTo === 'function') {
+        ytPlayerRef.current.seekTo(0, true);
+        ytPlayerRef.current.playVideo();
+      } else if (iframeRef.current && iframeRef.current.contentWindow) {
+        iframeRef.current.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'seekTo', args: [0, true] }), '*');
+        iframeRef.current.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), '*');
+      }
+      setCurrentTime(0);
+      setIsPlaying(true);
+      return;
+    }
+    
+    const activeSong = currentSongRef.current || currentSong;
+    let nextSong = null;
+    const favIndex = favoriteSongs.findIndex(s => (s.src && s.src === activeSong.src) || (s.youtubeId && s.youtubeId === activeSong.youtubeId));
+    if (isFavoriteMode && favIndex !== -1) {
+      nextSong = favoriteSongs[(favIndex + 1) % favoriteSongs.length];
+    } else {
+      const pandalIndex = activePandalSongs.findIndex(s => (s.src && s.src === activeSong.src) || (s.youtubeId && s.youtubeId === activeSong.youtubeId));
+      if (pandalIndex !== -1) {
+        nextSong = activePandalSongs[(pandalIndex + 1) % activePandalSongs.length];
       } else {
-        audioRef.current.pause();
+        const mahalayaIndex = activeMahalayaSongs.findIndex(s => (s.src && s.src === activeSong.src) || (s.youtubeId && s.youtubeId === activeSong.youtubeId));
+        if (mahalayaIndex !== -1) {
+          nextSong = activeMahalayaSongs[(mahalayaIndex + 1) % activeMahalayaSongs.length];
+        }
       }
     }
-  }, [isPlaying, currentSong.src]);
+    
+    if (!nextSong && activePandalSongs.length > 0) {
+      nextSong = activePandalSongs[0];
+    }
+
+    if (nextSong) {
+      if (changingSongTimeoutRef.current) clearTimeout(changingSongTimeoutRef.current);
+      isChangingSongRef.current = true;
+      changingSongTimeoutRef.current = setTimeout(() => {
+        isChangingSongRef.current = false;
+      }, 2000);
+
+      setCurrentSong(nextSong);
+      currentSongRef.current = nextSong;
+      setDuration(0);
+      setCurrentTime(0);
+      setIsPlaying(true);
+      const nextYtId = extractYouTubeId(nextSong.youtubeId);
+      if (nextYtId) {
+        playYtSong(nextYtId);
+      }
+    }
+  };
+
+  const handleEndedRef = useRef(handleEnded);
+  const lastEndedTimestampRef = useRef(0);
 
   useEffect(() => {
-    const handleGlobalPlay = (e) => {
-      if (e.detail !== 'first-page') {
-        setIsPlaying(false);
+    handleEndedRef.current = handleEnded;
+  });
+
+  const triggerEnded = () => {
+    if (!isPlayingRef.current) return;
+    const now = Date.now();
+    if (now - lastEndedTimestampRef.current > 1500) {
+      lastEndedTimestampRef.current = now;
+      if (handleEndedRef.current) {
+        handleEndedRef.current();
       }
+    }
+  };
+
+  useEffect(() => {
+    const onEndedListener = () => {
+      triggerEnded();
     };
-    window.addEventListener('player-play', handleGlobalPlay);
-    return () => window.removeEventListener('player-play', handleGlobalPlay);
+    window.addEventListener('mp-youtube-ended', onEndedListener);
+    return () => window.removeEventListener('mp-youtube-ended', onEndedListener);
   }, []);
+
+  const playerStateRef = useRef({ isRepeat: false, playNext: () => {} });
+
+  const durationFallbackRef = useRef(150);
+  useEffect(() => {
+    playerStateRef.current = { isRepeat, playNext: handleEnded };
+  }, [isRepeat, handleEnded]);
+
+  // Initialize YT API
+  useEffect(() => {
+    let checkInterval = null;
+
+    if (window.YT && window.YT.Player) {
+      initPlayer();
+    } else {
+      if (!document.querySelector('script[src*="youtube.com/iframe_api"]')) {
+        const tag = document.createElement('script');
+        tag.src = 'https://www.youtube.com/iframe_api';
+        const firstScriptTag = document.getElementsByTagName('script')[0];
+        if (firstScriptTag && firstScriptTag.parentNode) {
+           firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        } else {
+           document.head.appendChild(tag);
+        }
+      }
+      
+      const oldReady = window.onYouTubeIframeAPIReady;
+      window.onYouTubeIframeAPIReady = () => {
+        if (typeof oldReady === 'function') oldReady();
+        initPlayer();
+      };
+
+      // Periodic check ensures initPlayer is called as soon as YT.Player exists,
+      // even if onYouTubeIframeAPIReady was clobbered by any other component
+      checkInterval = setInterval(() => {
+        if (window.YT && window.YT.Player) {
+          if (!ytPlayerRef.current) {
+            initPlayer();
+          } else {
+            clearInterval(checkInterval);
+            checkInterval = null;
+          }
+        }
+      }, 100);
+    }
+
+    function initPlayer() {
+      if (!iframeRef.current || ytPlayerRef.current) return;
+      try {
+        ytPlayerRef.current = new window.YT.Player(iframeRef.current, {
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange,
+            'onError': onPlayerError
+          }
+        });
+      } catch (err) {
+        console.error("YT Player init error in MusicPlayer:", err);
+      }
+    }
+
+    function onPlayerReady(event) {
+      if (event && event.target) {
+        ytPlayerRef.current = event.target;
+      }
+      try {
+        if (event.target.unMute) event.target.unMute();
+        if (event.target.setVolume) event.target.setVolume(100);
+      } catch(e) {}
+      if (currentYtId) {
+        event.target.cueVideoById(currentYtId);
+        lastLoadedIdRef.current = currentYtId;
+      }
+      if (isPlaying) {
+        event.target.playVideo();
+      }
+    }
+
+    function onPlayerStateChange(event) {
+      if (event.data === window.YT.PlayerState.PLAYING) {
+        if (changingSongTimeoutRef.current) clearTimeout(changingSongTimeoutRef.current);
+        isChangingSongRef.current = false;
+        setIsPlaying(true);
+        try {
+          const d = event.target.getDuration();
+          if (d > 0) setDuration(d);
+        } catch(e) {}
+      } else if (event.data === window.YT.PlayerState.PAUSED) {
+        if (!isChangingSongRef.current) {
+          setIsPlaying(false);
+        }
+      } else if (event.data === window.YT.PlayerState.ENDED) {
+        if (changingSongTimeoutRef.current) clearTimeout(changingSongTimeoutRef.current);
+        if (!isChangingSongRef.current) {
+          window.dispatchEvent(new CustomEvent('mp-youtube-ended'));
+        }
+      }
+    }
+
+    function onPlayerError(event) {
+      console.error("YouTube Player Error", event.data);
+      if (changingSongTimeoutRef.current) clearTimeout(changingSongTimeoutRef.current);
+      isChangingSongRef.current = false;
+      setIsPlaying(false);
+    }
+
+    return () => {
+      if (checkInterval) clearInterval(checkInterval);
+    };
+  }, []);
+
+  // Sync play/pause state
+  useEffect(() => {
+    if (isChangingSongRef.current) return;
+    if (isPlaying) {
+      if (ytPlayerRef.current && typeof ytPlayerRef.current.playVideo === 'function') {
+        try {
+          if (typeof ytPlayerRef.current.unMute === 'function') ytPlayerRef.current.unMute();
+          if (typeof ytPlayerRef.current.setVolume === 'function') ytPlayerRef.current.setVolume(100);
+          ytPlayerRef.current.playVideo();
+        } catch(e){}
+      }
+      if (iframeRef.current && iframeRef.current.contentWindow) {
+        try {
+          const cw = iframeRef.current.contentWindow;
+          cw.postMessage(JSON.stringify({ event: 'command', func: 'unMute', args: [] }), '*');
+          cw.postMessage(JSON.stringify({ event: 'command', func: 'setVolume', args: [100] }), '*');
+          cw.postMessage(JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), '*');
+        } catch(e) {}
+      }
+    } else {
+      if (ytPlayerRef.current && typeof ytPlayerRef.current.pauseVideo === 'function') {
+        try { ytPlayerRef.current.pauseVideo(); } catch(e){}
+      }
+      if (iframeRef.current && iframeRef.current.contentWindow) {
+        try {
+          iframeRef.current.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'pauseVideo', args: [] }), '*');
+        } catch(e) {}
+      }
+    }
+  }, [isPlaying]);
+
+  // Handle song change
+  useEffect(() => {
+    if (currentYtId && currentYtId !== lastLoadedIdRef.current) {
+      setDuration(0);
+      setCurrentTime(0);
+      if (isPlaying || isChangingSongRef.current) {
+        playYtSong(currentYtId);
+      } else {
+        if (ytPlayerRef.current && typeof ytPlayerRef.current.cueVideoById === 'function') {
+          try { ytPlayerRef.current.cueVideoById({ videoId: currentYtId }); } catch(e) {
+            try { ytPlayerRef.current.cueVideoById(currentYtId); } catch(e2){}
+          }
+        }
+        if (iframeRef.current && iframeRef.current.contentWindow) {
+          try {
+            iframeRef.current.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'cueVideoById', args: [currentYtId, 0] }), '*');
+          } catch(e){}
+        }
+        lastLoadedIdRef.current = currentYtId;
+      }
+    }
+  }, [currentYtId, isPlaying]);
+
+  useEffect(() => {
+    const handleMessage = (e) => {
+      try {
+        if (e.origin !== 'https://www.youtube.com') return;
+        if (!iframeRef.current || e.source !== iframeRef.current.contentWindow) return;
+        if (isChangingSongRef.current) return;
+        const data = JSON.parse(e.data);
+        if (data.event === 'infoDelivery' && data.info) {
+          if (!isDraggingRef.current) {
+            if (data.info.currentTime !== undefined) {
+              const msgTime = data.info.currentTime;
+              const maxDuration = durationFallbackRef.current || 0;
+              if (maxDuration > 0 && msgTime > maxDuration + 2) {
+                return;
+              }
+              setCurrentTime(msgTime);
+            }
+            if (data.info.duration !== undefined && data.info.duration > 0 && !currentSong?.duration) {
+              setDuration(data.info.duration);
+            }
+          }
+        }
+        if ((data.event === 'onStateChange' && data.info === 0) ||
+            (data.event === 'infoDelivery' && data.info && data.info.playerState === 0)) {
+          if (!isChangingSongRef.current && isPlayingRef.current) {
+            window.dispatchEvent(new CustomEvent('mp-youtube-ended'));
+          }
+        }
+      } catch(err) {}
+    };
+    window.addEventListener('message', handleMessage);
+    return () => window.removeEventListener('message', handleMessage);
+  }, []);
+
+  // Poll current time safely and advance progress automatically
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (isPlaying && !isDraggingRef.current && !isChangingSongRef.current) {
+        let gotTime = false;
+        if (ytPlayerRef.current && typeof ytPlayerRef.current.getCurrentTime === 'function') {
+          try {
+            const ytTime = ytPlayerRef.current.getCurrentTime();
+            const maxDuration = durationFallbackRef.current || 0;
+            if (typeof ytTime === 'number' && !isNaN(ytTime) && ytTime >= 0) {
+              if (maxDuration > 0 && ytTime > maxDuration + 2) {
+                // Ignore stale time from a previously played longer track
+              } else {
+                setCurrentTime(ytTime);
+                gotTime = true;
+                if (isPlayingRef.current && maxDuration > 0 && ytTime >= maxDuration - 1 && !isChangingSongRef.current) {
+                  window.dispatchEvent(new CustomEvent('mp-youtube-ended'));
+                }
+              }
+            }
+            const ytDuration = ytPlayerRef.current.getDuration ? ytPlayerRef.current.getDuration() : 0;
+            if (ytDuration > 0 && !currentSong?.duration) setDuration(ytDuration);
+          } catch(e) {}
+        }
+
+        // Reliable progress fallback ticker if YouTube API time is temporarily buffering or unavailable
+        if (!gotTime) {
+          const maxDuration = durationFallbackRef.current || 0;
+          setCurrentTime(prev => {
+            const next = prev + 1;
+            if (maxDuration > 0 && next >= maxDuration - 1 && isPlayingRef.current && !isChangingSongRef.current) {
+              window.dispatchEvent(new CustomEvent('mp-youtube-ended'));
+            }
+            return maxDuration > 0 ? Math.min(next, maxDuration) : next;
+          });
+        }
+      }
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [isPlaying, currentYtId]);
 
   useEffect(() => {
     if (dhakAudioRef.current) {
@@ -185,81 +634,45 @@ const MusicPlayer = () => {
       }
     }
   }, [isDhakPlaying]);
+
   const formatTime = (time) => {
-    if (isNaN(time)) return "0:00";
+    if (isNaN(time) || !time) return "0:00";
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
     return `${minutes}:${seconds.toString().padStart(2, '0')}`;
   };
 
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (!audio) return;
-    const handleEnded = () => {
-      if (isRepeat) {
-        audio.currentTime = 0;
-        audio.play().catch(e => console.log(e));
-        return;
-      }
-      
-      let nextSong = null;
-      
-      const favIndex = favoriteSongs.findIndex(s => s.src === currentSong.src);
-      if (isFavoriteMode && favIndex !== -1) {
-        nextSong = favoriteSongs[(favIndex + 1) % favoriteSongs.length];
-      } else {
-        const pandalIndex = activePandalSongs.findIndex(s => s.src === currentSong.src);
-        if (pandalIndex !== -1) {
-          nextSong = activePandalSongs[(pandalIndex + 1) % activePandalSongs.length];
-        } else {
-          const mahalayaIndex = activeMahalayaSongs.findIndex(s => s.src === currentSong.src);
-          if (mahalayaIndex !== -1) {
-            nextSong = activeMahalayaSongs[(mahalayaIndex + 1) % activeMahalayaSongs.length];
-          }
-        }
-      }
-      
-      if (nextSong) {
-        setCurrentSong(nextSong);
-        setIsPlaying(true);
-      } else {
-        setIsPlaying(false);
-      }
-    };
-    
-    const handleTimeUpdate = () => {
-      if (!isDraggingRef.current) {
-        setCurrentTime(audio.currentTime);
-      }
-    };
-    const handleLoadedMetadata = () => setDuration(audio.duration);
-    
-    audio.addEventListener('ended', handleEnded);
-    audio.addEventListener('timeupdate', handleTimeUpdate);
-    audio.addEventListener('loadedmetadata', handleLoadedMetadata);
-    
-    if (audio.readyState >= 1) {
-      setDuration(audio.duration);
-    }
-    
-    return () => {
-      audio.removeEventListener('ended', handleEnded);
-      audio.removeEventListener('timeupdate', handleTimeUpdate);
-      audio.removeEventListener('loadedmetadata', handleLoadedMetadata);
-    };
-  }, [currentSong, isRepeat, activePandalSongs, activeMahalayaSongs, favoriteSongs, isFavoriteMode]);
-
-  const progress = duration ? (currentTime / duration) * 100 : 0;
+  const actualDuration = currentSong?.duration ? (parseInt(currentSong.duration.split(':')[0]) * 60 + parseInt(currentSong.duration.split(':')[1])) : (duration > 0 ? duration : 100);
+  useEffect(() => { if (durationFallbackRef) durationFallbackRef.current = actualDuration; }, [actualDuration]);
+  const displayCurrentTime = actualDuration > 0 ? Math.min(currentTime, actualDuration) : currentTime;
+  const progress = actualDuration ? Math.min(100, Math.max(0, (displayCurrentTime / actualDuration) * 100)) : 0;
 
   return (
     <div className="music-player-container">
-      <audio ref={audioRef} src={currentSong.src} preload="metadata" />
       <audio ref={dhakAudioRef} src="/songs/dhak-song.webm" loop preload="auto" />
+
+      {/* NATIVE YOUTUBE IFRAME */}
+      <ErrorBoundary>
+        <div style={{ position: 'fixed', zIndex: -1000, top: '0px', left: '0px', width: '200px', height: '200px', opacity: 0.001, pointerEvents: 'none' }}>
+          <iframe
+            ref={iframeRef}
+            id="youtube-native-player"
+            width="200"
+            height="200"
+            src={`https://www.youtube.com/embed/${initialYtId}?enablejsapi=1&origin=${window.location.origin}&autoplay=0&playsinline=1&controls=0`}
+            title="Music Player YouTube native"
+            frameBorder="0"
+            allow="autoplay; encrypted-media"
+            allowFullScreen
+          />
+        </div>
+      </ErrorBoundary>
+
       {/* Mobile only selector */}
       <div className="mobile-category-selector show-mobile-flex" style={{ gap: '12px' }}>
         <button className="category-btn glass-panel bengali-text" onClick={() => openSongList(false)}>
           <Music size={16} />
-          পূজো সংগ্রহ
+          পুজো সংগ্রহ
           <ChevronDown size={16} />
         </button>
         <button 
@@ -286,12 +699,12 @@ const MusicPlayer = () => {
                 </div>
                 <button 
                   onClick={toggleFavoriteCurrent} 
-                  style={{ background: 'transparent', border: 'none', color: favoriteSongs.some(s => s.src === currentSong.src) ? '#ff4b4b' : 'rgba(255,255,255,0.4)', cursor: 'pointer', padding: 0, marginTop: '2px', transform: 'translateY(-1px)' }}
+                  style={{ background: 'transparent', border: 'none', color: favoriteSongs.some(s => (s.src && s.src === currentSong.src) || (s.youtubeId && s.youtubeId === currentSong.youtubeId)) ? '#ff4b4b' : 'rgba(255,255,255,0.4)', cursor: 'pointer', padding: 0, marginTop: '2px', transform: 'translateY(-1px)' }}
                 >
-                  <Heart size={18} fill={favoriteSongs.some(s => s.src === currentSong.src) ? '#ff4b4b' : 'none'} />
+                  <Heart size={18} fill={favoriteSongs.some(s => (s.src && s.src === currentSong.src) || (s.youtubeId && s.youtubeId === currentSong.youtubeId)) ? '#ff4b4b' : 'none'} />
                 </button>
               </div>
-              <div className="track-time">{formatTime(currentTime)} / {formatTime(duration)}</div>
+              <div className="track-time">{formatTime(displayCurrentTime)} / {formatTime(actualDuration)}</div>
             </div>
           </div>
           
@@ -307,30 +720,49 @@ const MusicPlayer = () => {
         <div className="progress-container">
           <div className="progress-bar" style={{ width: `${progress}%` }}></div>
           <input 
-            type="range"
-            min="0"
-            max={duration || 100}
-            step="0.01"
-            value={currentTime}
-            className="progress-input"
-            onMouseDown={() => { isDraggingRef.current = true; }}
-            onTouchStart={() => { isDraggingRef.current = true; }}
-            onChange={(e) => {
-              const newTime = parseFloat(e.target.value);
-              setCurrentTime(newTime);
-            }}
-            onMouseUp={(e) => {
-              isDraggingRef.current = false;
-              if (audioRef.current) audioRef.current.currentTime = parseFloat(e.target.value);
-            }}
-            onTouchEnd={(e) => {
-              isDraggingRef.current = false;
-              if (audioRef.current) audioRef.current.currentTime = parseFloat(e.target.value);
-            }}
-          />
+              type="range" 
+              min="0" 
+              max={actualDuration || 100} 
+              step="0.1"
+              value={Math.min(displayCurrentTime, actualDuration || 100) || 0}
+              className="progress-input"
+              onMouseDown={() => {
+                isDraggingRef.current = true;
+              }}
+              onTouchStart={() => {
+                isDraggingRef.current = true;
+              }}
+              onChange={(e) => {
+                isDraggingRef.current = true;
+                setCurrentTime(parseFloat(e.target.value));
+              }}
+              onMouseUp={(e) => {
+                const newTime = parseFloat(e.target.value);
+                setCurrentTime(newTime);
+                if (ytPlayerRef.current && typeof ytPlayerRef.current.seekTo === 'function') {
+                  ytPlayerRef.current.seekTo(newTime, true);
+                } else if (iframeRef.current && iframeRef.current.contentWindow) {
+                  iframeRef.current.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'seekTo', args: [newTime, true] }), '*');
+                }
+                setTimeout(() => {
+                  isDraggingRef.current = false;
+                }, 400);
+              }}
+              onTouchEnd={(e) => {
+                const newTime = parseFloat(e.target.value);
+                setCurrentTime(newTime);
+                if (ytPlayerRef.current && typeof ytPlayerRef.current.seekTo === 'function') {
+                  ytPlayerRef.current.seekTo(newTime, true);
+                } else if (iframeRef.current && iframeRef.current.contentWindow) {
+                  iframeRef.current.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'seekTo', args: [newTime, true] }), '*');
+                }
+                setTimeout(() => {
+                  isDraggingRef.current = false;
+                }, 400);
+              }}
+            />
         </div>
         
-        {/* Mobile bottom controls */}
         <div className="player-bottom show-mobile-flex">
           <button 
             className={`action-btn bengali-text ${isShuffled ? 'active' : ''}`}
@@ -360,15 +792,10 @@ const MusicPlayer = () => {
           </button>
         </div>
       </div>
-      
+
       {showSongList && <SongListPopup onClose={closeSongList} onSelectSong={handleSelectSong} currentSong={currentSong} pandalList={activePandalSongs} mahalayaList={activeMahalayaSongs} favoriteList={favoriteSongs} isFavoriteMode={isFavoriteMode} />}
     </div>
   );
 };
 
 export default MusicPlayer;
-
-
-
-
-

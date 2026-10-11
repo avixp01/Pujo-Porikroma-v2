@@ -351,7 +351,7 @@ class ErrorBoundary extends React.Component {
   }
 }
 
-const MapPage = ({ onClose }) => {
+const MapPage = ({ onClose, initialPandalName }) => {
   const [activeFilters, setActiveFilters] = useState(['pandal', 'toilet', 'metro', 'train']);
   const [plannedStops, setPlannedStops] = useState([]); // multi-select filter
   const [selectedLocation, setSelectedLocation] = useState(null);
@@ -421,6 +421,23 @@ const MapPage = ({ onClose }) => {
     window.addEventListener('visitedPandalsUpdated', loadVisited);
     return () => window.removeEventListener('visitedPandalsUpdated', loadVisited);
   }, []);
+
+  React.useEffect(() => {
+    if (initialPandalName) {
+      const target = locationData.find(loc => 
+        (loc.name === initialPandalName || 
+         (initialPandalName === 'Kalyani ITI More Luminos Club' && loc.name === 'ITI More Durga Puja Ground, Kalyani') ||
+         (initialPandalName === 'Ahiritola Sarbajanin Durgotsav' && loc.name === 'Ahiritola Jubak Brinda Sharbojanin Durgotsab') ||
+         (initialPandalName === 'Hindusthan Park' && loc.name === 'Hindustan Park')) && 
+        loc.type === 'pandal'
+      );
+      if (target) {
+        setSelectedLocation(target);
+        setMapCenter([target.lat, target.lng]);
+        setMapZoom(17);
+      }
+    }
+  }, [initialPandalName]);
 
   const handleMarkVisited = () => {
     if (!selectedLocation || !selectedLocation.name) return;
@@ -1915,7 +1932,7 @@ const MapPage = ({ onClose }) => {
                 </div>
 
                 <div style={{ padding: '20px 16px 90px 16px', flex: 1, display: 'flex', flexDirection: 'column' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', flexShrink: 0 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px', flexShrink: 0 }}>
                     <h3 style={{ fontSize: '16px', fontWeight: 'bold', margin: 0, color: '#1f2937' }}>Stops Timeline ({plannedStops.length}) <span style={{ color: plannedStops.length >= 10 ? '#7c2d12' : '#9ca3af', fontSize: '13px', fontWeight: plannedStops.length >= 10 ? 'bold' : 'normal', marginLeft: '4px' }}>{plannedStops.length}/10</span></h3>
                     <div style={{ display: 'flex', gap: '16px' }}>
                       <button style={{ color: '#6b7280', fontSize: '14px', fontWeight: '500' }} onClick={() => setPlannedStops([])}>Clear all</button>
@@ -1928,14 +1945,14 @@ const MapPage = ({ onClose }) => {
 
                   <div className="route-timeline-list" style={{ position: 'relative', height: 'calc(100dvh - 490px)', overflowY: 'auto', paddingRight: '4px', minHeight: '100px', paddingBottom: '160px' }}>
                     {plannedStops.map((stop, idx) => (
-                      <div key={idx} style={{ display: 'flex', marginBottom: '0', position: 'relative', paddingBottom: '9px' }}>
+                      <div key={idx} style={{ display: 'flex', marginBottom: '0', position: 'relative', paddingBottom: '5px' }}>
                         {idx < plannedStops.length - 1 && <div style={{ position: 'absolute', left: '15px', top: '32px', bottom: '0', width: '2px', backgroundColor: '#fcd34d', zIndex: 0 }}></div>}
                         
                         <div style={{ width: '32px', height: '32px', borderRadius: '50%', backgroundColor: 'white', border: '2px solid #fed7aa', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '14px', fontWeight: 'bold', color: '#111827', zIndex: 1, flexShrink: 0, marginRight: '16px' }}>
                           {idx + 1}
                         </div>
                         
-                        <div style={{ flex: 1, paddingBottom: '9px', borderBottom: idx < plannedStops.length - 1 ? '1px solid #f3f4f6' : 'none' }}>
+                        <div style={{ flex: 1, paddingBottom: '4px', borderBottom: idx < plannedStops.length - 1 ? '1px solid #f3f4f6' : 'none' }}>
                           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                             <div>
                               <div style={{ fontSize: '16px', fontWeight: 'bold', color: '#111827', marginBottom: '2px' }}>{stop.name}</div>
@@ -2005,24 +2022,10 @@ const MapPage = ({ onClose }) => {
                   
                 </div>
 
-                {/* Next Stop Fixed Overlay */}
-                <div style={{ position: 'fixed', bottom: '150px', left: '16px', right: '16px', zIndex: 90 }}>
-                  <button style={{ width: '100%', padding: '16px', backgroundColor: '#fff7ed', borderRadius: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', border: '1px solid #fed7aa', cursor: 'pointer', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)' }} onClick={() => setActiveTab('map')}>
-                      <div style={{ display: 'flex', alignItems: 'center' }}>
-                        <div style={{ width: '32px', height: '32px', borderRadius: '50%', backgroundColor: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#7c2d12', marginRight: '16px' }}>
-                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                        </div>
-                        <div>
-                          <div style={{ color: '#7c2d12', fontSize: '15px', fontWeight: 'bold', textAlign: 'left' }}>Next stop</div>
-                          <div style={{ color: '#9ca3af', fontSize: '13px', textAlign: 'left' }}>Add more pandels from map</div>
-                        </div>
-                      </div>
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7c2d12" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                  </button>
-                </div>
+
 
                 {/* FAB Overlay */}
-                <div style={{ position: 'fixed', bottom: '80px', left: '0', right: '0', padding: '0 16px', zIndex: 100 }}>
+                <div style={{ position: 'fixed', bottom: '74px', left: '0', right: '0', padding: '0 16px', zIndex: 100 }}>
                   <button className="start-nav-fab" style={{ width: '100%', backgroundColor: '#7c2d12', color: 'white', padding: '16px', borderRadius: '12px', fontSize: '18px', fontWeight: 'bold', display: 'flex', alignItems: 'center', justifyContent: 'center', border: 'none', boxShadow: '0 8px 24px rgba(124, 45, 18, 0.4)', gap: '8px' }} onClick={() => {
                       if (plannedStops.length === 0) return;
                       if (!userLocation) {

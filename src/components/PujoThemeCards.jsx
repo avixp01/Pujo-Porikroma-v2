@@ -4,19 +4,19 @@ import HindusthanImg from '/Hindusthan-Park-1.png';
 
 
 const themes = [
-  { id: 1, title: "Santosh Mitra Square", subtitle: "Explore Pujo Theme", subtitles: ["Operation Sindoor (2025)", "Vande Mataram (2026)"], image: "/Santosh-Mitra-Square1.jpg", images: ["/Santosh-Mitra-Square1.jpg", "/Santosh-Mitra-Square2.jpg"], colorScheme: "black-ochre" },
+  { id: 1, title: "Santosh Mitra Square", subtitle: "Explore Pujo Theme", subtitles: ["Operation Sindoor (2025)", "Vande Mataram (2026)"], image: "/Santosh-Mitra-Square1.jpg", images: ["/Santosh-Mitra-Square1.jpg", "/Santosh-Mitra-Square3.png"], colorScheme: "black-ochre" },
   { id: 2, title: "Sreebhumi Sporting Club", subtitle: "Explore Pujo Theme", subtitles: ["Swaminarayan Akshardham Temple (2025)", "Rajasthan Hawa Mahal (2026)"], image: "/Sreebhumi-Sporting-Club1.jpg", images: ["/Sreebhumi-Sporting-Club1.jpg", "/Sreebhumi-Sporting-Club2.jpg"], colorScheme: "yellow-green" },
-  { id: 3, title: "Tala Prattoy", subtitle: "Explore Pujo Theme", subtitles: ["Bij Angan (2025)", "not been officially announced yet (2026)"], image: "/tala-prottoy1.jpg", images: ["/tala-prottoy1.jpg", "/tala-prottoy2.jpg"], colorScheme: "brown" },
+  { id: 3, title: "Tala Prattoy", subtitle: "Explore Pujo Theme", subtitles: ["Bij Angan (2025)", "Biyojon (বিয়োজন) (2026)"], image: "/tala-prottoy1.jpg", images: ["/tala-prottoy1.jpg", "/tala-prottoy3.png"], colorScheme: "brown" },
   { id: 4, title: "Suruchi Sangha", subtitle: "Explore Pujo Theme", subtitles: ["Ahuti (2025)", "Utsho (2026)"], image: "/Suruchi-Sangha1.jpg", images: ["/Suruchi-Sangha1.jpg", "/Suruchi-Sangha2.jpg"], colorScheme: "red-brown" },
-  { id: 5, title: "Kashi Bose Lane", subtitle: "Explore Pujo Theme", subtitles: ["Pakdondi (2025)", "not been officially announced yet (2026)"], image: "/kashi-bose-lane1.jpg", images: ["/kashi-bose-lane1.jpg", "/kashi-bose-lane2.jpg"], colorScheme: "ochre" },
-  { id: 6, title: "Dum Dum Park Bharat Chakra", subtitle: "Explore Pujo Theme", subtitles: ["Tanmatra (The Aura) (2025)", "Antaryami (অন্তর্যামী) (2026)"], image: "/DumDum-Park-BharatChakra1.jpg", images: ["/DumDum-Park-BharatChakra1.jpg", "/DumDum-Park-BharatChakra2.jpg"], colorScheme: "black" },
+  { id: 5, title: "Kashi Bose Lane", subtitle: "Explore Pujo Theme", subtitles: ["Pakdondi (2025)", "Aadim - Life in its Primal Rhythm (2026)"], image: "/kashi-bose-lane1.jpg", images: ["/kashi-bose-lane1.jpg", "/kashi-bose-lane2.jpg"], colorScheme: "ochre" },
+  { id: 6, title: "Dum Dum Park Bharat Chakra", subtitle: "Explore Pujo Theme", subtitles: ["Tanmatra (The Aura) (2025)", "Banger Rath Kotha (2026)"], image: "/DumDum-Park-BharatChakra1.jpg", images: ["/DumDum-Park-BharatChakra1.jpg", "/DumDum-Park-BharatChakra3.png"], colorScheme: "black" },
   { id: 7, title: "Kalyani ITI More Luminos Club", subtitle: "Explore Pujo Theme", subtitles: ["Hsinbyume Pagoda from Myanmar (2025)", "Swe Taw Myat Pagoda of Myanmar (2026)"], image: "/Kalyani-ITI-1.png", images: ["/Kalyani-ITI-1.png", "/Kalyani-ITI-2.jpg"], colorScheme: "ochre" },
   { id: 8, title: "Kumartuli Park", subtitle: "Explore Pujo Theme", subtitles: ["Potroshova (2025)", "Mati O Shilpi (2026)"], image: "/Kumartuli-Park1.jpg", images: ["/Kumartuli-Park1.jpg", "/Kumartuli-Park2.jpg"], colorScheme: "violet" },
-  { id: 10, title: "Ahiritola Sarbajanin Durgotsav", subtitle: "Explore Pujo Theme", subtitles: ["Probaho (2025)", "Chhanda (2026)"], image: "/Ahiritola-Sarbajanin-Durgotsav1.jpg", images: ["/Ahiritola-Sarbajanin-Durgotsav1.jpg", "/Ahiritola-Sarbajanin-Durgotsav2.jpg"], colorScheme: "ochre-lite" },
-  { id: 11, title: "Hindusthan Park", subtitle: "Explore Pujo Theme", subtitles: ["Lokoj (2025)", "not been officially announced yet (2026)"], image: "/Hindusthan-Park-1.png", images: ["/Hindusthan-Park-1.png", "/Hindusthan-Park-2.png"], colorScheme: "brown" }
+  { id: 10, title: "Ahiritola Sarbajanin Durgotsav", subtitle: "Explore Pujo Theme", subtitles: ["Probaho (2025)", "Chhanda (2026)"], image: "/Ahiritola-Sarbajanin-Durgotsav1.jpg", images: ["/Ahiritola-Sarbajanin-Durgotsav1.jpg", "/Ahiritola-Sarbajanin-Durgotsav3.png"], colorScheme: "ochre-lite" },
+  { id: 11, title: "Hindusthan Park", subtitle: "Explore Pujo Theme", subtitles: ["Lokoj (2025)", "Sphulinga / Spark (2026)"], image: "/Hindusthan-Park-1.png", images: ["/Hindusthan-Park-1.png", "/Hindusthan-Park-3.png"], colorScheme: "brown" }
 ];
 
-export default function PujoThemeCards() {
+export default function PujoThemeCards({ onExplore }) {
   const [themeData] = useState(() => [...themes].sort(() => Math.random() - 0.5));
   const [activeIndex, setActiveIndex] = useState(0);
   const [cardImageIndexes, setCardImageIndexes] = useState({});
@@ -72,7 +72,39 @@ export default function PujoThemeCards() {
                 <p>{theme.subtitles ? theme.subtitles[cardImageIndexes[theme.id] || 0] : theme.subtitle}</p>
                 <div className="pujo-explore-action">
                   <button onClick={prevCard} className="arrow-btn">&lt;</button>
-                  <span className="explore-text">এক্সপ্লোর করুন</span>
+                  <span 
+                    className="explore-text"
+                    onClick={() => {
+                      if (onExplore && position === 'active') {
+                        if (theme.title === 'Kashi Bose Lane') {
+                          onExplore('Kashi Bose Lane');
+                        } else if (theme.title === 'Kalyani ITI More Luminos Club') {
+                          onExplore('ITI More Durga Puja Ground, Kalyani');
+                        } else if (theme.title === 'Dum Dum Park Bharat Chakra') {
+                          onExplore('Dum Dum Park Bharat Chakra');
+                        } else if (theme.title === 'Suruchi Sangha') {
+                          onExplore('Suruchi Sangha');
+                        } else if (theme.title === 'Santosh Mitra Square') {
+                          onExplore('Santosh Mitra Square');
+                        } else if (theme.title === 'Sreebhumi Sporting Club') {
+                          onExplore('Sreebhumi Sporting Club');
+                        } else if (theme.title === 'Tala Prattoy') {
+                          onExplore('Tala Prattoy');
+                        } else if (theme.title === 'Ahiritola Sarbajanin Durgotsav') {
+                          onExplore('Ahiritola Jubak Brinda Sharbojanin Durgotsab');
+                        } else if (theme.title === 'Kumartuli Park') {
+                          onExplore('Kumartuli Park');
+                        } else if (theme.title === 'Hindusthan Park') {
+                          onExplore('Hindustan Park');
+                        }
+                      }
+                    }}
+                    style={{
+                      cursor: (position === 'active' && (theme.title === 'Kashi Bose Lane' || theme.title === 'Kalyani ITI More Luminos Club' || theme.title === 'Dum Dum Park Bharat Chakra' || theme.title === 'Suruchi Sangha' || theme.title === 'Santosh Mitra Square' || theme.title === 'Sreebhumi Sporting Club' || theme.title === 'Tala Prattoy' || theme.title === 'Ahiritola Sarbajanin Durgotsav' || theme.title === 'Kumartuli Park' || theme.title === 'Hindusthan Park')) ? 'pointer' : 'default'
+                    }}
+                  >
+                    এক্সপ্লোর করুন
+                  </span>
                   <button onClick={nextCard} className="arrow-btn">&gt;</button>
                 </div>
               </div>

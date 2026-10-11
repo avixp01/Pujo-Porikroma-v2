@@ -7,6 +7,9 @@ export default defineConfig({
   plugins: [react()],
   server: {
     allowedHosts: true,
+    headers: {
+      'Cache-Control': 'no-store, max-age=0' // FORCE BROWSER TO NEVER CACHE DEV SERVER FILES
+    },
     watch: {
       ignored: [
         path.resolve(__dirname, 'image') + '/**',
