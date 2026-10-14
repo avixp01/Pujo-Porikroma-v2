@@ -707,7 +707,7 @@ io.on('connection', (socket) => {
   });
 
   socket.on('disconnect', () => {
-    onlineUsers--;
+    onlineUsers = Math.max(0, onlineUsers - 1);
     console.log(`${myUsername} disconnected. Total online: ${onlineUsers}`);
     io.emit('onlineUsersUpdate', onlineUsers);
   });
@@ -1273,6 +1273,18 @@ app.post('/api/request-pandal', async (req, res) => {
     });
   }
 });
+
+// Serve static frontend build if dist folder exists (for production deployment)
+const distPath = path.resolve(process.cwd(), 'dist');
+if (fs.existsSync(distPath)) {
+  app.use(express.static(distPath));
+  app.use((req, res, next) => {
+    if (req.method === 'GET' && !req.path.startsWith('/api') && !req.path.startsWith('/socket.io')) {
+      return res.sendFile(path.join(distPath, 'index.html'));
+    }
+    next();
+  });
+}
 
 const PORT = process.env.PORT || 3000;
 httpServer.listen(PORT, '0.0.0.0', () => {

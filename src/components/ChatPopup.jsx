@@ -31,6 +31,11 @@ const ChatPopup = ({ onClose, socket }) => {
   const [invites, setInvites] = useState([]);
 
   const messagesEndRef = useRef(null);
+  const myUserIdRef = useRef(myUserId);
+
+  useEffect(() => {
+    myUserIdRef.current = myUserId;
+  }, [myUserId]);
 
   useEffect(() => {
     const handlePopState = (e) => {
@@ -160,7 +165,7 @@ const ChatPopup = ({ onClose, socket }) => {
     };
 
     const handleReceiveGroupInvite = (inviteData) => {
-      if (inviteData.targetUserId === myUserId) {
+      if (inviteData.targetUserId === myUserIdRef.current) {
         setInvites((prev) => {
           if (prev.length >= 3) {
             return prev;
@@ -170,6 +175,11 @@ const ChatPopup = ({ onClose, socket }) => {
       }
     };
 
+    const handleConnect = () => {
+      socket.emit("requestInitChat");
+    };
+
+    socket.on("connect", handleConnect);
     socket.on("initChat", handleInitChat);
     socket.on("newMessage", handleNewMessage);
     socket.on("chatCleared", handleChatCleared);
@@ -181,10 +191,11 @@ const ChatPopup = ({ onClose, socket }) => {
     socket.on("newGroupMessage", handleNewGroupMessage);
     socket.on("receiveGroupInvite", handleReceiveGroupInvite);
 
-    // Request initial chat state since we might have missed the initial connection event
+    // Request initial chat state
     socket.emit("requestInitChat");
 
     return () => {
+      socket.off("connect", handleConnect);
       socket.off("initChat", handleInitChat);
       socket.off("newMessage", handleNewMessage);
       socket.off("chatCleared", handleChatCleared);
@@ -196,7 +207,7 @@ const ChatPopup = ({ onClose, socket }) => {
       socket.off("newGroupMessage", handleNewGroupMessage);
       socket.off("receiveGroupInvite", handleReceiveGroupInvite);
     };
-  }, [socket, myUserId]);
+  }, [socket]);
 
   const sendMessage = () => {
     if (!inputText.trim() || !socket) return;

@@ -157,7 +157,12 @@ const Header = ({ onOpenMap }) => {
   useEffect(() => {
     const backendUrl = import.meta.env.VITE_BACKEND_URL || '/';
 
-    const newSocket = io(backendUrl);
+    const newSocket = io(backendUrl, {
+      transports: ['websocket', 'polling'],
+      reconnection: true,
+      reconnectionAttempts: Infinity,
+      reconnectionDelay: 1000,
+    });
     setSocket(newSocket);
 
     newSocket.on('connect', () => {
