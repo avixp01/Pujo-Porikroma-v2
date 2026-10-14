@@ -4,12 +4,13 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --host",
+    "dev": "node run-all.js",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "start": "node server.js",
-    "server": "node server.js"
+    "start": "node run-all.js",
+    "server": "node server.js",
+    "vite": "vite --host"
   },
   "dependencies": {
     "acorn": "^8.18.0",
