@@ -276,7 +276,7 @@ function App() {
           
           {/* Reusable Theme Card System */}
           <PujoThemeCards onExplore={(name) => openMap(name)} />
-          <div style={{ position: 'absolute', bottom: '3px', width: '100%', textAlign: 'center', color: '#a69a8b', fontSize: '14px', zIndex: 20, fontFamily: 'sans-serif', letterSpacing: '1px' }}>
+          <div style={{ position: 'absolute', bottom: '3px', width: '100%', textAlign: 'center', color: '#a69a8b', fontSize: '11px', lineHeight: '1.25', zIndex: 20, fontFamily: 'sans-serif', letterSpacing: '0.3px' }}>
             <div style={{ marginBottom: '0px', opacity: 0.8 }}>&copy; 2026 Pujo-Porikroma. Created for cultural, and</div>
             <div style={{ opacity: 0.8 }}>informational purposes only. All songs and media</div>
             <div style={{ opacity: 0.8 }}>rights belong to their respective owners.</div>
